@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Révèle ta marque - Ange Belegue · Mentor en Personal Branding</title>
+<title>Révèle ta marque · Ange Belegue · Mentor en Personal Branding</title>
 <meta name="description" content="Et si ton image en ligne reflétait enfin ce que tu vaux vraiment ? Accompagnement personal branding sur-mesure. Réserve ton appel découverte gratuit." />
 
 <!-- Open Graph -->
-<meta property="og:title" content="Révèle ta marque - Ange Belegue" />
-<meta property="og:description" content="Avant même que tu parles, on te cherche, on te juge, on te choisit - ou pas. Révèle ton image de marque." />
+<meta property="og:title" content="Révèle ta marque · Ange Belegue" />
+<meta property="og:description" content="Avant même que tu parles, on te cherche, on te juge, on te choisit, ou pas. Révèle ton image de marque." />
 <meta property="og:type" content="website" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -105,6 +105,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 .btn-ghost:hover{background:var(--espresso);color:#fff}
 .btn-urgent{background:var(--berry);color:#fff}
 .btn-urgent:hover{transform:translateY(-3px) rotate(-.5deg);box-shadow:0 22px 40px -16px rgba(125,0,0,.6)}
+.pillar-cta-btn{background:transparent;color:var(--champagne-glow);border:1px solid var(--champagne-glow)}
+.pillar-cta-btn:hover{background:var(--neon-citrus);color:var(--espresso);border-color:var(--neon-citrus);transform:translateY(-3px);box-shadow:0 22px 40px -16px rgba(255,158,15,.5)}
 .btn .arrow{transition:transform .25s}
 .btn:hover .arrow{transform:translateX(4px)}
 
@@ -896,6 +898,13 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   background: var(--zest);
   color: #fff;
 }
+.card-berry {
+  background: var(--berry);
+  color: var(--champagne-glow);
+}
+.card-berry .btn-link {
+  color: var(--champagne-glow);
+}
 .card-citrus {
   background: var(--neon-citrus);
   color: var(--espresso);
@@ -1155,20 +1164,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 /* --- TIMELINE WORK WITH ME --- */
 .timeline-section {
   position: relative;
-  background-color: var(--espresso);
-  background-image: url('https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: var(--berry);
   color: #fff;
   padding: clamp(6rem, 12vw, 10rem) var(--gut);
-}
-.timeline-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(58, 26, 8, 0.78);
-  z-index: 1;
 }
 .timeline-container {
   position: relative;
@@ -1204,7 +1202,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-family: var(--sans);
   font-size: clamp(1.1rem, 1.5vw, 1.25rem);
   line-height: 1.5;
-  color: rgba(255,255,255,0.85);
+  color: var(--champagne-glow);
   max-width: 500px;
 }
 .timeline-intro p { margin-bottom: 1rem; }
@@ -1229,10 +1227,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   left: -3rem;
   top: 0;
   transform: translateX(-50%);
-  color: var(--neon-citrus);
+  color: var(--espresso);
   font-size: 1.8rem;
   line-height: 1;
-  background: var(--espresso);
+  background: var(--neon-citrus);
   border-radius: 50%;
   padding: 0.5rem 0;
 }
@@ -1257,7 +1255,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-family: var(--sans);
   font-size: clamp(1rem, 1.2vw, 1.15rem);
   line-height: 1.6;
-  color: rgba(255,255,255,0.8);
+  color: var(--champagne-glow);
   max-width: 550px;
 }
 
@@ -1343,7 +1341,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-family: var(--serif);
   font-style: italic;
   font-size: 5rem;
-  color: var(--zest);
+  color: var(--neon-citrus);
   line-height: 1;
   margin-bottom: 1rem;
   opacity: 1;
@@ -1374,7 +1372,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 .hill-text.tagline {
   font-family: var(--sans);
   font-weight: 700;
-  color: var(--paper);
+  color: var(--neon-citrus);
   font-size: 1rem;
 }
 .hill-sublist {
@@ -2011,7 +2009,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
    TÉMOIGNAGES - titre sticky au centre, cartes qui défilent
    ============================================================ */
 .testi-v3{
-  background:var(--champagne);
+  background:var(--berry);
   position:relative;
   /* Plus d'air en haut pour décoller de la section précédente */
   padding-top: clamp(8rem, 14vw, 14rem);
@@ -2058,7 +2056,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-size:clamp(2.4rem, 7.5vw, 7rem);
   line-height:1;
   letter-spacing:-.02em;
-  color:var(--ink);
+  color:var(--champagne-glow);
   margin:0 0 2.5rem;
   pointer-events:none;
   padding:0 1rem;
@@ -2066,7 +2064,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .testi-bg-title em{
   font-style:italic;
-  color:var(--zest);
+  color:var(--neon-citrus);
   font-weight:500;
 }
 .tcard-v2{
@@ -2428,20 +2426,20 @@ section{padding-block:clamp(4rem,9vw,8rem)}
           <h2>Aujourd'hui, ton image compte plus que tes mots.</h2>
         </div>
         <p class="lead reveal">La façon dont tu te présentes au monde, et ce qu'on retient de toi : c'est ça qui décide, avant même que tu parles.</p>
-        <p class="lead reveal">Tu as de la valeur, des résultats - mais en ligne, tu es invisible, ou ton image ne te ressemble plus.</p>
+        <p class="lead reveal">Tu as de la valeur, des résultats, mais en ligne, tu es invisible, ou ton image ne te ressemble plus.</p>
         <p class="punch reveal">Ce n'est pas un problème de talent. C'est un problème de présence et de méthode.</p>
       </div>
       
       <!-- Right Column: Image Collage -->
       <div class="method-collage reveal">
         <div class="collage-img collage-img-1">
-          <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="Piliers de marque - Olga Pozney" />
+          <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="Piliers de marque, Olga Pozney" />
         </div>
         <div class="collage-img collage-img-2">
-          <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg" alt="Création de contenu - John Tekeridis" />
+          <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg" alt="Création de contenu, John Tekeridis" />
         </div>
         <div class="collage-img collage-img-3" style="border-color: var(--champagne);">
-          <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/04b0d483-6dc9-43ff-8cc1-915d1f8511d4/simeon-asenov-OuP41yLOi-E-unsplash.jpg" alt="Identité visuelle premium - Simeon Asenov" />
+          <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/04b0d483-6dc9-43ff-8cc1-915d1f8511d4/simeon-asenov-OuP41yLOi-E-unsplash.jpg" alt="Identité visuelle premium, Simeon Asenov" />
         </div>
       </div>
     </div>
@@ -2455,7 +2453,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 <section class="specialize-section" id="portfolio" style="padding-bottom: 8rem;">
   <div class="specialize-inner reveal">
     <div class="specialize-text-wrap">
-        <p class="specialize-small">Je ne me spécialise pas dans un secteur -</p>
+        <p class="specialize-small">Je ne me spécialise pas dans un secteur.</p>
         
         <div class="comment-bubble bubble-1 reveal" style="transition-delay: 2.0s;">C'est la perfection. 💖</div>
         <div class="comment-bubble bubble-2 reveal" style="transition-delay: 2.3s;">C'est trop cool, oh my god ! Tu me fais passer pour un pro 🔥</div>
@@ -2500,23 +2498,23 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     <!-- Photo 1 -->
     <div class="portfolio-item reveal">
       <div class="photo-tag">Avant</div>
-      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg" alt="Projet Coach - Photo 1" />
+      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg" alt="Projet Coach, Photo 1" />
     </div>
     <!-- Card -->
-    <div class="portfolio-item text-card card-zest reveal" style="align-items:center; text-align:center; gap: 0;">
-      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: var(--champagne);">Make it</h3>
+    <div class="portfolio-item text-card card-berry reveal" style="align-items:center; text-align:center; gap: 0;">
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: #fff;">Make it</h3>
     </div>
     <!-- Photo 2 -->
     <div class="portfolio-item reveal">
       <div class="photo-tag">Après</div>
-      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="Projet Coach - Photo 2" />
+      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="Projet Coach, Photo 2" />
     </div>
 
     <!-- Row 2: Project 2 (Thérapeute) -->
     <!-- Photo 3 -->
     <div class="portfolio-item reveal">
       <div class="photo-tag">Avant</div>
-      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f1d79e65-8e82-4783-bf6b-4b8d080b8f14/pexels-amar-preciado-10217799.jpg" alt="Projet Thérapeute - Photo 1" />
+      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f1d79e65-8e82-4783-bf6b-4b8d080b8f14/pexels-amar-preciado-10217799.jpg" alt="Projet Thérapeute, Photo 1" />
     </div>
     <!-- Card -->
     <div class="portfolio-item text-card card-citrus reveal" style="align-items:center; text-align:center; gap: 0;">
@@ -2525,15 +2523,26 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     <!-- Photo 4 -->
     <div class="portfolio-item reveal">
       <div class="photo-tag">Après</div>
-      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/23ba8bb3-34b8-4ed5-b39f-06b7f21bd4b8/vincenzo-marcella-mXBMif9K4rg-unsplash.jpg" alt="Projet Thérapeute - Photo 2" />
+      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/23ba8bb3-34b8-4ed5-b39f-06b7f21bd4b8/vincenzo-marcella-mXBMif9K4rg-unsplash.jpg" alt="Projet Thérapeute, Photo 2" />
     </div>
 
   </div>
   
-  <div class="hero-cta-row reveal" style="display: flex; justify-content: center; width: 100%; margin-top: clamp(2rem, 4vw, 4rem); padding-bottom: 2rem;">
+  <div class="hero-cta-row reveal" style="display: flex; justify-content: center; width: 100%; margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(3rem, 6vw, 5rem) var(--gut); background: var(--berry);">
     <a href="#book" class="btn btn-primary" style="font-size: 1.25rem; padding: 1.2rem 2.5rem; box-shadow: var(--shadow); border-radius: 999px;">Rends ta marque iconique <span class="arrow">→</span></a>
   </div>
-  
+
+</section>
+
+<!-- ============ TRANSITION · Rends ta marque unique (bis) ============ -->
+<section style="background:var(--espresso); padding:clamp(4rem,10vw,7rem) var(--gut); display:flex; align-items:center; justify-content:center;">
+  <div class="specialize-arrow-wrap">
+    <a href="#method" class="specialize-link">Rends ta marque unique</a>
+    <svg class="scroll-arrow" viewBox="0 0 100 100">
+      <path d="M10,20 C45,20 75,35 75,70" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
+      <path d="M63,58 L75,70 L82,56" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
+    </svg>
+  </div>
 </section>
 
 <!-- ============ S5 · LA MÉTHODE - hills sticky viewport blocks ============ -->
@@ -2555,7 +2564,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         <ul class="hill-sublist">
           <li>Qui tu es. Ce qui te rend unique et lisible. Ce qui te rend désirable.</li>
         </ul>
-        <p class="hill-text tagline">Ton message parle aux bonnes personnes - immédiatement.</p>
+        <p class="hill-text tagline">Ton message parle aux bonnes personnes, immédiatement.</p>
       </div>
     </div>
   </div>
@@ -2584,23 +2593,12 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <div class="hill-body">
         <div class="hill-num">3</div>
         <h3 class="hill-title">Une présence totale et alignée</h3>
-        <p class="hill-text">On active les bons canaux, les bons formats, la bonne stratégie - selon toi et ton business.</p>
+        <p class="hill-text">On active les bons canaux, les bons formats, la bonne stratégie, selon toi et ton business.</p>
         <p class="hill-text tagline">Trouvable partout où ta cible te cherche.</p>
       </div>
     </div>
   </div>
 
-</section>
-
-<!-- ============ TRANSITION · Rends ta marque unique (bis) ============ -->
-<section style="background:var(--espresso); padding:clamp(4rem,10vw,7rem) var(--gut); display:flex; align-items:center; justify-content:center;">
-  <div class="specialize-arrow-wrap">
-    <a href="#piliers" class="specialize-link">Rends ta marque unique</a>
-    <svg class="scroll-arrow" viewBox="0 0 100 100">
-      <path d="M10,20 C45,20 75,35 75,70" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
-      <path d="M63,58 L75,70 L82,56" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
-    </svg>
-  </div>
 </section>
 
 <!-- ============ S6 · LES PILIERS ============ -->
@@ -2620,7 +2618,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         </div>
         <div class="pillar-row" style="border-top-color: color-mix(in srgb, var(--paper) 15%, transparent);">
           <h3 style="color: #fff;"><span class="italic-accent" style="color: var(--neon-citrus);">Identité</span></h3>
-          <p style="color: color-mix(in srgb, var(--paper) 80%, transparent);">Logo, charte, palette, templates Canva - une image pensée pour refléter qui tu es aujourd'hui.</p>
+          <p style="color: color-mix(in srgb, var(--paper) 80%, transparent);">Logo, charte, palette, templates Canva : une image pensée pour refléter qui tu es aujourd'hui.</p>
         </div>
         <div class="pillar-row" style="border-top-color: color-mix(in srgb, var(--paper) 15%, transparent);">
           <h3 style="color: #fff;"><span class="italic-accent" style="color: var(--neon-citrus);">Contenu</span></h3>
@@ -2633,7 +2631,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       </div>
       
       <div class="pillar-cta" style="margin-top: 2rem; text-align: left; padding-bottom: 4rem;">
-        <a href="#book" class="btn" style="font-size: 1rem; padding: 0.9rem 1.8rem; border-radius: 50px; background: transparent; color: var(--champagne-glow); border: 1px solid var(--champagne-glow); box-shadow: none;">Réveille ta marque →</a>
+        <a href="#book" class="btn pillar-cta-btn" style="font-size: 1rem; padding: 0.9rem 1.8rem; border-radius: 50px; box-shadow: none;">Révèle ta marque →</a>
       </div>
     </div>
 
@@ -2665,8 +2663,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <div class="bio-mini-photo">
         <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" />
       </div>
-      <p class="bio-text">Si tu es entrepreneure, consultante, créative ou experte indépendante - tu connais la sensation : tu as de la valeur, tu sais ce que tu fais, mais ton image en ligne ne le raconte pas encore.</p>
-      <p class="bio-text">Tu travailles dur, mais tu te demandes pourquoi les bons clients ne te trouvent pas - ou pourquoi tes tarifs doivent toujours se défendre.</p>
+      <p class="bio-text">Si tu es entrepreneure, consultante, créative ou experte indépendante, tu connais la sensation : tu as de la valeur, tu sais ce que tu fais, mais ton image en ligne ne le raconte pas encore.</p>
+      <p class="bio-text">Tu travailles dur, mais tu te demandes pourquoi les bons clients ne te trouvent pas, ou pourquoi tes tarifs doivent toujours se défendre.</p>
       <p class="bio-text">La vérité : tu <em>peux</em> avoir une marque qui te ressemble, qui parle pour toi, et qui attire les clients que tu mérites. Il te faut juste la bonne méthode et le bon accompagnement.</p>
       <p class="bio-text bio-punch">C'est là que j'interviens.</p>
       <a href="#book" class="btn bio-cta">On travaille ensemble</a>
@@ -2683,42 +2681,56 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         <h2 class="timeline-title">COMMENT ON<br/>TRAVAILLE<br/>ENSEMBLE</h2>
         <div class="timeline-intro">
           <p>Ce n'est pas une prestation. C'est une vraie collaboration.</p>
-          <p>Je ne crée pas pour toi - je construis avec toi. Tu es impliquée, présente, et ce qu'on fait ensemble te ressemble de A à Z.</p>
+          <p>Je ne crée pas pour toi, je construis avec toi. Tu es impliquée, présente, et ce qu'on fait ensemble te ressemble de A à Z.</p>
         </div>
       </div>
     </div>
 
     <div class="timeline-right">
       <div class="timeline-line"></div>
-      
+
       <div class="timeline-step reveal">
         <div class="timeline-step-marker">★</div>
-        <div class="timeline-eyebrow">01 -</div>
+        <div class="timeline-eyebrow">01</div>
         <h3 class="timeline-heading">On se rencontre</h3>
         <p class="timeline-text">Un appel découverte gratuit. Je veux comprendre qui tu es, ce que tu construis, et ce qui coince. Pas de pitch, pas de pression. Juste une heure pour voir si on est faites pour bosser ensemble.</p>
       </div>
 
       <div class="timeline-step reveal">
         <div class="timeline-step-marker">★</div>
-        <div class="timeline-eyebrow">02 -</div>
-        <h3 class="timeline-heading">On creuse</h3>
-        <p class="timeline-text">Avant de toucher à la moindre couleur ou au moindre mot, on pose les fondations. Ton positionnement, ton message, ton histoire. Ce que tu veux que les gens ressentent en te découvrant.</p>
+        <div class="timeline-eyebrow">02</div>
+        <h3 class="timeline-heading">On fait le point</h3>
+        <p class="timeline-text">Un audit complet de là où tu en es, ce qui existe déjà, ce qui fonctionne, ce qui manque. Image digitale, réseaux, positionnement, contenu. On part de la réalité, pas d'une page blanche.</p>
       </div>
 
       <div class="timeline-step reveal">
         <div class="timeline-step-marker">★</div>
-        <div class="timeline-eyebrow">03 -</div>
+        <div class="timeline-eyebrow">03</div>
+        <h3 class="timeline-heading">On pose la route</h3>
+        <p class="timeline-text">À partir de l'audit, on construit ensemble un plan de route clair : ce sur quoi on va travailler, dans quel ordre, et pourquoi. Tu sais exactement où on va avant qu'on commence.</p>
+      </div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-step-marker">★</div>
+        <div class="timeline-eyebrow">04</div>
+        <h3 class="timeline-heading">On creuse les fondations</h3>
+        <p class="timeline-text">Ton positionnement, ton message, ton histoire. Ce que tu veux que les gens ressentent en te découvrant. Avant de toucher à la moindre couleur ou au moindre mot.</p>
+      </div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-step-marker">★</div>
+        <div class="timeline-eyebrow">05</div>
         <h3 class="timeline-heading">On construit</h3>
-        <p class="timeline-text">Séance par séance, on active les bons leviers - selon toi, selon ton business, selon tes objectifs. Rien n'est standard, tout est pensé pour toi.</p>
+        <p class="timeline-text">Séance par séance, on active les bons leviers, selon toi, selon ton business, selon tes objectifs. Rien n'est standard, tout est pensé pour toi.</p>
       </div>
 
       <div class="timeline-step reveal">
         <div class="timeline-step-marker">★</div>
-        <div class="timeline-eyebrow">04 -</div>
+        <div class="timeline-eyebrow">06</div>
         <h3 class="timeline-heading">Ta marque grandit avec toi</h3>
-        <p class="timeline-text">La fin de l'accompagnement n'est pas une fin. C'est un nouveau départ. Tout t'appartient - et ta marque continue d'évoluer avec toi, avec les bonnes bases pour durer.</p>
+        <p class="timeline-text">La fin de l'accompagnement n'est pas une fin. C'est un nouveau départ. Tout t'appartient, et ta marque continue d'évoluer avec toi, avec les bonnes bases pour durer.</p>
       </div>
-      
+
     </div>
 
   </div>
@@ -2740,7 +2752,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         <a href="#book" class="btn btn-primary fw-cta" style="align-self:center;margin:0 auto;">Je réserve mon appel <span class="arrow">→</span></a>
       </div>
       <div class="fw-col fw-col--list reveal">
-        <h3 class="fw-title-small">Au lieu de tourner autour du pot - on fera un <em>bon match</em> si :</h3>
+        <h3 class="fw-title-small">Au lieu de tourner autour du pot, on fera un <em>bon match</em> si :</h3>
         <ul class="fw-list">
           <li>Tu veux une présence en ligne qui reflète vraiment ta marque</li>
           <li>Tu es prête à faire passer ta marque au niveau supérieur</li>
@@ -2773,7 +2785,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <article class="tcard-v2 tcard-pos-2 reveal">
         <span class="tcard-stars">★ ★ ★ ★ ★</span>
         <h3 class="tcard-title">"MES TARIFS ONT SUIVI, SANS NÉGOCIATION."</h3>
-        <p class="tcard-quote">« Mon image reflète enfin mon niveau. Je ne me bats plus pour justifier mes prix - ils sont simplement acceptés. »</p>
+        <p class="tcard-quote">« Mon image reflète enfin mon niveau. Je ne me bats plus pour justifier mes prix, ils sont simplement acceptés. »</p>
         <div class="tcard-who">
           <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" /></div>
           <span class="tcard-name"><em>Sarah,</em><br>Consultante</span>
@@ -2783,7 +2795,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <article class="tcard-v2 tcard-pos-3 reveal">
         <span class="tcard-stars">★ ★ ★ ★ ★</span>
         <h3 class="tcard-title">"RIEN À VOIR AVEC UNE AGENCE."</h3>
-        <p class="tcard-quote">« Un accompagnement humain, exigeant, sur-mesure. J'ai senti une vraie implication - comme si mon projet était le sien. »</p>
+        <p class="tcard-quote">« Un accompagnement humain, exigeant, sur-mesure. J'ai senti une vraie implication, comme si mon projet était le sien. »</p>
         <div class="tcard-who">
           <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="" /></div>
           <span class="tcard-name"><em>Léa,</em><br>Thérapeute</span>
@@ -2793,7 +2805,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <article class="tcard-v2 tcard-pos-4 reveal">
         <span class="tcard-stars">★ ★ ★ ★ ★</span>
         <h3 class="tcard-title">"JE ME SENS ENFIN ALIGNÉE."</h3>
-        <p class="tcard-quote">« Ma marque, mon site, mon contenu - tout raconte la même histoire. Et c'est la mienne, enfin. »</p>
+        <p class="tcard-quote">« Ma marque, mon site, mon contenu, tout raconte la même histoire. Et c'est la mienne, enfin. »</p>
         <div class="tcard-who">
           <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" /></div>
           <span class="tcard-name"><em>Inès,</em><br>Designer freelance</span>
@@ -2817,7 +2829,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Quelle différence avec un graphiste ou un coach ?</button>
-        <div class="faq-a"><p>Un graphiste crée ton logo. Un coach travaille ton mindset. Moi je suis mentor - stratégie, image, contenu, site. Tout connecté. Tout cohérent.</p></div>
+        <div class="faq-a"><p>Un graphiste crée ton logo. Un coach travaille ton mindset. Moi je suis mentor : stratégie, image, contenu, site. Tout connecté. Tout cohérent.</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Combien de temps ça demande ?</button>
@@ -2833,7 +2845,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Et si ça ne marche pas ?</button>
-        <div class="faq-a"><p>On ajuste la stratégie ensemble à chaque séance - c'est pour ça qu'on avance étape par étape, pas en aveugle.</p></div>
+        <div class="faq-a"><p>On ajuste la stratégie ensemble à chaque séance, c'est pour ça qu'on avance étape par étape, pas en aveugle.</p></div>
       </div>
     </div>
   </div>
@@ -2863,7 +2875,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       TA MARQUE<br/>
       AU NIVEAU SUPÉRIEUR.
     </h2>
-    <p class="cta-final-body reveal" style="max-width: 60ch; margin-bottom: 3rem;">Tu as tout vu - la méthode, les piliers, les preuves. Reste à passer à l'action. Un echange avec moi pour comprendre ce qui bloque et ce qu'on construit en premier.</p>
+    <p class="cta-final-body reveal" style="max-width: 60ch; margin-bottom: 3rem;">Tu as tout vu : la méthode, les piliers, les preuves. Reste à passer à l'action. Un echange avec moi pour comprendre ce qui bloque et ce qu'on construit en premier.</p>
     
     <div class="cta-final-actions reveal">
       <a href="mailto:contact@angebelegue.com" class="btn btn-primary" style="font-size: 1.25rem; padding: 1.2rem 2.5rem; border-radius: 999px;">Réserve ton appel <span class="arrow">→</span></a>
