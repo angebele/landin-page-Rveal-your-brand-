@@ -316,24 +316,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   align-items:center;
   gap:.4rem;
   z-index:2;
-  color:var(--paper);
-  opacity:.85;
-}
-.hero-v2-scroll span{
-  font-family:var(--sans);
-  font-weight:600;
-  font-size:.72rem;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-}
-.hero-v2-scroll svg{
-  width:20px;
-  height:20px;
-  animation:heroScrollBounce 2s ease-in-out infinite;
-}
-@keyframes heroScrollBounce{
-  0%, 100% { transform:translateY(0); opacity:.6; }
-  50%      { transform:translateY(6px); opacity:1; }
+  opacity:.95;
 }
 
 @media(max-width:600px){
@@ -393,7 +376,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   position: absolute;
   top: 0; right: 0;
   width: 32%; height: 100%;
-  background: var(--zest);
+  background: var(--berry);
   z-index: 0;
 }
 @media(max-width: 1023px) {
@@ -723,8 +706,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   .comment-bubble { display: none; }
 }
 .marquee-large {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--berry);
+  color: #fff;
   padding: 1.5rem 0;
   overflow: hidden;
   white-space: nowrap;
@@ -804,7 +787,6 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 
 .reframe-portfolio {
   background: var(--champagne);
-  padding-bottom: clamp(5rem, 10vw, 9rem);
   overflow: hidden;
   border-top: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
 }
@@ -900,10 +882,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .card-berry {
   background: var(--berry);
-  color: var(--neon-citrus);
+  color: #fff;
 }
 .card-berry .btn-link {
-  color: var(--neon-citrus);
+  color: #fff;
 }
 .card-citrus {
   background: var(--neon-citrus);
@@ -914,10 +896,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .card-marron {
   background: var(--espresso);
-  color: var(--zest);
+  color: var(--neon-citrus);
 }
 .card-marron .btn-link {
-  color: var(--zest);
+  color: var(--neon-citrus);
 }
 .card-zest .btn-link {
   color: #fff;
@@ -1243,14 +1225,11 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 .timeline-step-marker {
   position: absolute;
   left: -3rem;
-  top: 0;
+  top: 0.2rem;
   transform: translateX(-50%);
-  color: var(--espresso);
-  font-size: 1.8rem;
+  color: var(--neon-citrus);
+  font-size: 1.4rem;
   line-height: 1;
-  background: var(--neon-citrus);
-  border-radius: 50%;
-  padding: 0.5rem 0;
 }
 .timeline-eyebrow {
   font-family: var(--sans);
@@ -2420,9 +2399,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 
   <!-- Indicateur de scroll en bas -->
   <div class="hero-v2-scroll" aria-hidden="true">
-    <span>Scroll</span>
-    <svg viewBox="0 0 24 24" fill="none">
-      <path d="M12 5 L12 19 M5 12 L12 19 L19 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <span class="specialize-link" style="font-size:clamp(1.1rem,2vw,1.5rem);">La vérité, c'est que...</span>
+    <svg class="scroll-arrow" style="width:60px;height:60px;margin-top:-6px;" viewBox="0 0 100 100">
+      <path d="M10,20 C45,20 75,35 75,70" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
+      <path d="M63,58 L75,70 L82,56" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
     </svg>
   </div>
 </section>
@@ -2523,7 +2503,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     </div>
     <!-- Card -->
     <div class="portfolio-item text-card card-berry reveal" style="align-items:center; text-align:center; gap: 0;">
-      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: var(--neon-citrus);">Make it</h3>
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: #fff;">Make it</h3>
     </div>
     <!-- Photo 2 -->
     <div class="portfolio-item reveal">
@@ -2539,7 +2519,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     </div>
     <!-- Card -->
     <div class="portfolio-item text-card card-marron reveal" style="align-items:center; text-align:center; gap: 0;">
-      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: var(--zest);">Iconic</h3>
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: var(--neon-citrus);">Iconic</h3>
     </div>
     <!-- Photo 4 -->
     <div class="portfolio-item reveal">
@@ -2548,11 +2528,11 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     </div>
 
   </div>
-  
-  <div class="hero-cta-row reveal" style="display: flex; justify-content: center; width: 100%; margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(3rem, 6vw, 5rem) var(--gut); background: var(--espresso);">
-    <a href="#book" class="btn btn-primary" style="font-size: 1.25rem; padding: 1.2rem 2.5rem; box-shadow: var(--shadow); border-radius: 999px;">Rends ta marque iconique <span class="arrow">→</span></a>
-  </div>
 
+</section>
+
+<section style="background:var(--espresso); padding:clamp(3rem,6vw,5rem) var(--gut); display:flex; align-items:center; justify-content:center;">
+  <a href="#book" class="btn btn-primary reveal" style="font-size: 1.25rem; padding: 1.2rem 2.5rem; box-shadow: var(--shadow); border-radius: 999px;">Rends ta marque iconique <span class="arrow">→</span></a>
 </section>
 
 <!-- ============ S5 · LA MÉTHODE - hills sticky viewport blocks ============ -->
@@ -2609,17 +2589,6 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     </div>
   </div>
 
-</section>
-
-<!-- ============ TRANSITION · Rends ta marque unique (bis) ============ -->
-<section style="padding:clamp(3rem,6vw,5rem) var(--gut); display:flex; align-items:center; justify-content:center;">
-  <div class="specialize-arrow-wrap">
-    <a href="#piliers" class="specialize-link">Rends ta marque unique</a>
-    <svg class="scroll-arrow" viewBox="0 0 100 100">
-      <path d="M10,20 C45,20 75,35 75,70" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
-      <path d="M63,58 L75,70 L82,56" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
-    </svg>
-  </div>
 </section>
 
 <!-- ============ S6 · LES PILIERS ============ -->
