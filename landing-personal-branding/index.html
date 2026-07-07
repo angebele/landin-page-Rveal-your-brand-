@@ -13,7 +13,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Caveat:wght@700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Anton&family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Poppins:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Caveat:wght@700&display=swap" rel="stylesheet" />
 
 <style>
 @font-face {
@@ -3004,6 +3004,177 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   update();
+})();
+</script>
+
+<!-- ============================================================
+     WIDGET DE TEST TYPOGRAPHIQUE (outil temporaire, a retirer avant mise en prod)
+     ============================================================ -->
+<style>
+#type-widget{
+  position:fixed;bottom:1rem;right:1rem;z-index:9999;
+  font-family:system-ui,sans-serif;
+  background:#1a1a1a;color:#fff;
+  border-radius:14px;
+  box-shadow:0 12px 40px rgba(0,0,0,.4);
+  width:260px;
+  overflow:hidden;
+  transition:width .25s, height .25s;
+}
+#type-widget.collapsed{width:auto}
+#type-widget-toggle{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  padding:.7rem 1rem;background:#111;border:none;color:#fff;cursor:pointer;
+  font-size:.8rem;font-weight:600;letter-spacing:.02em;
+}
+#type-widget-body{padding:.9rem 1rem 1.1rem;display:flex;flex-direction:column;gap:.7rem}
+#type-widget.collapsed #type-widget-body{display:none}
+.tw-row label{display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;opacity:.6;margin-bottom:.25rem}
+.tw-row select{
+  width:100%;padding:.45rem .5rem;border-radius:7px;border:1px solid #444;
+  background:#262626;color:#fff;font-size:.85rem;cursor:pointer;
+}
+.tw-row select:focus{outline:2px solid #FF9E0F}
+#type-widget-reset{
+  margin-top:.2rem;background:none;border:1px solid #444;color:#ccc;
+  border-radius:7px;padding:.4rem;font-size:.72rem;cursor:pointer;
+}
+#type-widget-reset:hover{background:#262626}
+#type-widget-note{font-size:.62rem;line-height:1.4;opacity:.5;margin-top:.1rem}
+</style>
+
+<div id="type-widget">
+  <button id="type-widget-toggle" type="button">
+    <span>🎨 Test typos</span>
+    <span id="type-widget-arrow">▾</span>
+  </button>
+  <div id="type-widget-body">
+    <div class="tw-row">
+      <label for="tw-display">Display / H1 / H2</label>
+      <select id="tw-display" data-var="--display"></select>
+    </div>
+    <div class="tw-row">
+      <label for="tw-heading">H3 (sous-titres)</label>
+      <select id="tw-heading" data-var="--heading"></select>
+    </div>
+    <div class="tw-row">
+      <label for="tw-body">Corps de texte</label>
+      <select id="tw-body" data-var="--sans"></select>
+    </div>
+    <div class="tw-row">
+      <label for="tw-mono">Eyebrow / Caption / Nav</label>
+      <select id="tw-mono" data-var="--mono"></select>
+    </div>
+    <button id="type-widget-reset" type="button">Reinitialiser aux polices actuelles</button>
+    <p id="type-widget-note">Widget temporaire pour tester des combinaisons. A retirer une fois la typo choisie.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var FONT_OPTIONS = {
+    '--display': [
+      { name: 'Archivo Black', stack: "'Archivo Black', 'Jost', sans-serif" },
+      { name: 'Anton',         stack: "'Anton', 'Jost', sans-serif" },
+      { name: 'Bebas Neue',    stack: "'Bebas Neue', 'Jost', sans-serif" },
+      { name: 'Oswald',        stack: "'Oswald', 'Jost', sans-serif" },
+      { name: 'Poppins',       stack: "'Poppins', 'Jost', sans-serif" }
+    ],
+    '--heading': [
+      { name: 'Jost',      stack: "'Jost', system-ui, sans-serif" },
+      { name: 'Poppins',   stack: "'Poppins', system-ui, sans-serif" },
+      { name: 'Work Sans', stack: "'Work Sans', system-ui, sans-serif" },
+      { name: 'Inter',     stack: "'Inter', system-ui, sans-serif" },
+      { name: 'Oswald',    stack: "'Oswald', system-ui, sans-serif" }
+    ],
+    '--sans': [
+      { name: 'Jost',       stack: "'Jost', system-ui, -apple-system, sans-serif" },
+      { name: 'Inter',      stack: "'Inter', system-ui, -apple-system, sans-serif" },
+      { name: 'DM Sans',    stack: "'DM Sans', system-ui, -apple-system, sans-serif" },
+      { name: 'Work Sans',  stack: "'Work Sans', system-ui, -apple-system, sans-serif" },
+      { name: 'Space Mono', stack: "'Space Mono', 'Courier New', monospace" }
+    ],
+    '--mono': [
+      { name: 'Space Mono',    stack: "'Space Mono', 'Courier New', monospace" },
+      { name: 'Jost',          stack: "'Jost', system-ui, sans-serif" },
+      { name: 'IBM Plex Mono', stack: "'IBM Plex Mono', 'Courier New', monospace" },
+      { name: 'JetBrains Mono',stack: "'JetBrains Mono', 'Courier New', monospace" },
+      { name: 'Inter',         stack: "'Inter', system-ui, sans-serif" }
+    ]
+  };
+
+  var DEFAULTS = {
+    '--display': "'Archivo Black', 'Jost', sans-serif",
+    '--heading': "'Jost', system-ui, sans-serif",
+    '--sans': "'Jost', system-ui, -apple-system, sans-serif",
+    '--mono': "'Space Mono', 'Courier New', monospace"
+  };
+
+  var root = document.documentElement;
+  var STORAGE_KEY = 'ange-type-widget-choices';
+
+  function applyVar(cssVar, stack){
+    root.style.setProperty(cssVar, stack);
+  }
+
+  function saveChoice(cssVar, name){
+    var saved = {};
+    try{ saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }catch(e){}
+    saved[cssVar] = name;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+  }
+
+  function loadChoices(){
+    try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }catch(e){ return {}; }
+  }
+
+  function buildSelect(selectEl, cssVar, savedName){
+    var options = FONT_OPTIONS[cssVar];
+    options.forEach(function(opt){
+      var el = document.createElement('option');
+      el.value = opt.name;
+      el.textContent = opt.name;
+      el.style.fontFamily = opt.stack;
+      selectEl.appendChild(el);
+    });
+    if(savedName){
+      selectEl.value = savedName;
+      var match = options.filter(function(o){ return o.name === savedName; })[0];
+      if(match) applyVar(cssVar, match.stack);
+    }
+    selectEl.addEventListener('change', function(){
+      var match = options.filter(function(o){ return o.name === selectEl.value; })[0];
+      if(match){
+        applyVar(cssVar, match.stack);
+        saveChoice(cssVar, match.name);
+      }
+    });
+  }
+
+  var saved = loadChoices();
+  buildSelect(document.getElementById('tw-display'), '--display', saved['--display']);
+  buildSelect(document.getElementById('tw-heading'), '--heading', saved['--heading']);
+  buildSelect(document.getElementById('tw-body'), '--sans', saved['--sans']);
+  buildSelect(document.getElementById('tw-mono'), '--mono', saved['--mono']);
+
+  document.getElementById('type-widget-reset').addEventListener('click', function(){
+    Object.keys(DEFAULTS).forEach(function(cssVar){
+      applyVar(cssVar, DEFAULTS[cssVar]);
+    });
+    localStorage.removeItem(STORAGE_KEY);
+    ['tw-display','tw-heading','tw-body','tw-mono'].forEach(function(id){
+      var el = document.getElementById(id);
+      el.value = FONT_OPTIONS[el.dataset.var][0].name;
+    });
+  });
+
+  var widget = document.getElementById('type-widget');
+  var toggle = document.getElementById('type-widget-toggle');
+  var arrow = document.getElementById('type-widget-arrow');
+  toggle.addEventListener('click', function(){
+    widget.classList.toggle('collapsed');
+    arrow.textContent = widget.classList.contains('collapsed') ? '▸' : '▾';
+  });
 })();
 </script>
 </body>
