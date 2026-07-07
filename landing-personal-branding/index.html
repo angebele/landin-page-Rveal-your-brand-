@@ -13,7 +13,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..600&family=Caveat:wght@700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Caveat:wght@700&display=swap" rel="stylesheet" />
 
 <style>
 @font-face {
@@ -53,16 +53,21 @@
   --shadow-sm: 0 8px 24px -12px rgba(196,64,32,.30);
 
   --serif: "Fraunces", Georgia, serif;
-  --sans:  "DM Sans", system-ui, -apple-system, sans-serif;
+  --sans:  "Jost", system-ui, -apple-system, sans-serif;
+  --display: "Archivo Black", "Jost", system-ui, sans-serif;
+  --heading: "Jost", system-ui, sans-serif;
+  --mono: "Space Mono", "Courier New", monospace;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   font-family:var(--sans);
+  font-weight:400;
   background:var(--warm-ivory);
   color:var(--espresso);
-  line-height:1.6;
+  font-size:1rem;
+  line-height:1.7;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
@@ -70,18 +75,41 @@ img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 
 /* ---------- Typo helpers ---------- */
-h1,h2,h3{font-family:var(--serif);line-height:1.05;font-weight:600;letter-spacing:-.02em}
-.eyebrow{
-  font-family:var(--sans);
+/* Echelle typographique : Display/H1 = Archivo Black, H3/H4 = Jost Bold/SemiBold, Eyebrow/Caption/Nav = Space Mono */
+h1{
+  font-family:var(--display);
+  text-transform:uppercase;
+  letter-spacing:-.02em;
+  line-height:.85;
+  font-weight:400;
+}
+h2{
+  font-family:var(--display);
+  text-transform:uppercase;
+  letter-spacing:-.01em;
+  line-height:.9;
+  font-weight:400;
+  font-size:clamp(2.75rem, 6vw, 5rem);
+}
+h3{
+  font-family:var(--heading);
   font-weight:700;
-  font-size:.78rem;
-  letter-spacing:.22em;
+  text-transform:none;
+  letter-spacing:0;
+  line-height:1.15;
+  font-size:clamp(1.375rem, 2.2vw, 1.75rem);
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-weight:400;
+  font-size:.68rem;
+  letter-spacing:.14em;
   text-transform:uppercase;
   color:var(--zest);
   display:inline-flex;align-items:center;gap:.6rem;
 }
 .eyebrow::before{content:"";width:28px;height:2px;background:var(--zest);display:inline-block}
-.italic-accent{font-style:italic;font-weight:400;color:var(--zest)}
+.italic-accent{font-style:normal;font-family:inherit;font-weight:inherit;color:var(--zest)}
 
 .wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
 section{padding-block:clamp(4rem,9vw,8rem)}
@@ -91,8 +119,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
    ============================================================ */
 .btn{
   display:inline-flex;align-items:center;gap:.6rem;
-  font-family:var(--sans);font-weight:700;font-size:1.02rem;
-  padding:1.05rem 2rem;border-radius:var(--r-pill);
+  font-family:var(--sans);font-weight:600;font-size:.85rem;
+  text-transform:uppercase;letter-spacing:.04em;
+  padding:.85rem 1.75rem;border-radius:var(--r-pill);
   cursor:pointer;border:2px solid transparent;
   transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .25s;
   will-change:transform;
@@ -120,8 +149,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   border-bottom:1px solid color-mix(in srgb, var(--ink) 8%, transparent);
 }
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:1rem}
-.logo{font-family:var(--serif);font-weight:600;font-size:1.45rem;letter-spacing:-.02em}
-.logo b{color:var(--zest);font-style:italic;font-weight:400}
+.logo{font-family:var(--display);font-weight:400;font-size:1.2rem;letter-spacing:-.01em;text-transform:uppercase}
+.logo b{color:var(--zest);font-style:normal;font-weight:400}
 .nav-cta{display:none}
 @media(min-width:760px){.nav-cta{display:inline-flex;padding:.7rem 1.4rem;font-size:.92rem}}
 
@@ -193,14 +222,14 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   padding:0 clamp(1rem, 4vw, 4rem);
 }
 .hero-huge-title{
-  font-family:'metaoldfrench', var(--serif);
-  font-size:clamp(4rem, 10vw, 12rem);
+  font-family:var(--display);
+  font-size:clamp(4rem, 11vw, 8.75rem);
   font-weight:400;
   color:var(--paper);
   text-transform:uppercase;
   letter-spacing:-0.02em;
   margin:0 0 1rem 0;
-  line-height:1;
+  line-height:.85;
   text-align:center;
   text-shadow:0 10px 40px rgba(0,0,0,.5);
 }
@@ -226,12 +255,12 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   gap:1rem;
 }
 .hero-v2-subtitle{
-  font-family:var(--serif);
-  font-weight:500;
-  font-size:clamp(1.2rem, 2vw, 1.5rem);
+  font-family:var(--heading);
+  font-weight:400;
+  font-size:clamp(1.1rem, 2vw, 1.4rem);
   color:var(--paper);
   margin:0 0 0.5rem 0;
-  line-height:1.2;
+  line-height:1.3;
 }
 .hero-v2-body{
   font-family:var(--sans);
@@ -297,8 +326,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .hero-v2-sticker svg{ width:100%; height:100%; }
 .hero-sticker-text{
-  font-family:var(--sans);
-  font-weight:700;
+  font-family:var(--mono);
+  font-weight:400;
   font-size:14px;
   letter-spacing:.18em;
   text-transform:uppercase;
@@ -339,7 +368,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
    MARQUEE
    ============================================================ */
 .marquee{background:var(--espresso);color:var(--champagne-glow);padding:.9rem 0;overflow:hidden;white-space:nowrap}
-.marquee-track{display:inline-flex;gap:2.5rem;animation:scroll 26s linear infinite;font-family:var(--serif);font-style:italic;font-size:1.25rem}
+.marquee-track{display:inline-flex;gap:2.5rem;animation:scroll 26s linear infinite;font-family:var(--mono);font-style:normal;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
 .marquee-track span{display:inline-flex;gap:2.5rem;align-items:center}
 .marquee-track span::after{content:"✦";color:var(--citrus);font-style:normal}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -348,17 +377,17 @@ section{padding-block:clamp(4rem,9vw,8rem)}
    GENERIC SECTION TITLES
    ============================================================ */
 .section-head{max-width:760px;margin-bottom:clamp(2.5rem,5vw,4rem)}
-.section-head h2{font-size:clamp(2rem,4.6vw,3.6rem);margin:1rem 0}
-.lead{font-size:1.18rem;color:var(--ink-soft)}
+.section-head h2{margin:1rem 0}
+.lead{font-family:var(--sans);font-weight:400;font-size:1.05rem;line-height:1.7;color:var(--ink-soft)}
 
 /* PROBLÈME */
 .problem{background:var(--paper);color:var(--ink);position:relative;overflow:hidden;}
 .problem .eyebrow{color:var(--zest)}
 .problem .eyebrow::before{background:var(--zest)}
-.problem h2{color:var(--ink)}
+.problem h2{color:var(--berry)}
 .problem .lead{color:var(--ink-soft)}
 .problem p + p{margin-top:1.1rem}
-.problem .punch{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--berry);margin-top:1.6rem}
+.problem .punch{font-family:var(--heading);font-weight:700;font-style:normal;font-size:1.3rem;color:var(--berry);margin-top:1.6rem}
 
 .split-layout {
   display: grid;
@@ -716,20 +745,20 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   display: inline-flex;
   gap: 3rem;
   animation: scroll 15s linear infinite;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: clamp(3rem, 7vw, 6rem);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.01em;
 }
 .marquee-large .marquee-track span {
   display: inline-flex;
 }
 .specialize-big {
-  font-family: var(--sans);
-  font-weight: 800;
+  font-family: var(--display);
+  font-weight: 400;
   font-size: clamp(2.8rem, 7.5vw, 8.5rem);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
   margin: 0 auto;
   color: #ffffff;
@@ -1189,12 +1218,12 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   top: clamp(6rem, 10vw, 10rem);
 }
 .timeline-title {
-  font-family: var(--sans);
+  font-family: var(--display);
   font-size: clamp(4rem, 8vw, 8rem);
-  font-weight: 800;
+  font-weight: 400;
   text-transform: uppercase;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
   margin-bottom: 2rem;
   color: #fff;
 }
@@ -1232,21 +1261,21 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   line-height: 1;
 }
 .timeline-eyebrow {
-  font-family: var(--sans);
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-family: var(--mono);
+  font-size: .68rem;
+  font-weight: 400;
   color: var(--neon-citrus);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
 .timeline-heading {
-  font-family: var(--sans);
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  font-weight: 600;
-  color: #fff;
+  font-family: var(--heading);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  color: var(--champagne-glow);
   margin-bottom: 1rem;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 .timeline-text {
   font-family: var(--sans);
@@ -1284,20 +1313,21 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .hills-title-wrap .eyebrow {
   display: block;
-  font-family: var(--sans);
-  font-size: 1rem;
-  font-style: italic;
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-style: normal;
+  letter-spacing: .14em;
   margin-bottom: 1rem;
   color: var(--paper);
 }
 .hills-title-wrap h2 {
-  font-family: 'metaoldfrench', var(--serif);
-  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+  font-family: var(--display);
+  font-size: clamp(2.75rem, 5.5vw, 5rem);
   text-transform: uppercase;
-  line-height: 0.92;
+  line-height: 0.9;
   color: var(--paper);
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   font-weight: 400;
 }
 
@@ -1335,9 +1365,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 /* --- Card text --- */
 .hill-num {
   position: relative;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 5rem;
+  font-family: var(--display);
+  font-style: normal;
+  font-size: 4rem;
   color: var(--neon-citrus);
   line-height: 1;
   margin-bottom: 1rem;
@@ -1352,10 +1382,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   z-index: 2;
 }
 .hill-title {
-  font-family: var(--sans);
-  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-  font-weight: 600;
-  color: var(--paper);
+  font-family: var(--heading);
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  color: var(--champagne-glow);
   line-height: 1.15;
   margin: 0;
 }
@@ -1571,16 +1601,19 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   border-bottom: 1px solid color-mix(in srgb, var(--paper) 15%, transparent);
 }
 .pillar-row h3 {
+  font-family: var(--heading);
+  font-weight: 700;
+  text-transform: none;
   font-size: clamp(1.5rem, 3vw, 1.9rem);
   margin-bottom: 0.3rem;
-  color: var(--paper);
+  color: var(--champagne-glow);
 }
 .pillar-row h3 .italic-accent {
-  font-size: 1.2em;
+  font-size: 1.05em;
   color: var(--neon-citrus);
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 300;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 700;
 }
 .pillar-row p {
   color: color-mix(in srgb, var(--paper) 80%, transparent);
@@ -1815,27 +1848,28 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   flex-direction:column;
 }
 .fw-eyebrow{
-  font-family:var(--sans);
-  font-weight:600;
-  font-size:.82rem;
-  letter-spacing:.16em;
+  font-family:var(--mono);
+  font-weight:400;
+  font-size:.68rem;
+  letter-spacing:.14em;
   text-transform:uppercase;
-  color:var(--ink);
+  color:var(--zest);
   margin-bottom:1.6rem;
 }
 .fw-title-big{
-  font-family:var(--serif);
+  font-family:var(--display);
+  text-transform:uppercase;
   font-size:clamp(2.6rem, 5.5vw, 4.4rem);
-  font-weight:600;
-  line-height:1.05;
-  color:var(--ink);
+  font-weight:400;
+  line-height:.92;
+  color:var(--berry);
   margin-bottom:1.6rem;
   letter-spacing:-.01em;
 }
 .fw-title-big .fw-script{
-  font-style:italic;
+  font-style:normal;
   color:var(--zest);
-  font-weight:500;
+  font-weight:400;
 }
 .fw-intro{
   font-family:var(--sans);
@@ -1846,18 +1880,18 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   max-width:42ch;
 }
 .fw-title-small{
-  font-family:var(--serif);
-  font-size:clamp(1.6rem, 2.8vw, 2.2rem);
-  font-weight:500;
-  font-style:italic;
-  line-height:1.15;
-  color:var(--ink);
+  font-family:var(--heading);
+  font-size:clamp(1.375rem, 2.2vw, 1.75rem);
+  font-weight:700;
+  font-style:normal;
+  line-height:1.2;
+  color:var(--espresso);
   margin-bottom:2rem;
 }
 .fw-title-small em{
-  font-style:italic;
+  font-style:normal;
   color:var(--zest);
-  font-weight:600;
+  font-weight:700;
 }
 .fw-center{
   display:flex;
@@ -2048,10 +2082,11 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   align-items:center;
   justify-content:center;
   text-align:center;
-  font-family:var(--serif);
-  font-weight:600;
+  font-family:var(--display);
+  font-weight:400;
+  text-transform:uppercase;
   font-size:clamp(2.4rem, 7.5vw, 7rem);
-  line-height:1;
+  line-height:.9;
   letter-spacing:-.02em;
   color:var(--champagne-glow);
   margin:0 0 2.5rem;
@@ -2060,9 +2095,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   gap:0;
 }
 .testi-bg-title em{
-  font-style:italic;
+  font-style:normal;
   color:var(--neon-citrus);
-  font-weight:500;
+  font-weight:400;
 }
 .tcard-v2{
   position:relative;
@@ -2081,8 +2116,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   letter-spacing:.3em;
 }
 .tcard-title{
-  font-family:var(--serif);
-  font-size:clamp(1.05rem, 1.8vw, 1.3rem);
+  font-family:var(--heading);
+  font-size:clamp(1rem, 1.6vw, 1.1rem);
   font-weight:600;
   line-height:1.2;
   color:var(--ink);
@@ -2123,9 +2158,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   color:var(--ink);
 }
 .tcard-name em{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:.98rem;
+  font-family:var(--heading);
+  font-style:normal;
+  font-weight:600;
+  font-size:.9rem;
 }
 
 /* ============================================================
@@ -2133,9 +2169,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
    ============================================================ */
 .guarantee{background:var(--berry);color:var(--champagne-glow);text-align:center}
 .guarantee .badge{font-size:3rem;margin-bottom:1rem}
-.guarantee h2{color:var(--neon-citrus);font-size:clamp(1.8rem,4vw,3rem);max-width:20ch;margin:0 auto 1.4rem}
-.guarantee p{max-width:46ch;margin:0 auto;font-size:1.15rem}
-.guarantee p.kicker{font-family:var(--serif);font-style:italic;color:var(--neon-citrus);margin-top:1rem;font-size:1.3rem}
+.guarantee h2{color:var(--champagne-glow);font-size:clamp(1.8rem,4vw,3rem);max-width:20ch;margin:0 auto 1.4rem}
+.guarantee p{max-width:46ch;margin:0 auto;font-size:1.05rem;color:color-mix(in srgb, var(--champagne-glow) 85%, transparent)}
+.guarantee p.kicker{font-family:var(--heading);font-weight:700;font-style:normal;color:var(--neon-citrus);margin-top:1rem;font-size:1.15rem}
 
 /* ============================================================
    FAQ
@@ -2147,7 +2183,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 .faq-list{max-width:780px;margin-top:1rem}
 .faq-item{border-bottom:1px solid color-mix(in srgb,var(--champagne-glow) 20%,transparent)}
 .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;
-  font-family:var(--serif);font-size:clamp(1.15rem,2.4vw,1.5rem);font-weight:600;color:#fff;
+  font-family:var(--heading);font-size:clamp(1rem,1.6vw,1.1rem);font-weight:600;color:var(--champagne-glow);
   padding:1.5rem 2.5rem 1.5rem 0;position:relative;display:block}
 .faq-q::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:1.8rem;color:var(--neon-citrus);transition:transform .3s}
 .faq-item.open .faq-q::after{transform:translateY(-50%) rotate(45deg)}
@@ -2219,20 +2255,20 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   width: 100%;
 }
 .cta-final-eyebrow {
-  font-family: var(--sans);
-  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-family: var(--mono);
+  font-size: .68rem;
   color: rgba(255,255,255,0.6);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   margin-bottom: 2rem;
-  font-style: italic;
+  font-style: normal;
 }
 .cta-final-title {
-  font-family: var(--sans);
-  font-weight: 800;
-  font-size: clamp(4rem, 11vw, 11rem);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(4rem, 11vw, 8.75rem);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
   color: #ffffff;
   margin: 0 0 3rem;
@@ -2308,9 +2344,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   }
 }
 .site-footer .logo {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--champagne);
-  font-family: var(--serif);
+  font-family: var(--display);
+  text-transform: uppercase;
 }
 .footer-nav {
   display: flex;
@@ -2319,9 +2356,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   justify-content: center;
 }
 .footer-nav a {
+  font-family: var(--mono);
   color: color-mix(in srgb, var(--champagne) 60%, transparent);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: color 0.2s;
@@ -2393,7 +2431,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         </textPath>
       </text>
       <circle cx="100" cy="100" r="22" fill="var(--zest)" />
-      <text x="100" y="106" text-anchor="middle" font-family="var(--serif)" font-style="italic" font-size="20" font-weight="500" fill="var(--paper)">A.</text>
+      <text x="100" y="106" text-anchor="middle" font-family="var(--display)" font-size="18" font-weight="400" fill="var(--paper)">A.</text>
     </svg>
   </div>
 
@@ -2503,7 +2541,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     </div>
     <!-- Card -->
     <div class="portfolio-item text-card card-berry reveal" style="align-items:center; text-align:center; gap: 0;">
-      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: #fff;">Make it</h3>
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--display); font-weight:400; letter-spacing: -0.01em; color: #fff;">Make it</h3>
     </div>
     <!-- Photo 2 -->
     <div class="portfolio-item reveal">
@@ -2519,7 +2557,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     </div>
     <!-- Card -->
     <div class="portfolio-item text-card card-marron reveal" style="align-items:center; text-align:center; gap: 0;">
-      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: var(--neon-citrus);">Iconic</h3>
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--display); font-weight:400; letter-spacing: -0.01em; color: var(--neon-citrus);">Iconic</h3>
     </div>
     <!-- Photo 4 -->
     <div class="portfolio-item reveal">
