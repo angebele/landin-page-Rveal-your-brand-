@@ -13,9 +13,14 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..600&family=Caveat:wght@700&display=swap" rel="stylesheet" />
 
 <style>
+@font-face {
+  font-family: 'metaoldfrench';
+  src: url('https://static.showit.co/file/OEhqdcRdv__Pji7qNoDqhg/65205/meta-old-french.woff') format('woff');
+}
+
 /* ============================================================
    PALETTE — Citrus / Champagne (Ange Belegue)
    ============================================================ */
@@ -112,37 +117,219 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 /* ============================================================
    HERO
    ============================================================ */
-.hero{position:relative;padding-top:clamp(3rem,8vw,6rem);padding-bottom:clamp(4rem,9vw,7rem);overflow:hidden}
-.hero::before{ /* gros blob citrus */
-  content:"";position:absolute;top:-22%;right:-14%;
-  width:55vw;height:55vw;max-width:760px;max-height:760px;
-  background:radial-gradient(circle at 35% 35%, var(--citrus), var(--zest) 78%);
-  border-radius:48% 52% 60% 40% / 52% 44% 56% 48%;
-  filter:blur(2px);opacity:.92;z-index:0;
-  animation:morph 14s ease-in-out infinite;
+/* ============================================================
+   HERO V2 — Slideshow background + grand titre marque
+   ============================================================ */
+.hero-v2{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  color:var(--paper);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
-.hero::after{ /* petit blob pêche */
-  content:"";position:absolute;bottom:-12%;left:-8%;
-  width:30vw;height:30vw;max-width:380px;max-height:380px;
-  background:var(--fizz);border-radius:50%;z-index:0;opacity:.7;
+.hero-split-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 0;
 }
-@keyframes morph{
-  0%,100%{border-radius:48% 52% 60% 40% / 52% 44% 56% 48%}
-  50%{border-radius:60% 40% 44% 56% / 40% 56% 44% 60%}
+.hero-split-left {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
 }
-.hero .wrap{position:relative;z-index:2;max-width:920px}
-.hero h1{
-  font-size:clamp(2.6rem,6.6vw,5.3rem);
-  font-weight:600;margin:1.4rem 0 1.5rem;
+.hero-split-right {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
 }
-.hero h1 .hl{color:var(--berry);font-style:italic;font-weight:400}
-.hero .sub{
-  font-family:var(--serif);font-style:italic;font-weight:400;
-  font-size:clamp(1.2rem,2.4vw,1.7rem);color:var(--zest);
-  max-width:40ch;margin-bottom:1rem;
+.hero-slideshow{
+  position:absolute;
+  inset:0;
+  z-index:0;
 }
-.hero .body{font-size:1.15rem;color:var(--ink-soft);max-width:46ch;margin-bottom:2.2rem}
-.hero-cta-row{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.hero-slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 0.2s; /* Fast cut */
+}
+.hero-slide.is-active{
+  opacity:1;
+}
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(46,20,16,.45) 0%, rgba(46,20,16,.75) 100%);
+  z-index:1;
+}
+.hero-v2-content{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+  text-align:center;
+  padding:0 clamp(1rem, 4vw, 4rem);
+}
+.hero-huge-title{
+  font-family:'metaoldfrench', var(--serif);
+  font-size:clamp(4rem, 10vw, 12rem);
+  font-weight:400;
+  color:var(--paper);
+  text-transform:uppercase;
+  letter-spacing:-0.02em;
+  margin:0 0 1rem 0;
+  line-height:1;
+  text-align:center;
+  text-shadow:0 10px 40px rgba(0,0,0,.5);
+}
+.hero-bottom-bar {
+  position:absolute;
+  bottom:clamp(1rem, 4vw, 3rem);
+  left:clamp(1rem, 4vw, 3rem);
+  right:clamp(1rem, 4vw, 3rem);
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  z-index:10;
+}
+.hero-bottom-left {
+  max-width:400px;
+  text-align:left;
+}
+.hero-bottom-right {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  text-align:right;
+  gap:1rem;
+}
+.hero-v2-subtitle{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(1.2rem, 2vw, 1.5rem);
+  color:var(--paper);
+  margin:0 0 0.5rem 0;
+  line-height:1.2;
+}
+.hero-v2-body{
+  font-family:var(--sans);
+  font-weight:400;
+  font-size:clamp(0.9rem, 1vw, 1rem);
+  color:var(--paper);
+  margin:0;
+  opacity:0.9;
+  line-height:1.5;
+}
+.hero-v2-trust{
+  font-family:var(--sans);
+  font-style:italic;
+  font-size:0.9rem;
+  color:var(--paper);
+  opacity:0.8;
+  margin:0;
+}
+.hero-v2-btn{
+  margin-top:.8rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  padding:1.1rem 2.4rem;
+  background:var(--paper);
+  color:var(--ink);
+  border-radius:var(--r-pill);
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:.85rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:transform .25s, box-shadow .25s, background .25s;
+}
+.hero-v2-btn:hover{
+  background:var(--zest);
+  color:var(--paper);
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(0,0,0,.25);
+}
+.hero-v2-btn .arrow{
+  transition:transform .25s;
+}
+.hero-v2-btn:hover .arrow{
+  transform:translateX(4px);
+}
+
+/* Sticker décoratif tourné — coin haut-droit */
+.hero-v2-sticker{
+  position:absolute;
+  top:clamp(5rem, 10vw, 8rem);
+  right:clamp(1.5rem, 4vw, 4rem);
+  width:clamp(110px, 13vw, 160px);
+  height:clamp(110px, 13vw, 160px);
+  z-index:2;
+  transform:rotate(13deg);
+  animation:heroStickerSpin 30s linear infinite;
+}
+@keyframes heroStickerSpin{
+  from{ transform:rotate(13deg); }
+  to  { transform:rotate(373deg); }
+}
+.hero-v2-sticker svg{ width:100%; height:100%; }
+.hero-sticker-text{
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  fill:var(--paper);
+}
+
+/* Indicateur de scroll en bas */
+.hero-v2-scroll{
+  position:absolute;
+  bottom:clamp(1.5rem, 3vw, 2.5rem);
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.4rem;
+  z-index:2;
+  color:var(--paper);
+  opacity:.85;
+}
+.hero-v2-scroll span{
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.hero-v2-scroll svg{
+  width:20px;
+  height:20px;
+  animation:heroScrollBounce 2s ease-in-out infinite;
+}
+@keyframes heroScrollBounce{
+  0%, 100% { transform:translateY(0); opacity:.6; }
+  50%      { transform:translateY(6px); opacity:1; }
+}
+
+@media(max-width:600px){
+  .hero-v2{ min-height:90vh; }
+  .hero-v2-sticker{ width:90px; height:90px; }
+  .hero-v2-scroll{ display:none; }
+}
 
 /* trust flash */
 .trust-flash{
@@ -171,141 +358,1433 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 .lead{font-size:1.18rem;color:var(--ink-soft)}
 
 /* PROBLÈME */
-.problem{background:var(--ink);color:var(--champagne)}
-.problem .eyebrow{color:var(--citrus)}
-.problem .eyebrow::before{background:var(--citrus)}
-.problem h2{color:var(--champagne)}
-.problem .lead{color:color-mix(in srgb,var(--champagne) 78%,transparent)}
+.problem{background:var(--paper);color:var(--ink);position:relative;overflow:hidden;}
+.problem .eyebrow{color:var(--zest)}
+.problem .eyebrow::before{background:var(--zest)}
+.problem h2{color:var(--ink)}
+.problem .lead{color:var(--ink-soft)}
 .problem p + p{margin-top:1.1rem}
-.problem .punch{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--citrus);margin-top:1.6rem}
+.problem .punch{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--berry);margin-top:1.6rem}
+
+.split-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(3rem, 6vw, 5rem);
+  align-items: center;
+}
+@media(min-width: 1024px) {
+  .split-layout {
+    grid-template-columns: 1.15fr 1fr;
+  }
+}
+
+.color-block-bg {
+  position: absolute;
+  top: 0; right: 0;
+  width: 32%; height: 100%;
+  background: #C84630; /* Couleur rouge chaleureuse inspirée de l'image */
+  z-index: 0;
+}
+@media(max-width: 1023px) {
+  .color-block-bg {
+    width: 100%; height: 55%; top: auto; bottom: 0;
+  }
+}
+.problem .wrap { position: relative; z-index: 2; }
 
 /* REFRAME — grande déclaration */
-.reframe{background:var(--citrus);color:var(--ink);text-align:center}
-.reframe h2{font-size:clamp(2.2rem,5.5vw,4.4rem);max-width:18ch;margin-inline:auto}
-.reframe .body{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,3vw,2rem);margin-top:1.5rem;color:var(--berry)}
-
 /* ============================================================
-   TRANSFORMATION — Avant / Après
+   REFRAME V2 — slide style : photo gauche + titre + 2 cartes
    ============================================================ */
-.transform{background:var(--champagne)}
-.ba-grid{display:grid;gap:1.2rem;grid-template-columns:1fr;margin-top:1rem}
-@media(min-width:820px){.ba-grid{grid-template-columns:1fr 1fr;gap:2rem}}
-.ba-card{border-radius:var(--r-lg);padding:clamp(1.6rem,3vw,2.4rem)}
-.ba-before{background:var(--paper);border:2px dashed color-mix(in srgb,var(--ink) 25%,transparent)}
-.ba-after{background:var(--berry);color:var(--champagne);box-shadow:var(--shadow)}
-.ba-card h3{font-size:1.5rem;margin-bottom:1.4rem;display:flex;align-items:center;gap:.6rem}
-.ba-after h3{color:var(--citrus)}
-.ba-list{list-style:none;display:flex;flex-direction:column;gap:1rem}
-.ba-list li{display:flex;gap:.8rem;align-items:flex-start;font-size:1.06rem}
-.ba-list li::before{content:"";flex:0 0 22px;height:22px;border-radius:50%;margin-top:2px}
-.ba-before li::before{content:"✕";color:var(--ink-soft);background:none;font-weight:700;display:flex;align-items:center;justify-content:center}
-.ba-after li::before{content:"✓";color:var(--berry);background:var(--citrus);font-weight:700;display:flex;align-items:center;justify-content:center}
-
-/* PORTFOLIO carousel */
-.portfolio{margin-top:3.5rem}
-.portfolio h3{font-size:1.4rem;margin-bottom:.4rem}
-.portfolio p.hint{color:var(--ink-soft);font-size:.95rem;margin-bottom:1.4rem}
-.carousel{display:flex;gap:1.2rem;overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-.carousel::-webkit-scrollbar{height:8px}
-.carousel::-webkit-scrollbar-thumb{background:var(--zest);border-radius:99px}
-.slide{
-  scroll-snap-align:start;flex:0 0 78%;max-width:340px;aspect-ratio:4/5;
-  border-radius:var(--r-md);background:linear-gradient(160deg,var(--fizz),var(--citrus));
-  display:flex;align-items:flex-end;padding:1.4rem;color:var(--ink);font-weight:700;
-  position:relative;overflow:hidden;
+.reframe-v2{
+  background:var(--champagne);
+  padding-block:clamp(2rem, 4vw, 3.5rem);
+  padding-inline:var(--gut);
 }
-.slide:nth-child(2n){background:linear-gradient(160deg,var(--zest),var(--berry));color:var(--champagne)}
-.slide:nth-child(3n){background:linear-gradient(160deg,var(--berry),var(--ink));color:var(--champagne)}
-.slide .tag{position:absolute;top:1rem;left:1rem;background:rgba(255,255,255,.85);color:var(--ink);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .7rem;border-radius:99px}
-@media(min-width:820px){.slide{flex-basis:30%}}
-
-/* ============================================================
-   RÉALISATIONS — construction 2 colonnes (texte | grille magazine)
-   ============================================================ */
-.real-split{display:grid;gap:clamp(2rem,5vw,4rem);grid-template-columns:1fr;margin-top:clamp(3rem,7vw,5.5rem);align-items:start}
-@media(min-width:920px){.real-split{grid-template-columns:0.85fr 1.15fr}}
-
-/* Colonne gauche */
-.real-text{position:sticky;top:6rem}
-.real-text h2{font-size:clamp(2.2rem,4.8vw,3.8rem);line-height:1.02}
-.real-text p{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.4vw,1.7rem);color:var(--berry);margin:1.4rem 0 2.2rem;max-width:24ch}
-
-/* Colonne droite : grille alternée 2 colonnes */
-.real-grid{display:grid;gap:1.2rem;grid-template-columns:1fr 1fr}
-
-/* Carte colorée (style exemple) */
-.real-card{
-  background:var(--zest);color:var(--paper);
+.reframe-split{
+  max-width:1380px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:clamp(1.5rem, 3vw, 3rem);
+  align-items:center;
+}
+@media(min-width:960px){
+  .reframe-split{
+    grid-template-columns: 1fr 1fr;
+    gap:clamp(2.5rem, 4vw, 4rem);
+  }
+}
+.reframe-photo{
+  position:relative;
+  overflow:hidden;
+  background:var(--champagne);
   border-radius:var(--r-md);
-  display:flex;align-items:flex-start;
-  padding:clamp(1.4rem,2.5vw,2rem);
-  min-height:200px;
+  aspect-ratio: 3 / 4;
+  max-height:720px;
+  width:100%;
 }
-.real-card h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.1;color:var(--paper)}
-.real-card .card-italic{font-style:italic;font-weight:400;display:block}
+.reframe-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.reframe-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.reframe-content{
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+.reframe-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:var(--sans);
+  font-size:.78rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:color-mix(in srgb, var(--ink) 60%, transparent);
+  margin-bottom:1.3rem;
+}
+.reframe-title{
+  font-family:var(--serif);
+  font-size:clamp(1.7rem, 3.4vw, 2.8rem);
+  font-weight:600;
+  line-height:1;
+  color:var(--ink);
+  letter-spacing:-.01em;
+  margin:0 0 1.2rem;
+  text-transform:uppercase;
+}
+.reframe-title em{
+  font-style:italic;
+  color:var(--zest);
+  font-weight:500;
+  text-transform:none;
+}
+.reframe-intro{
+  font-family:var(--sans);
+  font-size:.95rem;
+  line-height:1.55;
+  color:color-mix(in srgb, var(--ink) 76%, transparent);
+  margin:0 0 1.8rem;
+  max-width:52ch;
+}
+.reframe-cards{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1rem;
+  margin-top:0;
+}
+@media(min-width:600px){
+  .reframe-cards{ grid-template-columns:1fr 1fr; gap:1.2rem; }
+}
+.rcard{
+  position:relative;
+  border-radius:var(--r-md);
+  padding:clamp(1.1rem, 1.9vw, 1.5rem);
+  display:flex;
+  flex-direction:column;
+  gap:.6rem;
+  min-height:auto;
+}
+.rcard--before{
+  background:color-mix(in srgb, var(--paper) 50%, var(--champagne));
+  border:1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+}
+.rcard--after{
+  background:var(--fizz);
+}
+.rcard-icon{
+  width:30px;
+  height:30px;
+  color:color-mix(in srgb, var(--ink) 75%, transparent);
+}
+.rcard-icon svg{ width:100%; height:100%; }
+.rcard-icon--after{ color:var(--zest); }
+.rcard-corner{
+  position:absolute;
+  top:clamp(.8rem, 1.4vw, 1rem);
+  right:clamp(.8rem, 1.4vw, 1rem);
+  width:22px;
+  height:22px;
+  color:color-mix(in srgb, var(--ink) 50%, transparent);
+}
+.rcard-corner svg{ width:100%; height:100%; }
+.rcard-title{
+  font-family:var(--sans);
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin:.3rem 0 .1rem;
+}
+.rcard-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:.35rem;
+}
+.rcard-list li{
+  font-family:var(--sans);
+  font-size:.85rem;
+  line-height:1.4;
+  color:color-mix(in srgb, var(--ink) 78%, transparent);
+  position:relative;
+  padding-left:.9rem;
+}
+.rcard-list li::before{
+  content:"·";
+  position:absolute;
+  left:0;
+  color:var(--ink);
+  font-weight:700;
+}
 
-/* Cellule image avant/après */
-.real-img{
-  position:relative;border-radius:var(--r-md);overflow:hidden;
-  display:grid;grid-template-columns:1fr 1fr;min-height:200px;
-  background:var(--paper);
+/* ============================================================
+   NEW PORTFOLIO & REFRAME SECTION (3x2 Seamless Grid & Cult Banner)
+   ============================================================ */
+.cult-banner {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: clamp(500px, 70vh, 800px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 0;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  background: var(--champagne);
 }
-.real-img img{width:100%;height:100%;object-fit:cover}
-.real-img img:first-of-type{border-right:2px solid var(--champagne)}
-.ba-tag{
-  position:absolute;top:.6rem;z-index:2;
-  font-family:var(--sans);font-size:.62rem;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;
-  padding:.28rem .6rem;border-radius:99px;
+.cult-banner .content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--ink);
+  width: 100%;
+  padding: 0 1rem;
 }
-.tag-before{left:.6rem;background:var(--ink);color:var(--champagne)}
-.tag-after{right:.6rem;background:var(--citrus);color:var(--ink)}
+.cult-banner .eyebrow {
+  color: var(--zest);
+  margin-bottom: 2rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+.cult-banner .eyebrow::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--zest);
+}
+.cult-banner h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 4.5vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+}
+.cult-banner h2 .accent {
+  font-family: 'Caveat', cursive, var(--sans);
+  color: var(--zest);
+  font-size: 1.3em;
+  font-weight: 700;
+  display: inline-block;
+  transform: rotate(-3deg) translateY(-5px);
+}
+.cult-banner .line1, .cult-banner .line2 {
+  display: block;
+}
+.cult-banner .line1 {
+  /* On force le texte à rester sur une ligne pour l'effet visuel large */
+  white-space: nowrap;
+}
+.cult-banner .body {
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin: 2rem auto 0;
+  line-height: 1.5;
+}
 
-@media(max-width:520px){
-  .real-card,.real-img{min-height:150px}
-  .real-card h3{font-size:1.2rem}
+/* ============================================================
+   SPECIALIZE SECTION — Grand fond noir, typo massive + petite intro
+   ============================================================ */
+.specialize-section {
+  background: #111111;
+  color: #ffffff;
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 5vw, 5rem);
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.specialize-inner {
+  position: relative;
+  text-align: center;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+.specialize-text-wrap {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+.specialize-small {
+  margin: 0 auto 2rem auto;
+  font-family: var(--sans);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--zest);
+  font-weight: 600;
+  text-align: center;
+  position: static;
+  width: auto;
+}
+.comment-bubble {
+  position: absolute;
+  background: #ffffff;
+  color: #111111;
+  font-family: var(--sans);
+  font-size: clamp(0.75rem, 1vw, 0.95rem);
+  font-weight: 600;
+  padding: 0.8rem 1.4rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  z-index: 20;
+  pointer-events: none;
+  max-width: 220px;
+  line-height: 1.3;
+  text-align: left;
+}
+.bubble-1 {
+  border-radius: 20px 20px 20px 5px;
+  top: 15%;
+  left: -5%;
+  transform: rotate(-10deg);
+}
+.bubble-2 {
+  border-radius: 20px 20px 5px 20px;
+  bottom: -5%;
+  right: 5%;
+  transform: rotate(8deg);
+}
+.bubble-3 {
+  border-radius: 20px 20px 20px 5px;
+  top: -2%;
+  right: 5%;
+  transform: rotate(12deg);
+}
+.bubble-4 {
+  border-radius: 20px 20px 5px 20px;
+  bottom: -5%;
+  left: 5%;
+  transform: rotate(-8deg);
+}
+.bubble-5 {
+  border-radius: 20px 20px 20px 5px;
+  bottom: -8%;
+  left: 30%;
+  transform: rotate(-10deg);
+}
+@media (max-width: 900px) {
+  .comment-bubble { display: none; }
+}
+.marquee-large {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 1.5rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-large .marquee-track {
+  display: inline-flex;
+  gap: 3rem;
+  animation: scroll 15s linear infinite;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.marquee-large .marquee-track span {
+  display: inline-flex;
+}
+.specialize-big {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(2.8rem, 7.5vw, 8.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin: 0 auto;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+.specialize-text-wrap .word {
+  display: inline-block;
+  opacity: 0;
+  margin-right: 0.15em;
+}
+.specialize-text-wrap .word:last-child {
+  margin-right: 0;
+}
+.specialize-inner.in .word {
+  animation: wordFadeIn 0.6s ease-out forwards;
+}
+@keyframes wordFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.specialize-footer {
+  margin-top: clamp(4rem, 7vw, 7rem);
+  text-align: center;
+}
+.specialize-link {
+  font-family: 'Caveat', cursive, var(--sans);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--zest);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transform: rotate(-3deg);
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.specialize-link:hover {
+  transform: rotate(-3deg) scale(1.05);
+}
+.specialize-arrow-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.specialize-arrow-wrap .scroll-arrow {
+  width: 90px;
+  height: 90px;
+  margin-top: -10px;
+  margin-left: 30px;
+  animation: float-arrow 3s ease-in-out infinite;
+}
+
+.reframe-portfolio {
+  background: var(--champagne);
+  padding-bottom: clamp(5rem, 10vw, 9rem);
+  overflow: hidden;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.scroll-indicator {
+  margin-top: 3rem;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+.scroll-text {
+  font-family: 'Caveat', cursive, var(--sans);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--zest);
+  transform: rotate(-6deg);
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+.scroll-arrow {
+  width: 90px;
+  height: 90px;
+  margin-top: -12px;
+  margin-left: 35px;
+  animation: float-arrow 3s ease-in-out infinite;
+}
+@keyframes float-arrow {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(5px, 8px) rotate(3deg); }
+}
+
+/* Edge-to-Edge Grid Layout */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0; /* No gap */
+  width: 100%;
+}
+@media(min-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr 1fr 1fr; /* 3 columns layout */
+    align-items: stretch;
+  }
+}
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1/1; /* Square for clean grid */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.portfolio-item:hover img {
+  transform: scale(1.05);
+}
+.photo-tag {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--r-pill);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+/* Middle Text Card styling */
+.portfolio-item.text-card {
+  padding: 3rem 2.5rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+.card-zest {
+  background: var(--zest);
+  color: var(--champagne);
+}
+.card-citrus {
+  background: var(--citrus);
+  color: var(--ink);
+}
+.card-citrus .btn-link {
+  color: var(--ink);
+}
+.card-zest .btn-link {
+  color: var(--champagne);
+}
+.project-number {
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  opacity: 0.9;
+  margin-bottom: auto; /* Pushes everything else down slightly if needed, or keeps it at top */
+}
+.text-card h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-top: auto;
+}
+.text-card p {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+.text-card .btn-link {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: opacity 0.3s;
+}
+.text-card .btn-link:hover {
+  opacity: 0.7;
 }
 
 /* ============================================================
    MÉTHODE
    ============================================================ */
-.method{background:var(--paper)}
-.steps{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;font-family:var(--serif);font-size:clamp(1.3rem,3vw,2.1rem);font-weight:600;margin-bottom:.8rem}
-.steps .from{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--zest)}
-.steps .to{color:var(--berry);font-style:italic}
-.steps .sep{color:var(--citrus)}
-.method .lead{margin-bottom:3rem}
-.pillars{display:grid;gap:1.2rem;grid-template-columns:1fr}
-@media(min-width:640px){.pillars{grid-template-columns:1fr 1fr}}
-@media(min-width:980px){.pillars{grid-template-columns:repeat(4,1fr)}}
-.pillar{background:var(--champagne);border-radius:var(--r-md);padding:1.8rem 1.5rem;border-top:5px solid var(--citrus);transition:transform .25s,box-shadow .25s}
-.pillar:nth-child(2){border-top-color:var(--zest)}
-.pillar:nth-child(3){border-top-color:var(--berry)}
-.pillar:nth-child(4){border-top-color:var(--fizz)}
-.pillar:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.pillar .num{font-family:var(--serif);font-size:2.4rem;font-weight:600;color:var(--zest);line-height:1}
-.pillar h3{font-size:1.25rem;margin:.6rem 0 .5rem}
-.pillar p{font-size:.98rem;color:var(--ink-soft)}
-.method-note{margin-top:2.6rem;font-family:var(--serif);font-style:italic;font-size:1.35rem;color:var(--berry)}
+.method {
+  background: var(--paper);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+.method-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  font-weight: 600;
+  margin-bottom: .4rem;
+}
+.steps .from {
+  color: var(--ink-soft);
+  text-decoration: line-through;
+  text-decoration-color: var(--zest);
+}
+.steps .to {
+  color: var(--berry);
+  font-style: italic;
+}
+.steps .sep {
+  color: var(--citrus);
+}
+.method .lead {
+  margin-bottom: 1rem;
+  font-size: 1.18rem;
+  color: var(--ink-soft);
+}
+.method-subtitle {
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  font-family: var(--serif);
+  color: var(--ink);
+  margin-top: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.pillars {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: 1fr;
+}
+@media(min-width: 600px) {
+  .pillars {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.pillar {
+  background: var(--champagne);
+  border-radius: var(--r-md);
+  padding: 1.5rem;
+  border-top: 5px solid var(--citrus);
+  transition: transform .25s, box-shadow .25s;
+}
+.pillar:nth-child(2) { border-top-color: var(--zest); }
+.pillar:nth-child(3) { border-top-color: var(--berry); }
+.pillar:nth-child(4) { border-top-color: var(--fizz); }
+.pillar:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+.pillar .num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--zest);
+  line-height: 1;
+}
+.pillar h3 {
+  font-size: 1.25rem;
+  margin: .4rem 0 .3rem;
+}
+.pillar p {
+  font-size: .98rem;
+  color: var(--ink-soft);
+}
+.method-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.35rem;
+  color: var(--berry);
+  margin-top: 1.5rem;
+}
+
+/* Method cards — 3-column layout inspired by reference visual */
+.method-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+  width: 100%;
+  max-width: 1080px;
+  align-items: stretch;
+}
+@media(min-width: 820px) {
+  .method-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+.method-card {
+  border-radius: var(--r-lg);
+  padding: clamp(2.4rem, 4.5vw, 3rem) clamp(1.6rem, 3vw, 2.2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: transform .25s, box-shadow .25s;
+}
+.method-card--1 { background: var(--fizz); }
+.method-card--2 { background: color-mix(in srgb, var(--champagne) 80%, var(--fizz)); }
+.method-card--3 { background: var(--fizz); }
+.method-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-sm);
+}
+.method-medallion {
+  position: relative;
+  width: clamp(96px, 12vw, 130px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+}
+.method-medallion svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 6px 14px rgba(46,20,16,.08));
+}
+.method-medallion-num {
+  position: relative;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(3.2rem, 5.5vw, 4.4rem);
+  color: var(--ink);
+  line-height: 1;
+}
+.method-card h3 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2.4vw, 1.7rem);
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+.method-card p {
+  font-family: var(--sans);
+  font-size: .95rem;
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--ink) 78%, transparent);
+  margin-bottom: 0;
+  max-width: 32ch;
+}
+.method-card p + p {
+  margin-top: .9rem;
+}
+.method-sublist {
+  list-style: none;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  max-width: 32ch;
+}
+.method-sublist li {
+  font-family: var(--sans);
+  font-size: .95rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--ink) 78%, transparent);
+  position: relative;
+  padding-left: .9rem;
+}
+.method-sublist li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--berry);
+  font-weight: 700;
+}
+.method-tagline {
+  font-family: var(--serif) !important;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--berry) !important;
+  margin-top: 1rem !important;
+}
+
+/* ============================================================
+   MÉTHODE V2 — hills editorial (Sarah Kleist exact replica)
+   Each card lives in its own sticky viewport block.
+   Cards are identical size but offset x + rotated for organic feel.
+   ============================================================ */
+
+/* --- TIMELINE WORK WITH ME --- */
+.timeline-section {
+  position: relative;
+  background-color: #000;
+  background-image: url('https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  padding: clamp(6rem, 12vw, 10rem) var(--gut);
+}
+.timeline-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+.timeline-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+@media (min-width: 900px) {
+  .timeline-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+}
+.timeline-left { position: relative; }
+.timeline-left-sticky {
+  position: sticky;
+  top: clamp(6rem, 10vw, 10rem);
+}
+.timeline-title {
+  font-family: var(--sans);
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+.timeline-intro {
+  font-family: var(--sans);
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+  max-width: 500px;
+}
+.timeline-intro p { margin-bottom: 1rem; }
+
+.timeline-right {
+  position: relative;
+  padding-left: 3rem;
+}
+.timeline-line {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 1px;
+  background: var(--zest);
+}
+.timeline-step {
+  position: relative;
+  margin-bottom: clamp(5rem, 10vw, 7rem);
+}
+.timeline-step:last-child { margin-bottom: 0; }
+.timeline-step-marker {
+  position: absolute;
+  left: -3rem;
+  top: 0;
+  transform: translateX(-50%);
+  color: var(--zest);
+  font-size: 1.8rem;
+  line-height: 1;
+  background: #000;
+  border-radius: 50%;
+  padding: 0.5rem 0;
+}
+.timeline-eyebrow {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--zest);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.timeline-heading {
+  font-family: var(--sans);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+.timeline-text {
+  font-family: var(--sans);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(255,255,255,0.8);
+  max-width: 550px;
+}
+
+/* --- The wrapper that creates the scroll runway --- */
+.hills-section {
+  position: relative;
+}
+
+/* --- Each "block" is a full-viewport sticky layer --- */
+.hill-block {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.hill-block:nth-child(1) { z-index: 1; }
+.hill-block:nth-child(2) { z-index: 2; }
+.hill-block:nth-child(3) { z-index: 3; }
+
+/* --- The left-side title (only in first block, sticky) --- */
+.hills-title-wrap {
+  position: absolute;
+  left: clamp(2rem, 5vw, 6rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  max-width: 40%;
+}
+.hills-title-wrap .eyebrow {
+  display: block;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: var(--paper);
+}
+.hills-title-wrap h2 {
+  font-family: 'metaoldfrench', var(--serif);
+  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+  text-transform: uppercase;
+  line-height: 0.92;
+  color: var(--paper);
+  margin: 0;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+/* --- The card itself (absolute inside the block) --- */
+.hill-card {
+  position: absolute;
+  width: clamp(280px, 33vw, 420px);
+  height: clamp(400px, 45vw, 560px);
+  background: color-mix(in srgb, var(--ink) 85%, #1a4a3a);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: 24px; /* Same roundness as photos */
+  overflow: hidden;
+}
+
+/* Unique position & rotation for each card */
+.hill-block:nth-child(1) .hill-card {
+  right: 18%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-2deg);
+}
+.hill-block:nth-child(2) .hill-card {
+  right: 10%;
+  top: 48%;
+  transform: translateY(-50%) rotate(2deg);
+}
+.hill-block:nth-child(3) .hill-card {
+  right: 5%;
+  top: 52%;
+  transform: translateY(-50%) rotate(-4deg);
+}
+
+/* --- Card text --- */
+.hill-num {
+  position: relative;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 5rem;
+  color: var(--zest);
+  line-height: 1;
+  margin-bottom: 1rem;
+  opacity: 1;
+}
+
+.hill-body {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  position: relative;
+  z-index: 2;
+}
+.hill-title {
+  font-family: var(--sans);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+  color: var(--paper);
+  line-height: 1.15;
+  margin: 0;
+}
+.hill-text {
+  font-family: var(--sans);
+  font-size: .95rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+}
+.hill-text.tagline {
+  font-family: var(--sans);
+  font-weight: 700;
+  color: var(--paper);
+  font-size: 1rem;
+}
+.hill-sublist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+.hill-sublist li {
+  font-family: var(--sans);
+  font-size: .95rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+}
+.hill-sublist li::before { content: none; }
+
+/* --- Small photo inside card (top-right) --- */
+.hill-photo {
+  position: absolute;
+  top: 1.8rem;
+  right: 1.8rem;
+  width: 85px;
+  height: 85px;
+  border-radius: 24px; /* Matches the card rounding */
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.hill-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- Mobile: stack vertically, no rotation --- */
+@media (max-width: 768px) {
+  .hill-block {
+    position: relative;
+    height: auto;
+    min-height: auto;
+    padding: 2rem 0;
+  }
+  .hills-title-wrap {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    max-width: 100%;
+    padding: 2rem clamp(1rem, 4vw, 2rem);
+  }
+  .hill-card {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none !important;
+    width: calc(100% - 2rem);
+    height: auto;
+    min-height: 350px;
+    margin: 0 auto;
+  }
+}
+
+/* Image collage for Method */
+.method-collage {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  margin-top: 2rem;
+}
+@media(min-width: 1024px) {
+  .method-collage {
+    height: 580px;
+    margin-top: 0;
+  }
+}
+.collage-img {
+  position: absolute;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0.3s;
+}
+.collage-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.collage-img:hover {
+  transform: scale(1.03) translate(0, -5px) !important;
+  z-index: 10 !important;
+}
+.collage-img-1 {
+  width: 62%;
+  height: 68%;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+.collage-img-2 {
+  width: 52%;
+  height: 58%;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  transform: rotate(-3deg);
+}
+.collage-img-3 {
+  width: 42%;
+  height: 48%;
+  top: 25%;
+  left: 32%;
+  z-index: 3;
+  transform: rotate(4deg);
+  border: 6px solid var(--paper);
+}
+
+/* ============================================================
+   S6 · LES PILIERS (Scrolling Gallery + List)
+   ============================================================ */
+.pillars-section {
+  background: var(--berry);
+  color: var(--paper);
+  overflow: hidden;
+  border-top: none;
+  padding: 0 !important;
+  margin: 0 !important;
+  /* Allow height to be determined by content instead of cutting it off */
+  min-height: auto;
+}
+.pillars-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media(min-width: 820px) {
+  .pillars-layout {
+    grid-template-columns: 1.1fr 0.9fr; /* Text left, Photos right */
+  }
+}
+
+/* Gallery (Photos on right) */
+.pillars-visual {
+  display: flex;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+  align-self: stretch; /* Prend toute la hauteur de la section */
+}
+.photo-col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+  width: 50%;
+}
+.photo-col img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: clamp(8px, 1.2vw, 16px);
+  flex-shrink: 0; /* Empêche les images de rétrécir */
+}
+/* Première image de chaque colonne : bord supérieur flush */
+.photo-col img:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+/* Dernière image de chaque colonne : bord inférieur flush */
+.photo-col img:last-child {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+/* Masonry asymétrique - Left column */
+.photo-col:nth-child(1) img:nth-child(1) { height: 200px; }
+.photo-col:nth-child(1) img:nth-child(2) { height: 280px; }
+.photo-col:nth-child(1) img:nth-child(3) { flex-grow: 1; min-height: 80px; } /* S'étire jusqu'au bord bas */
+
+/* Masonry asymétrique - Right column */
+.photo-col:nth-child(2) img:nth-child(1) { height: 250px; }
+.photo-col:nth-child(2) img:nth-child(2) { height: 240px; }
+.photo-col:nth-child(2) img:nth-child(3) { flex-grow: 1; min-height: 80px; } /* S'étire jusqu'au bord bas */
+
+/* Text content */
+.pillars-content {
+  padding: 0 clamp(1rem, 4vw, 3rem) 2rem clamp(1rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.pillar-list {
+  display: block;
+}
+.pillar-row {
+  border-top: 1px solid color-mix(in srgb, var(--paper) 15%, transparent);
+  padding: 1rem 0;
+}
+.pillar-row:last-child {
+  border-bottom: 1px solid color-mix(in srgb, var(--paper) 15%, transparent);
+}
+.pillar-row h3 {
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  margin-bottom: 0.3rem;
+  color: var(--paper);
+}
+.pillar-row h3 .italic-accent {
+  font-size: 1.2em;
+  color: var(--fizz);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+}
+.pillar-row p {
+  color: color-mix(in srgb, var(--paper) 80%, transparent);
+  font-size: 1.2rem;
+  max-width: 500px;
+  line-height: 1.5;
+}
 
 /* ============================================================
    POURQUOI MOI — comparatif
    ============================================================ */
-.why{background:var(--zest);color:var(--champagne)}
-.why .eyebrow{color:var(--fizz)}
-.why .eyebrow::before{background:var(--fizz)}
-.why h2{color:var(--champagne)}
-.compare{display:grid;gap:1.2rem;grid-template-columns:1fr;margin-top:1rem}
-@media(min-width:820px){.compare{grid-template-columns:1fr 1fr;gap:1.8rem}}
-.compare-card{border-radius:var(--r-lg);padding:clamp(1.6rem,3vw,2.4rem)}
-.c-agency{background:color-mix(in srgb,var(--ink) 35%,var(--zest));opacity:.92}
-.c-me{background:var(--champagne);color:var(--ink);box-shadow:var(--shadow)}
-.compare-card h3{font-size:1.5rem;margin-bottom:1.2rem}
-.c-me h3{color:var(--berry)}
-.crow{display:flex;flex-direction:column;gap:.2rem;padding:.9rem 0;border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
-.crow:last-child{border-bottom:none}
-.crow .k{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;opacity:.7;font-weight:700}
-.crow .v{font-size:1.05rem}
+/* ============================================================
+   POURQUOI MOI V2 — split panneaux style affiche + portrait détouré
+   ============================================================ */
+.why-v2{
+  background:var(--paper);
+  color:var(--ink);
+  padding-block:clamp(4rem, 8vw, 7rem);
+  overflow:hidden;
+}
+.why-v2 .eyebrow{color:var(--zest)}
+.why-v2 .eyebrow::before{background:var(--zest)}
+.why-v2 h2{color:var(--ink)}
+
+.why-split{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1.5rem;
+  isolation:isolate;
+}
+@media(min-width:960px){
+  .why-split{
+    grid-template-columns: 1fr 1fr;
+    gap:1.2rem;
+    align-items:stretch;
+    min-height:640px;
+  }
+}
+
+/* Bannière de titre (gros mots façon affiche) */
+.why-banner{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  line-height:.85;
+  margin-bottom:1.6rem;
+}
+.why-banner--right{ align-items:flex-end; text-align:right; }
+.why-banner-eyebrow{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(1.4rem, 2.6vw, 2.2rem);
+  font-weight:500;
+  margin-bottom:.2rem;
+  opacity:.85;
+}
+.why-banner-word{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(3.8rem, 9.5vw, 8rem);
+  letter-spacing:-.025em;
+  line-height:.88;
+  text-transform:uppercase;
+}
+
+/* Tag (numéro + eyebrow secondaire) */
+.why-tag{
+  display:flex;
+  align-items:baseline;
+  gap:1rem;
+  padding-bottom:.8rem;
+  margin-bottom:1.2rem;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+}
+.why-tag--right{ justify-content:flex-end; }
+.why-num{
+  font-family:var(--serif);
+  font-size:clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight:600;
+  line-height:1;
+  opacity:.6;
+}
+.why-eyebrow{
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  opacity:.7;
+  margin:0;
+}
+
+/* Panneau gauche : AGENCE (PLAT, fond neutre, en retrait) */
+.why-panel--agence{
+  background: color-mix(in srgb, var(--ink) 6%, var(--paper));
+  color: color-mix(in srgb, var(--ink) 80%, transparent);
+  border-radius: var(--r-md);
+  padding: clamp(1.8rem, 3vw, 2.6rem);
+}
+@media(min-width:960px){
+  .why-panel--agence{
+    border-radius: var(--r-md) 0 0 var(--r-md);
+    padding-right: clamp(4rem, 7vw, 6rem);
+  }
+}
+
+/* Panneau droit : MOI (ROUGE BERRY, en avant) */
+.why-panel--moi{
+  background: var(--berry);
+  color: var(--paper);
+  border-radius: var(--r-md);
+  padding: clamp(1.8rem, 3vw, 2.6rem);
+  box-shadow: 0 25px 60px rgba(46,20,16,.25);
+}
+@media(min-width:960px){
+  .why-panel--moi{
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+    padding-left: clamp(4rem, 7vw, 6rem);
+    z-index:2;
+    position:relative;
+  }
+}
+.why-panel--moi .why-banner-word{ color: var(--paper); }
+.why-panel--moi .why-banner-eyebrow{ color: var(--fizz); opacity:1; }
+
+/* Listes */
+.why-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+.why-list li{
+  display:flex;
+  flex-direction:column;
+  gap:.2rem;
+  padding:.7rem 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+.why-list li:last-child{ border-bottom:none; }
+.why-list--right li{ text-align:right; }
+.why-list .k{
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  opacity:.6;
+  font-weight:700;
+}
+.why-list .v{
+  font-size:.96rem;
+  line-height:1.4;
+}
+
+/* Portrait détouré centré — chevauche les deux panneaux */
+.why-portrait{
+  display:none;
+}
+@media(min-width:960px){
+  .why-portrait{
+    display:block;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width:clamp(320px, 38vw, 520px);
+    aspect-ratio: 9 / 16;
+    z-index:3;
+    pointer-events:none;
+  }
+  .why-portrait img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center bottom;
+    display:block;
+    /* Ombre portée prononcée pour vraiment détacher la silhouette du fond */
+    filter:
+      drop-shadow(-4px 8px 14px rgba(46,20,16,.32))
+      drop-shadow(10px 20px 30px rgba(46,20,16,.28))
+      drop-shadow(0 40px 50px rgba(46,20,16,.22));
+  }
+}
+@media(max-width:959px){
+  /* Sur mobile : portrait affiché en plein centre, entre les deux panneaux */
+  .why-portrait{
+    display:block;
+    width:60%;
+    max-width:280px;
+    margin:0 auto;
+    aspect-ratio: 9 / 16;
+  }
+  .why-portrait img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center bottom;
+    display:block;
+    filter: drop-shadow(0 12px 24px rgba(46,20,16,.25));
+  }
+  /* Réordonner sur mobile : agence → portrait → moi */
+  .why-panel--agence{ order:1; }
+  .why-portrait{ order:2; }
+  .why-panel--moi{ order:3; }
+  .why-split{ display:flex; flex-direction:column; }
+}
 .bio{margin-top:3rem;background:var(--berry);border-radius:var(--r-lg);padding:clamp(1.8rem,3.5vw,2.8rem);max-width:760px}
 .bio p{font-size:1.12rem}
 .bio .sign{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--citrus);margin-top:.8rem;display:block}
@@ -314,34 +1793,335 @@ section{padding-block:clamp(4rem,9vw,8rem)}
    POUR QUI
    ============================================================ */
 .forwho{background:var(--champagne)}
-.fw-grid{display:grid;gap:1.5rem;grid-template-columns:1fr}
-@media(min-width:820px){.fw-grid{grid-template-columns:1fr 1fr;gap:2rem}}
-.fw-card{border-radius:var(--r-lg);padding:clamp(1.8rem,3vw,2.6rem)}
-.fw-yes{background:var(--paper);border:2px solid var(--citrus)}
-.fw-no{background:var(--paper);border:2px solid color-mix(in srgb,var(--ink) 14%,transparent)}
-.fw-card h3{font-size:1.6rem;margin-bottom:1.4rem}
-.fw-yes h3{color:var(--berry)}
-.fw-no h3{color:var(--ink-soft)}
-.fw-list{list-style:none;display:flex;flex-direction:column;gap:1rem}
-.fw-list li{display:flex;gap:.8rem;font-size:1.05rem}
-.fw-yes li::before{content:"✓";color:var(--berry);font-weight:800}
-.fw-no li{color:var(--ink-soft)}
-.fw-no li::before{content:"✕";color:var(--zest);font-weight:800}
+.fw-split{
+  display:grid;
+  gap:clamp(2rem, 4vw, 3.5rem);
+  grid-template-columns:1fr;
+  align-items:center;
+}
+@media(min-width:900px){
+  .fw-split{
+    grid-template-columns: 1.05fr minmax(240px, 320px) 1fr;
+    gap:clamp(2.5rem, 4vw, 4.5rem);
+    align-items:center;
+  }
+}
+.fw-col{
+  display:flex;
+  flex-direction:column;
+}
+.fw-eyebrow{
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:.82rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin-bottom:1.6rem;
+}
+.fw-title-big{
+  font-family:var(--serif);
+  font-size:clamp(2.6rem, 5.5vw, 4.4rem);
+  font-weight:600;
+  line-height:1.05;
+  color:var(--ink);
+  margin-bottom:1.6rem;
+  letter-spacing:-.01em;
+}
+.fw-title-big .fw-script{
+  font-style:italic;
+  color:var(--zest);
+  font-weight:500;
+}
+.fw-intro{
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.65;
+  color:color-mix(in srgb, var(--ink) 78%, transparent);
+  margin:0;
+  max-width:42ch;
+}
+.fw-title-small{
+  font-family:var(--serif);
+  font-size:clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight:500;
+  font-style:italic;
+  line-height:1.15;
+  color:var(--ink);
+  margin-bottom:2rem;
+}
+.fw-title-small em{
+  font-style:italic;
+  color:var(--zest);
+  font-weight:600;
+}
+.fw-center{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.6rem;
+  order:-1;
+}
+@media(min-width:900px){
+  .fw-center{ order:0; }
+}
+.fw-photo{
+  border-radius:var(--r-md);
+  overflow:hidden;
+  aspect-ratio: 3 / 4.5;
+  width:100%;
+  max-height:600px;
+}
+.fw-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.fw-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:1.1rem;
+  margin:0;
+  padding:0;
+}
+.fw-list li{
+  display:flex;
+  gap:.7rem;
+  font-size:1rem;
+  line-height:1.5;
+  color:var(--ink);
+}
+.fw-list li::before{
+  content:"✓";
+  color:var(--berry);
+  font-weight:700;
+  flex-shrink:0;
+}
+.fw-cta{
+  align-self:center;
+}
 
 /* ============================================================
-   TÉMOIGNAGES
+   BIO ANGE — split photo verticale / contenu mini-photo + texte + CTA
    ============================================================ */
-.testi{background:var(--fizz)}
-.testi-grid{display:grid;gap:1.4rem;grid-template-columns:1fr;margin-top:1rem}
-@media(min-width:760px){.testi-grid{grid-template-columns:repeat(3,1fr)}}
-.tcard{background:var(--paper);border-radius:var(--r-md);padding:1.8rem;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:1rem}
-.tcard .quote{font-family:var(--serif);font-style:italic;font-size:1.12rem}
-.tcard .who{display:flex;align-items:center;gap:.8rem;margin-top:auto}
-.tcard .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(150deg,var(--citrus),var(--berry));flex:0 0 44px;display:flex;align-items:center;justify-content:center;color:var(--paper);font-weight:700;font-family:var(--serif)}
-.tcard .who b{display:block}
-.tcard .who small{color:var(--ink-soft)}
-.testi .stars{font-size:1.1rem}
-.placeholder-note{margin-top:1.5rem;font-size:.85rem;color:var(--ink-soft);font-style:italic}
+.bio-section{
+  background:var(--champagne);
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.bio-split{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 var(--gut);
+  display:grid;
+  grid-template-columns:1fr;
+  gap:clamp(2rem, 4vw, 4rem);
+  align-items:center;
+}
+@media(min-width:900px){
+  .bio-split{
+    grid-template-columns: 1fr 1fr;
+    gap:clamp(3rem, 5vw, 5rem);
+  }
+}
+.bio-photo{
+  border-radius:var(--r-md);
+  overflow:hidden;
+  aspect-ratio: 3 / 4;
+  max-height:720px;
+  width:100%;
+}
+.bio-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.bio-content{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:1.2rem;
+  max-width:520px;
+}
+.bio-mini-photo{
+  width:clamp(180px, 22vw, 250px);
+  aspect-ratio:1/1;
+  border-radius:6px;
+  overflow:hidden;
+  margin-bottom:1.2rem;
+}
+.bio-mini-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.bio-text{
+  font-family:var(--sans);
+  font-size:1.02rem;
+  line-height:1.6;
+  color:var(--ink);
+  margin:0;
+}
+.bio-text em{
+  font-style:italic;
+  color:var(--zest);
+  font-weight:500;
+}
+.bio-punch{
+  font-weight:600;
+  margin-top:.2rem;
+}
+.bio-cta{
+  background:var(--fizz);
+  color:var(--ink);
+  border-radius:var(--r-pill);
+  padding:1.1rem 2.2rem;
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:.85rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  margin-top:1rem;
+  transition:transform .25s, box-shadow .25s, background .25s;
+}
+.bio-cta:hover{
+  background:var(--zest);
+  color:var(--paper);
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(46,20,16,.18);
+}
+
+/* ============================================================
+   TÉMOIGNAGES — titre sticky au centre, cartes qui défilent
+   ============================================================ */
+.testi-v3{
+  background:var(--champagne);
+  position:relative;
+  /* Plus d'air en haut pour décoller de la section précédente */
+  padding-top: clamp(8rem, 14vw, 14rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+.testi-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1.5rem;
+  position:relative;
+}
+@media(min-width:900px){
+  .testi-grid{
+    /* Grille 12 colonnes × 12 rangées larges pour zig-zag prononcé */
+    grid-template-columns:repeat(12, 1fr);
+    grid-template-rows: repeat(12, minmax(60px, auto));
+    gap:2.5rem;
+    min-height:170vh;
+  }
+  /* Titre sticky AU CENTRE horizontal et vertical */
+  .testi-bg-title{
+    grid-column: 3 / span 8;
+    grid-row: 1 / -1;
+    position:sticky;
+    top:50%;
+    transform:translateY(-50%);
+    align-self:start;
+    z-index:0;
+  }
+  /* Positions des cartes (inspirées de la grille SQS) */
+  .tcard-pos-1{ grid-column: 1 / span 5;  grid-row: 2 / span 3; }   /* haut-gauche */
+  .tcard-pos-2{ grid-column: 8 / span 5;  grid-row: 5 / span 3; }   /* milieu-droite */
+  .tcard-pos-3{ grid-column: 1 / span 5;  grid-row: 8 / span 3; }   /* bas-gauche */
+  .tcard-pos-4{ grid-column: 8 / span 5;  grid-row: 10 / span 3; }  /* tout-en-bas-droite */
+}
+.testi-bg-title{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(2.4rem, 7.5vw, 7rem);
+  line-height:1;
+  letter-spacing:-.02em;
+  color:var(--ink);
+  margin:0 0 2.5rem;
+  pointer-events:none;
+  padding:0 1rem;
+  gap:0;
+}
+.testi-bg-title em{
+  font-style:italic;
+  color:var(--zest);
+  font-weight:500;
+}
+.tcard-v2{
+  position:relative;
+  z-index:1;
+  background:var(--paper);
+  border-radius:var(--r-md);
+  padding:clamp(1.6rem, 2.6vw, 2rem);
+  box-shadow:0 12px 40px rgba(46,20,16,.12);
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+.tcard-stars{
+  color:var(--ink);
+  font-size:1rem;
+  letter-spacing:.3em;
+}
+.tcard-title{
+  font-family:var(--serif);
+  font-size:clamp(1.05rem, 1.8vw, 1.3rem);
+  font-weight:600;
+  line-height:1.2;
+  color:var(--ink);
+  letter-spacing:.01em;
+  margin:0;
+}
+.tcard-quote{
+  font-family:var(--sans);
+  font-size:.95rem;
+  line-height:1.55;
+  color:color-mix(in srgb, var(--ink) 78%, transparent);
+  margin:0;
+}
+.tcard-who{
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+  margin-top:.3rem;
+}
+.tcard-avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  overflow:hidden;
+  flex-shrink:0;
+  background:var(--champagne);
+}
+.tcard-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.tcard-name{
+  font-family:var(--sans);
+  font-size:.88rem;
+  line-height:1.3;
+  color:var(--ink);
+}
+.tcard-name em{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:.98rem;
+}
 
 /* ============================================================
    GARANTIE
@@ -367,21 +2147,185 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 .faq-a p{padding-bottom:1.5rem}
 
 /* ============================================================
-   CTA FINAL
+  box-shadow:0 10px 24px rgba(46,20,16,.25);
+}
+.final-cta .arrow{
+  transition:transform .25s;
+}
+.final-cta:hover .arrow{
+  transform:translateX(4px);
+}
+.final-photo{
+  position:relative;
+  overflow:hidden;
+  min-height:400px;
+}
+.final-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  /* Zoom de base pour permettre le mouvement parallax sans bords visibles */
+  transform: scale(1.18) translate3d(0, 0, 0);
+  will-change: transform;
+  transition: transform .08s linear;
+}
+@media(max-width:899px){
+  .final-photo{ min-height:300px; aspect-ratio:4/3; }
+  .final-photo img{ transform: scale(1.08); }
+}
+
+/* ============================================================
+   CTA FINAL DARK — "On repart du début ?" (Sarah Kleist style)
    ============================================================ */
-.final{background:var(--ink);color:var(--champagne);text-align:center;position:relative;overflow:hidden}
-.final::before{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:80vw;max-width:700px;height:700px;background:radial-gradient(circle,var(--zest),transparent 65%);opacity:.55;z-index:0}
-.final .wrap{position:relative;z-index:2}
-.final .urgency{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,3.4vw,2.4rem);color:var(--citrus);max-width:22ch;margin:0 auto 1.4rem}
-.final p.body{max-width:46ch;margin:0 auto 2.2rem;font-size:1.15rem;color:color-mix(in srgb,var(--champagne) 80%,transparent)}
-.final .micro-testi{display:inline-block;margin-bottom:1.8rem;font-size:.98rem;color:var(--fizz)}
-.final .microcopy{margin-top:1.2rem;font-size:.92rem;color:color-mix(in srgb,var(--champagne) 65%,transparent)}
-.exit-link{display:inline-block;margin-top:1.6rem;font-size:.9rem;color:color-mix(in srgb,var(--champagne) 50%,transparent);text-decoration:underline;text-underline-offset:3px}
-.exit-link:hover{color:var(--fizz)}
+.cta-final-dark {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.cta-final-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  z-index: 0;
+}
+.cta-final-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.75) 100%);
+  z-index: 1;
+}
+.cta-final-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 3rem);
+  max-width: 900px;
+  width: 100%;
+}
+.cta-final-eyebrow {
+  font-family: var(--sans);
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+.cta-final-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(4rem, 11vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 3rem;
+}
+.cta-final-body {
+  font-family: var(--sans);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+  max-width: 54ch;
+  margin: 0 auto 3rem;
+}
+.cta-final-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.cta-final-btn {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.1rem 2.5rem;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+.cta-final-btn--primary {
+  background: var(--zest);
+  color: var(--paper);
+  border: 2px solid var(--zest);
+}
+.cta-final-btn--primary:hover {
+  background: transparent;
+  color: var(--zest);
+}
+.cta-final-btn--ghost {
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.cta-final-btn--ghost:hover {
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.8);
+}
 
 /* FOOTER */
-.site-footer{background:var(--ink);color:color-mix(in srgb,var(--champagne) 60%,transparent);padding:2.5rem 0;text-align:center;border-top:1px solid color-mix(in srgb,var(--champagne) 12%,transparent);font-size:.9rem}
-.site-footer .logo{font-size:1.2rem;color:var(--champagne);margin-bottom:.5rem}
+.site-footer {
+  background: var(--ink);
+  color: color-mix(in srgb, var(--champagne) 60%, transparent);
+  padding: 3rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--champagne) 10%, transparent);
+  font-size: 0.9rem;
+}
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .footer-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+.site-footer .logo {
+  font-size: 1.2rem;
+  color: var(--champagne);
+  font-family: var(--serif);
+}
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+.footer-nav a {
+  color: color-mix(in srgb, var(--champagne) 60%, transparent);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.footer-nav a:hover {
+  color: var(--champagne);
+}
+.footer-copy {
+  opacity: 0.5;
+  font-size: 0.8rem;
+}
+
 
 /* ============================================================
    REVEAL ON SCROLL
@@ -405,22 +2349,52 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   </div>
 </header>
 
-<!-- ============ S1 · HERO ============ -->
-<section class="hero" id="top">
-  <div class="wrap">
-    <span class="eyebrow reveal">Personal Branding · Accompagnement sur-mesure</span>
-    <h1 class="reveal">Et si ton image en ligne reflétait enfin <span class="hl">ce que tu vaux vraiment</span> ?</h1>
-    <p class="sub reveal">Avant même que tu parles, on te cherche, on te juge, on te choisit — ou pas.</p>
-    <p class="body reveal">Ton image digitale n'est plus une option. C'est ta première impression.</p>
-    <div class="hero-cta-row reveal">
-      <a href="#book" class="btn btn-primary">Oui, je révèle ma marque <span class="arrow">→</span></a>
-      <a href="#method" class="btn btn-ghost">Voir la méthode</a>
+<!-- ============ S1 · HERO — slideshow + grand titre marque ============ -->
+<section class="hero-v2" id="top">
+  <!-- Split layout container -->
+  <div class="hero-split-container" aria-hidden="true">
+    <div class="hero-split-left" style="background-image: url('https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg');"></div>
+    <div class="hero-split-right">
+      <div class="hero-slideshow">
+        <div class="hero-slide is-active" style="background-image: url('https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/23ba8bb3-34b8-4ed5-b39f-06b7f21bd4b8/vincenzo-marcella-mXBMif9K4rg-unsplash.jpg');"></div>
+      </div>
     </div>
-    <!-- TÉMOIGNAGE #1 — signal de confiance flash -->
-    <div class="trust-flash reveal">
-      <span class="stars">★★★★★</span>
-      <span>« En 6 semaines, +3 clients premium » — <b>Camille</b></span>
-    </div>
+  </div>
+
+  <!-- Overlay sombre pour lisibilité du texte -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- Contenu central -->
+  <div class="hero-v2-content">
+    <h1 class="hero-huge-title">REVEAL<br>YOUR BRAND</h1>
+    <h2 class="hero-v2-subtitle">Et si ton image reflétait enfin ce que tu vaux vraiment&nbsp;?</h2>
+    <a href="#book" class="hero-v2-btn" style="pointer-events:all;margin-top:1.5rem;">→ Je veux révéler ma marque</a>
+    <p class="hero-v2-trust" style="pointer-events:none;margin-top:.75rem;">&laquo;&nbsp;Une expérience transformatrice.&nbsp;&raquo; &mdash; Marie L.</p>
+  </div>
+
+  <!-- Sticker décoratif tourné (équivalent du "Carmine Assets") -->
+  <div class="hero-v2-sticker" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <defs>
+        <path id="hero-circle" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" />
+      </defs>
+      <text class="hero-sticker-text">
+        <textPath href="#hero-circle" startOffset="0%">
+          BRANDING · STRATEGY · BRANDING · STRATEGY ·
+        </textPath>
+      </text>
+      <circle cx="100" cy="100" r="22" fill="var(--zest)" />
+      <text x="100" y="106" text-anchor="middle" font-family="var(--serif)" font-style="italic" font-size="20" font-weight="500" fill="var(--paper)">A.</text>
+    </svg>
+  </div>
+
+  <!-- Indicateur de scroll en bas -->
+  <div class="hero-v2-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M12 5 L12 19 M5 12 L12 19 L19 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 </section>
 
@@ -434,233 +2408,377 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 
 <!-- ============ S2 · LE PROBLÈME ============ -->
 <section class="problem">
+  <div class="color-block-bg reveal"></div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Le constat</span>
-      <h2>Aujourd'hui, ton image compte plus que tes mots.</h2>
-    </div>
-    <p class="lead reveal">La façon dont tu te présentes au monde, et ce qu'on retient de toi : c'est ça qui décide, avant même que tu parles.</p>
-    <p class="lead reveal">Tu as de la valeur, des résultats — mais en ligne, tu es invisible, ou ton image ne te ressemble plus.</p>
-    <p class="punch reveal">Ce n'est pas un problème de talent. C'est un problème de présence et de méthode.</p>
-  </div>
-</section>
-
-
-<!-- ============ S4 · TRANSFORMATION ============ -->
-<section class="transform">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">La transformation</span>
-      <h2>Je t'aide à révéler ton image de marque. <span class="italic-accent">Qui parle pour toi ?</span></h2>
-    </div>
-
-    <div class="ba-grid">
-      <div class="ba-card ba-before reveal">
-        <h3>Avant</h3>
-        <ul class="ba-list">
-          <li>Tu cours après les clients</li>
-          <li>Tu t'expliques à chaque fois</li>
-          <li>Ton image ne reflète pas ton niveau</li>
-          <li>Tu dépends du bouche-à-oreille</li>
-        </ul>
+    <div class="split-layout">
+      <!-- Left Column: Text -->
+      <div class="problem-text">
+        <div class="section-head reveal">
+          <span class="eyebrow">Le constat</span>
+          <h2>Aujourd'hui, ton image compte plus que tes mots.</h2>
+        </div>
+        <p class="lead reveal">La façon dont tu te présentes au monde, et ce qu'on retient de toi : c'est ça qui décide, avant même que tu parles.</p>
+        <p class="lead reveal">Tu as de la valeur, des résultats — mais en ligne, tu es invisible, ou ton image ne te ressemble plus.</p>
+        <p class="punch reveal">Ce n'est pas un problème de talent. C'est un problème de présence et de méthode.</p>
       </div>
-      <div class="ba-card ba-after reveal">
-        <h3>Après</h3>
-        <ul class="ba-list">
-          <li>Les bons clients te trouvent</li>
-          <li>Ils comprennent immédiatement qui tu es</li>
-          <li>Ton image parle pour toi</li>
-          <li>Tu choisis avec qui tu travailles</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- REFRAME + RÉALISATIONS (construction 2 colonnes) -->
-    <div class="real-split reveal">
-      <!-- Colonne gauche : titre + texte + bouton -->
-      <div class="real-text">
-        <h2>Quand ton personal branding est <span class="italic-accent">solide</span>, tu n'es plus dans la course.</h2>
-        <p>Tu attires. Tu sélectionnes. Ce sont les bonnes personnes qui viennent à toi.</p>
-        <a href="#book" class="btn btn-citrus">Voir mes réalisations <span class="arrow">→</span></a>
-      </div>
-
-      <!-- Colonne droite : grille magazine alternée -->
-      <div class="real-grid">
-        <!-- Réalisation 1 : image avant/après -->
-        <div class="real-img">
-          <span class="ba-tag tag-before">Avant</span>
-          <span class="ba-tag tag-after">Après</span>
-          <img src="https://picsum.photos/300/400?random=1" alt="Avant — réalisation 1">
-          <img src="https://picsum.photos/300/400?random=2" alt="Après — réalisation 1">
+      
+      <!-- Right Column: Image Collage -->
+      <div class="method-collage reveal">
+        <div class="collage-img collage-img-1">
+          <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="Piliers de marque - Olga Pozney" />
         </div>
-        <!-- Carte 1 -->
-        <div class="real-card">
-          <h3>Identité <span class="card-italic">visuelle</span></h3>
+        <div class="collage-img collage-img-2">
+          <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg" alt="Création de contenu - John Tekeridis" />
         </div>
-
-        <!-- Carte 2 -->
-        <div class="real-card">
-          <h3><span class="card-italic">Refonte</span> de marque</h3>
-        </div>
-        <!-- Réalisation 2 : image avant/après -->
-        <div class="real-img">
-          <span class="ba-tag tag-before">Avant</span>
-          <span class="ba-tag tag-after">Après</span>
-          <img src="https://picsum.photos/300/400?random=3" alt="Avant — réalisation 2">
-          <img src="https://picsum.photos/300/400?random=4" alt="Après — réalisation 2">
-        </div>
-
-        <!-- Réalisation 3 : image avant/après -->
-        <div class="real-img">
-          <span class="ba-tag tag-before">Avant</span>
-          <span class="ba-tag tag-after">Après</span>
-          <img src="https://picsum.photos/300/400?random=5" alt="Avant — réalisation 3">
-          <img src="https://picsum.photos/300/400?random=6" alt="Après — réalisation 3">
-        </div>
-        <!-- Carte 3 -->
-        <div class="real-card">
-          <h3>Ligne <span class="card-italic">éditoriale</span></h3>
+        <div class="collage-img collage-img-3" style="border-color: var(--champagne);">
+          <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/04b0d483-6dc9-43ff-8cc1-915d1f8511d4/simeon-asenov-OuP41yLOi-E-unsplash.jpg" alt="Identité visuelle premium - Simeon Asenov" />
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ S5 · LA MÉTHODE ============ -->
-<section class="method" id="method">
-  <div class="wrap">
-    <div class="section-head reveal">
+<!-- ============ S3+S4 · LE CONSTAT + TRANSFORMATION (fusion) ============ -->
+
+
+<!-- ============ S3/S4 · PORTFOLIO REFRAME ============ -->
+<section class="specialize-section" id="portfolio" style="padding-bottom: 8rem;">
+  <div class="specialize-inner reveal">
+    <div class="specialize-text-wrap">
+        <p class="specialize-small">Je ne me spécialise pas dans un secteur —</p>
+        
+        <div class="comment-bubble bubble-1 reveal" style="transition-delay: 2.0s;">C'est la perfection. 💖</div>
+        <div class="comment-bubble bubble-2 reveal" style="transition-delay: 2.3s;">C'est trop cool, oh my god ! Tu me fais passer pour un pro 🔥</div>
+        <div class="comment-bubble bubble-3 reveal" style="transition-delay: 2.6s;">INCROYABLE</div>
+        <div class="comment-bubble bubble-4 reveal" style="transition-delay: 2.9s;">J'ADORE 😍</div>
+        <div class="comment-bubble bubble-5 reveal" style="transition-delay: 3.2s;">Trop hâte de bosser ensemble !</div>
+
+        <h2 class="specialize-big">
+          <span class="word-line">
+            <span class="word" style="animation-delay: 0.1s">JE</span>
+            <span class="word" style="animation-delay: 0.3s">SAIS</span>
+            <span class="word" style="animation-delay: 0.5s">JUSTE</span>
+            <span class="word" style="animation-delay: 0.7s">TE</span>
+            <span class="word" style="animation-delay: 0.9s">RENDRE</span>
+          </span><br/>
+          <span class="word-line">
+            <span class="word" style="animation-delay: 1.1s">INCONTOURNABLE</span>
+          </span><br/>
+          <span class="word-line">
+            <span class="word" style="animation-delay: 1.3s">DANS</span>
+            <span class="word" style="animation-delay: 1.5s">LE</span>
+            <span class="word" style="animation-delay: 1.7s">TIEN.</span>
+          </span>
+        </h2>
+      </div>
+    </div>
+    <div class="specialize-footer reveal" style="transition-delay: 0.2s;">
+      <div class="specialize-arrow-wrap">
+        <a href="#portfolio-grid" class="specialize-link">Rends ta marque unique</a>
+        <svg class="scroll-arrow" viewBox="0 0 100 100">
+          <path d="M10,20 C45,20 75,35 75,70" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
+          <path d="M63,58 L75,70 L82,56" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
+        </svg>
+      </div>
+    </div>
+</section>
+
+<section class="reframe-portfolio" style="border-top: none; padding-top: 0;">
+  <div class="portfolio-grid">
+    
+    <!-- Row 1: Project 1 (Coach) -->
+    <!-- Photo 1 -->
+    <div class="portfolio-item reveal">
+      <div class="photo-tag">Avant</div>
+      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg" alt="Projet Coach - Photo 1" />
+    </div>
+    <!-- Card -->
+    <div class="portfolio-item text-card card-zest reveal" style="align-items:center; text-align:center; gap: 0;">
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: var(--champagne);">Make it</h3>
+    </div>
+    <!-- Photo 2 -->
+    <div class="portfolio-item reveal">
+      <div class="photo-tag">Après</div>
+      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="Projet Coach - Photo 2" />
+    </div>
+
+    <!-- Row 2: Project 2 (Thérapeute) -->
+    <!-- Photo 3 -->
+    <div class="portfolio-item reveal">
+      <div class="photo-tag">Avant</div>
+      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f1d79e65-8e82-4783-bf6b-4b8d080b8f14/pexels-amar-preciado-10217799.jpg" alt="Projet Thérapeute - Photo 1" />
+    </div>
+    <!-- Card -->
+    <div class="portfolio-item text-card card-citrus reveal" style="align-items:center; text-align:center; gap: 0;">
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: var(--ink);">Iconic</h3>
+    </div>
+    <!-- Photo 4 -->
+    <div class="portfolio-item reveal">
+      <div class="photo-tag">Après</div>
+      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/23ba8bb3-34b8-4ed5-b39f-06b7f21bd4b8/vincenzo-marcella-mXBMif9K4rg-unsplash.jpg" alt="Projet Thérapeute - Photo 2" />
+    </div>
+
+  </div>
+  
+  <div class="hero-cta-row reveal" style="display: flex; justify-content: center; width: 100%; margin-top: clamp(2rem, 4vw, 4rem); padding-bottom: 2rem;">
+    <a href="#book" class="btn btn-primary" style="font-size: 1.25rem; padding: 1.2rem 2.5rem; box-shadow: var(--shadow); border-radius: 999px;">Rends ta marque iconique <span class="arrow">→</span></a>
+  </div>
+  
+</section>
+
+<!-- ============ S5 · LA MÉTHODE — hills sticky viewport blocks ============ -->
+<section class="hills-section" id="method" style="background-image:url('https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg'); background-size:cover; background-position:center; background-attachment:fixed;">
+
+  <!-- Block 1: has the big title on left + first card on right -->
+  <div class="hill-block">
+    <div class="hills-title-wrap">
       <span class="eyebrow">La méthode</span>
-      <h2>Trois étapes, un seul chemin.</h2>
+      <h2>Trois étapes pour une marque qui se démarque.</h2>
     </div>
-    <div class="steps reveal">
-      <span class="from">Invisible</span><span class="sep">→</span><span class="to">incontournable</span>
+    <div class="hill-card">
+      <div class="hill-photo">
+        <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" />
+      </div>
+      <div class="hill-body">
+        <div class="hill-num">1</div>
+        <h3 class="hill-title">De l'invisible à l'incontournable</h3>
+        <ul class="hill-sublist">
+          <li>Qui tu es. Ce qui te rend unique et lisible. Ce qui te rend désirable.</li>
+        </ul>
+        <p class="hill-text tagline">Ton message parle aux bonnes personnes — immédiatement.</p>
+      </div>
     </div>
-    <div class="steps reveal">
-      <span class="from">Générique</span><span class="sep">→</span><span class="to">unique</span>
-    </div>
-    <p class="lead reveal">Présente partout où ta cible te cherche.</p>
+  </div>
 
-    <h3 class="reveal" style="font-size:clamp(1.6rem,3.5vw,2.4rem);margin:3.5rem 0 1.8rem">Quatre piliers, activés selon ton profil.</h3>
-    <div class="pillars">
-      <div class="pillar reveal"><div class="num">01</div><h3>Fondations</h3><p>Positionnement, message, stratégie.</p></div>
-      <div class="pillar reveal"><div class="num">02</div><h3>Identité visuelle</h3><p>Logo, charte, image.</p></div>
-      <div class="pillar reveal"><div class="num">03</div><h3>Contenu</h3><p>Vidéo, podcast, photos, édito.</p></div>
-      <div class="pillar reveal"><div class="num">04</div><h3>Vente</h3><p>Site, tunnel, IA.</p></div>
+  <!-- Block 2: second card, different position -->
+  <div class="hill-block">
+    <div class="hill-card">
+      <div class="hill-photo">
+        <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/23ba8bb3-34b8-4ed5-b39f-06b7f21bd4b8/vincenzo-marcella-mXBMif9K4rg-unsplash.jpg" alt="" />
+      </div>
+      <div class="hill-body">
+        <div class="hill-num">2</div>
+        <h3 class="hill-title">De générique à unique</h3>
+        <p class="hill-text">Ton image est repensée de A à Z pour refléter qui tu es aujourd'hui.</p>
+        <p class="hill-text tagline">Assumée. Cohérente. Mémorable.</p>
+      </div>
     </div>
-    <p class="method-note reveal">12 séances, sur 1 à 3 mois. Moi, à chaque étape.</p>
+  </div>
+
+  <!-- Block 3: third card, shifted even more -->
+  <div class="hill-block">
+    <div class="hill-card">
+      <div class="hill-photo">
+        <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg" alt="" />
+      </div>
+      <div class="hill-body">
+        <div class="hill-num">3</div>
+        <h3 class="hill-title">Une présence totale et alignée</h3>
+        <p class="hill-text">On active les bons canaux, les bons formats, la bonne stratégie — selon toi et ton business.</p>
+        <p class="hill-text tagline">Trouvable partout où ta cible te cherche.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ S6 · LES PILIERS ============ -->
+<section class="pillars-section" id="piliers">
+  <div class="pillars-layout">
+    
+    <!-- Left: Content -->
+    <div class="pillars-content">
+      <div class="section-head" style="margin-bottom: 2rem; margin-top: 2rem;">
+        <h2 style="color: var(--paper);">Il est temps de viser plus loin.</h2>
+      </div>
+
+      <div class="pillar-list">
+        <div class="pillar-row" style="border-top-color: color-mix(in srgb, var(--paper) 15%, transparent);">
+          <h3 style="color: var(--paper);"><span class="italic-accent" style="color: var(--fizz);">Fondations</span></h3>
+          <p style="color: color-mix(in srgb, var(--paper) 80%, transparent);">Brand voice, personal branding, positionnement : on pose les bases de qui tu es et de comment tu le dis.</p>
+        </div>
+        <div class="pillar-row" style="border-top-color: color-mix(in srgb, var(--paper) 15%, transparent);">
+          <h3 style="color: var(--paper);"><span class="italic-accent" style="color: var(--fizz);">Identité</span></h3>
+          <p style="color: color-mix(in srgb, var(--paper) 80%, transparent);">Logo, charte, palette, templates Canva — une image pensée pour refléter qui tu es aujourd'hui.</p>
+        </div>
+        <div class="pillar-row" style="border-top-color: color-mix(in srgb, var(--paper) 15%, transparent);">
+          <h3 style="color: var(--paper);"><span class="italic-accent" style="color: var(--fizz);">Contenu</span></h3>
+          <p style="color: color-mix(in srgb, var(--paper) 80%, transparent);">On active les bons formats dont tu as besoin pour atteindre tes objectifs.</p>
+        </div>
+        <div class="pillar-row" style="border-top-color: color-mix(in srgb, var(--paper) 15%, transparent);">
+          <h3 style="color: var(--paper);"><span class="italic-accent" style="color: var(--fizz);">Vente</span></h3>
+          <p style="color: color-mix(in srgb, var(--paper) 80%, transparent);">Site, tunnel, IA : tout ce qui transforme ta visibilité en clients.</p>
+        </div>
+      </div>
+      
+      <div class="pillar-cta" style="margin-top: 2rem; text-align: left; padding-bottom: 4rem;">
+        <a href="#book" class="btn btn-primary" style="font-size: 1rem; padding: 0.9rem 1.8rem; border-radius: 50px; background: transparent; color: var(--paper); border: 1px solid var(--paper); box-shadow: none;">Réveille ta marque →</a>
+      </div>
+    </div>
+
+    <!-- Right: Static Photos (6 photos) -->
+    <div class="pillars-visual">
+      <div class="photo-col">
+        <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="Photo">
+        <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f1d79e65-8e82-4783-bf6b-4b8d080b8f14/pexels-amar-preciado-10217799.jpg" alt="Photo">
+        <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/04b0d483-6dc9-43ff-8cc1-915d1f8511d4/simeon-asenov-OuP41yLOi-E-unsplash.jpg" alt="Photo">
+      </div>
+      <div class="photo-col">
+        <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg" alt="Photo">
+        <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/23ba8bb3-34b8-4ed5-b39f-06b7f21bd4b8/vincenzo-marcella-mXBMif9K4rg-unsplash.jpg" alt="Photo">
+        <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="Photo">
+      </div>
+    </div>
+    
   </div>
 </section>
 
-<!-- ============ S6 · POURQUOI MOI ============ -->
-<section class="why">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Pourquoi moi</span>
-      <h2>Une agence n'est pas toujours la bonne réponse.</h2>
+
+<!-- ============ S7b · BIO ANGE — split photo / texte ============ -->
+<section class="bio-section">
+  <div class="bio-split">
+    <div class="bio-photo reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="Ange-Blaise" />
     </div>
-    <div class="compare">
-      <div class="compare-card c-agency reveal">
-        <h3>Une agence</h3>
-        <div class="crow"><span class="k">Interlocuteur</span><span class="v">Une équipe que tu ne rencontres jamais</span></div>
-        <div class="crow"><span class="k">Approche</span><span class="v">Un brief, un livrable</span></div>
-        <div class="crow"><span class="k">Implication</span><span class="v">Tu attends</span></div>
-        <div class="crow"><span class="k">Résultat</span><span class="v">Standardisé</span></div>
-        <div class="crow"><span class="k">Après</span><span class="v">Tu dépends d'eux</span></div>
-        <div class="crow"><span class="k">Facture</span><span class="v">Astronomique</span></div>
+    <div class="bio-content reveal">
+      <div class="bio-mini-photo">
+        <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" />
       </div>
-      <div class="compare-card c-me reveal">
-        <h3>Moi</h3>
-        <div class="crow"><span class="k">Interlocuteur</span><span class="v">Moi. À chaque étape.</span></div>
-        <div class="crow"><span class="k">Approche</span><span class="v">On part de qui tu es.</span></div>
-        <div class="crow"><span class="k">Implication</span><span class="v">Tu es l'actrice principale</span></div>
-        <div class="crow"><span class="k">Résultat</span><span class="v">Unique. Fait pour toi.</span></div>
-        <div class="crow"><span class="k">Après</span><span class="v">Tout t'appartient. Tu es autonome.</span></div>
-        <div class="crow"><span class="k">Facture</span><span class="v">Ciblé sur ce dont tu as besoin</span></div>
+      <p class="bio-text">Si tu es entrepreneure, consultante, créative ou experte indépendante — tu connais la sensation : tu as de la valeur, tu sais ce que tu fais, mais ton image en ligne ne le raconte pas encore.</p>
+      <p class="bio-text">Tu travailles dur, mais tu te demandes pourquoi les bons clients ne te trouvent pas — ou pourquoi tes tarifs doivent toujours se défendre.</p>
+      <p class="bio-text">La vérité : tu <em>peux</em> avoir une marque qui te ressemble, qui parle pour toi, et qui attire les clients que tu mérites. Il te faut juste la bonne méthode et le bon accompagnement.</p>
+      <p class="bio-text bio-punch">C'est là que j'interviens.</p>
+      <a href="#book" class="btn bio-cta">On travaille ensemble</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S6.5 · COMMENT ON TRAVAILLE ENSEMBLE ============ -->
+<section class="timeline-section" id="timeline-process">
+  <div class="timeline-container">
+    
+    <div class="timeline-left">
+      <div class="timeline-left-sticky reveal">
+        <h2 class="timeline-title">COMMENT ON<br/>TRAVAILLE<br/>ENSEMBLE</h2>
+        <div class="timeline-intro">
+          <p>Ce n'est pas une prestation. C'est une vraie collaboration.</p>
+          <p>Je ne crée pas pour toi — je construis avec toi. Tu es impliquée, présente, et ce qu'on fait ensemble te ressemble de A à Z.</p>
+        </div>
       </div>
     </div>
 
-    <div class="bio reveal">
-      <p>Je suis Ange — mentor en personal branding. Un nombre limité de clientes, une implication totale. Pas de logo sans stratégie. Pas de stratégie sans identité.</p>
-      <span class="sign">— Ange</span>
+    <div class="timeline-right">
+      <div class="timeline-line"></div>
+      
+      <div class="timeline-step reveal">
+        <div class="timeline-step-marker">★</div>
+        <div class="timeline-eyebrow">01 —</div>
+        <h3 class="timeline-heading">On se rencontre</h3>
+        <p class="timeline-text">Un appel découverte gratuit. Je veux comprendre qui tu es, ce que tu construis, et ce qui coince. Pas de pitch, pas de pression. Juste une heure pour voir si on est faites pour bosser ensemble.</p>
+      </div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-step-marker">★</div>
+        <div class="timeline-eyebrow">02 —</div>
+        <h3 class="timeline-heading">On creuse</h3>
+        <p class="timeline-text">Avant de toucher à la moindre couleur ou au moindre mot, on pose les fondations. Ton positionnement, ton message, ton histoire. Ce que tu veux que les gens ressentent en te découvrant.</p>
+      </div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-step-marker">★</div>
+        <div class="timeline-eyebrow">03 —</div>
+        <h3 class="timeline-heading">On construit</h3>
+        <p class="timeline-text">Séance par séance, on active les bons leviers — selon toi, selon ton business, selon tes objectifs. Rien n'est standard, tout est pensé pour toi.</p>
+      </div>
+
+      <div class="timeline-step reveal">
+        <div class="timeline-step-marker">★</div>
+        <div class="timeline-eyebrow">04 —</div>
+        <h3 class="timeline-heading">Ta marque grandit avec toi</h3>
+        <p class="timeline-text">La fin de l'accompagnement n'est pas une fin. C'est un nouveau départ. Tout t'appartient — et ta marque continue d'évoluer avec toi, avec les bonnes bases pour durer.</p>
+      </div>
+      
     </div>
 
-    <!-- TÉMOIGNAGE #2 — preuve relationnelle -->
-    <div class="trust-flash reveal" style="margin-top:2rem;background:var(--champagne);color:var(--ink)">
-      <span class="stars">★★★★★</span>
-      <span>« Pour la première fois, j'ai senti que quelqu'un comprenait vraiment ma vision. » — <b>Sarah</b></span>
-    </div>
   </div>
 </section>
 
 <!-- ============ S7 · POUR QUI ============ -->
 <section class="forwho">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Pour qui</span>
-      <h2>C'est fait pour toi, <span class="italic-accent">ou pas.</span></h2>
-    </div>
-    <div class="fw-grid">
-      <div class="fw-card fw-yes reveal">
-        <h3>C'est fait pour toi si…</h3>
-        <ul class="fw-list">
-          <li>Tu as de la valeur mais ton image en ligne ne le reflète pas encore</li>
-          <li>Tu veux remettre ton image à niveau — celle d'aujourd'hui, pas celle d'hier</li>
-          <li>Tu fonctionnes au bouche-à-oreille et tu veux que les bons clients te trouvent seuls</li>
-          <li>Tu veux une présence qui te ressemble vraiment</li>
-          <li>Tu es prête à t'impliquer pour construire quelque chose de durable</li>
-        </ul>
+    <div class="fw-split">
+      <div class="fw-col fw-col--intro reveal">
+        <span class="fw-eyebrow">Time-out —</span>
+        <h2 class="fw-title-big">C'est fait <span class="fw-script">pour toi</span> ?</h2>
+        <p class="fw-intro">Ce mentorat n'est pas universel. Si ce qui suit te parle, alors on est probablement faites pour bosser ensemble.</p>
       </div>
-      <div class="fw-card fw-no reveal">
-        <h3>Ce n'est pas pour toi si…</h3>
+      <div class="fw-center reveal">
+        <div class="fw-photo">
+          <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="" />
+        </div>
+        <a href="#book" class="btn btn-primary fw-cta" style="align-self:center;margin:0 auto;">Je réserve mon appel <span class="arrow">→</span></a>
+      </div>
+      <div class="fw-col fw-col--list reveal">
+        <h3 class="fw-title-small">Au lieu de tourner autour du pot — on fera un <em>bon match</em> si :</h3>
         <ul class="fw-list">
-          <li>Tu veux juste un logo ou un site sans stratégie</li>
-          <li>Tu veux déléguer sans t'impliquer</li>
-          <li>Tu n'es pas prête à remettre en question ta façon de te présenter</li>
+          <li>Tu veux une présence en ligne qui reflète vraiment ta marque</li>
+          <li>Tu es prête à faire passer ta marque au niveau supérieur</li>
+          <li>Tu veux construire quelque chose d'unique et de durable</li>
+          <li>Tu veux un storytelling qui capte, qui connecte, qui convertit</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ S8 · TÉMOIGNAGES ============ -->
-<section class="testi">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Elles l'ont fait</span>
-      <h2>Ils ont révélé leur marque.</h2>
-    </div>
+<!-- ============ S8 · TÉMOIGNAGES — titre sticky central + cartes scatter ============ -->
+<section class="testi-v3">
+  <div class="wrap testi-wrap">
     <div class="testi-grid">
-      <div class="tcard reveal">
-        <span class="stars">★★★★★</span>
-        <p class="quote">« Je ne cours plus après personne. Les demandes arrivent, et ce sont les bonnes. »</p>
-        <div class="who"><span class="avatar">C</span><span><b>Camille</b><small>Coach business</small></span></div>
-      </div>
-      <div class="tcard reveal">
-        <span class="stars">★★★★★</span>
-        <p class="quote">« Mon image reflète enfin mon niveau. Mes tarifs ont suivi, sans négociation. »</p>
-        <div class="who"><span class="avatar">S</span><span><b>Sarah</b><small>Consultante</small></span></div>
-      </div>
-      <div class="tcard reveal">
-        <span class="stars">★★★★★</span>
-        <p class="quote">« Un accompagnement humain, exigeant, sur-mesure. Rien à voir avec une agence. »</p>
-        <div class="who"><span class="avatar">L</span><span><b>Léa</b><small>Thérapeute</small></span></div>
-      </div>
-    </div>
-    <p class="placeholder-note reveal">Emplacement témoignages principal — 2 à 3 témoignages complets (prénom, activité, résultat, citation).</p>
-    <div class="hero-cta-row reveal" style="margin-top:2rem">
-      <a href="#book" class="btn btn-primary">Je réserve mon appel découverte <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
+      <h2 class="testi-bg-title" aria-hidden="false">
+        ILS EN PARLENT<br>MIEUX <em>que moi</em>
+      </h2>
 
-<!-- ============ S9 · GARANTIE ============ -->
-<section class="guarantee">
-  <div class="wrap">
-    <div class="badge reveal">✦</div>
-    <h2 class="reveal">Je m'engage sur ta transformation. Pas sur les livrables.</h2>
-    <p class="reveal">Si les résultats ne sont pas là, on continue — sans frais supplémentaires.</p>
-    <p class="kicker reveal">Je ne vends pas des heures. Je vends une transformation.</p>
+      <article class="tcard-v2 tcard-pos-1 reveal">
+        <span class="tcard-stars">★ ★ ★ ★ ★</span>
+        <h3 class="tcard-title">"JE NE COURS PLUS APRÈS PERSONNE."</h3>
+        <p class="tcard-quote">« Les demandes arrivent. Et ce sont les bonnes. Je n'imaginais pas qu'on pouvait construire ça aussi vite. »</p>
+        <div class="tcard-who">
+          <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="" /></div>
+          <span class="tcard-name"><em>Camille,</em><br>Coach business</span>
+        </div>
+      </article>
+
+      <article class="tcard-v2 tcard-pos-2 reveal">
+        <span class="tcard-stars">★ ★ ★ ★ ★</span>
+        <h3 class="tcard-title">"MES TARIFS ONT SUIVI, SANS NÉGOCIATION."</h3>
+        <p class="tcard-quote">« Mon image reflète enfin mon niveau. Je ne me bats plus pour justifier mes prix — ils sont simplement acceptés. »</p>
+        <div class="tcard-who">
+          <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" /></div>
+          <span class="tcard-name"><em>Sarah,</em><br>Consultante</span>
+        </div>
+      </article>
+
+      <article class="tcard-v2 tcard-pos-3 reveal">
+        <span class="tcard-stars">★ ★ ★ ★ ★</span>
+        <h3 class="tcard-title">"RIEN À VOIR AVEC UNE AGENCE."</h3>
+        <p class="tcard-quote">« Un accompagnement humain, exigeant, sur-mesure. J'ai senti une vraie implication — comme si mon projet était le sien. »</p>
+        <div class="tcard-who">
+          <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="" /></div>
+          <span class="tcard-name"><em>Léa,</em><br>Thérapeute</span>
+        </div>
+      </article>
+
+      <article class="tcard-v2 tcard-pos-4 reveal">
+        <span class="tcard-stars">★ ★ ★ ★ ★</span>
+        <h3 class="tcard-title">"JE ME SENS ENFIN ALIGNÉE."</h3>
+        <p class="tcard-quote">« Ma marque, mon site, mon contenu — tout raconte la même histoire. Et c'est la mienne, enfin. »</p>
+        <div class="tcard-who">
+          <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" /></div>
+          <span class="tcard-name"><em>Inès,</em><br>Designer freelance</span>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -677,8 +2795,16 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         <div class="faq-a"><p>Non. Tes clients te cherchent sur les réseaux, sur les IA, sur Google. Une seule présence ne suffit plus.</p></div>
       </div>
       <div class="faq-item reveal">
+        <button class="faq-q">Quelle différence avec un graphiste ou un coach ?</button>
+        <div class="faq-a"><p>Un graphiste crée ton logo. Un coach travaille ton mindset. Moi je suis mentor — stratégie, image, contenu, site. Tout connecté. Tout cohérent.</p></div>
+      </div>
+      <div class="faq-item reveal">
         <button class="faq-q">Combien de temps ça demande ?</button>
-        <div class="faq-a"><p>2 à 3 heures par semaine, sur un accompagnement de 1 à 3 mois.</p></div>
+        <div class="faq-a"><p>2 à 3 heures par semaine, sur un accompagnement de 1 à 3 mois. C'est ce qui fait la différence entre une belle image et une vraie transformation.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Comment je sais si c'est fait pour moi ?</button>
+        <div class="faq-a"><p>On le détermine ensemble lors de l'appel découverte. Une heure. Sans engagement.</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Qu'est-ce qui se passe après l'appel ?</button>
@@ -686,33 +2812,57 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Et si ça ne marche pas ?</button>
-        <div class="faq-a"><p>L'accompagnement est garanti sur les résultats. On continue jusqu'à ce que ce soit le cas.</p></div>
+        <div class="faq-a"><p>On ajuste la stratégie ensemble à chaque séance — c'est pour ça qu'on avance étape par étape, pas en aveugle.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ S11 · CTA FINAL ============ -->
-<section class="final" id="book">
-  <div class="wrap">
-    <p class="urgency reveal">Chaque semaine qui passe, c'est un client qui ne t'a pas trouvée.</p>
-    <p class="body reveal">L'appel découverte est gratuit, sans engagement. Une heure pour savoir ce qu'il faut construire en premier.</p>
-    <!-- TÉMOIGNAGE #4 — dernière micro-preuve -->
-    <span class="micro-testi reveal">★★★★★ « La meilleure décision de mon année. » — Léa</span>
-    <div class="reveal">
-      <a href="#" class="btn btn-citrus" style="font-size:1.15rem;padding:1.2rem 2.4rem">Je réserve mon appel découverte <span class="arrow">→</span></a>
+<!-- ============ S10.5 · MARQUEE REVEAL YOUR BRAND ============ -->
+<div class="marquee-large" aria-hidden="true">
+  <div class="marquee-track">
+    <span>REVEAL YOUR BRAND</span><span>REVEAL YOUR BRAND</span><span>REVEAL YOUR BRAND</span><span>REVEAL YOUR BRAND</span>
+    <span>REVEAL YOUR BRAND</span><span>REVEAL YOUR BRAND</span><span>REVEAL YOUR BRAND</span><span>REVEAL YOUR BRAND</span>
+  </div>
+</div>
+
+<!-- ============ S11 · CTA FINAL — "On repart du début ?" ============ -->
+<section class="cta-final-dark" id="book">
+  <!-- Vidéo de fond -->
+  <video class="cta-final-video" autoplay muted loop playsinline poster="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg">
+    <source src="https://static.showit.co/file/y9LFf4jy5EJn9OGRLFLYoQ/118862/kleist_showit_bg_video.mp4" type="video/mp4" />
+  </video>
+  <!-- Overlay sombre -->
+  <div class="cta-final-overlay"></div>
+
+  <!-- Contenu -->
+  <div class="cta-final-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+    <h2 class="cta-final-title reveal" style="font-size: clamp(3rem, 6vw, 6rem); max-width: 1200px; line-height: 0.95; margin-bottom: 2rem; text-align: center; font-weight: 800; text-transform: uppercase;">
+      IL EST TEMPS DE FAIRE PASSER<br/>
+      TA MARQUE<br/>
+      AU NIVEAU SUPÉRIEUR.
+    </h2>
+    <p class="cta-final-body reveal" style="max-width: 60ch; margin-bottom: 3rem;">Tu as tout vu — la méthode, les piliers, les preuves. Reste à passer à l'action. Un echange avec moi pour comprendre ce qui bloque et ce qu'on construit en premier.</p>
+    
+    <div class="cta-final-actions reveal">
+      <a href="mailto:contact@angebelegue.com" class="btn btn-primary" style="font-size: 1.25rem; padding: 1.2rem 2.5rem; border-radius: 999px;">Réserve ton appel <span class="arrow">→</span></a>
     </div>
-    <p class="microcopy reveal">Une heure pour tout comprendre. Zéro engagement pour la suite.</p>
-    <a href="#top" class="exit-link reveal">Non merci, je préfère rester invisible.</a>
   </div>
 </section>
 
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
   <div class="wrap">
-    <div class="logo">Ange <b style="color:var(--citrus);font-style:italic;font-weight:400">Belegue</b></div>
-    <p>Mentor en personal branding · Ambitieuse Assumée</p>
-    <p style="margin-top:.5rem;opacity:.6">© 2026 — Tous droits réservés</p>
+    <div class="footer-inner">
+      <div class="logo">Ange <span style="color:var(--citrus);font-style:italic;font-weight:400">Belegue</span></div>
+      <nav class="footer-nav">
+        <a href="#method">La méthode</a>
+        <a href="#portfolio">Projets</a>
+        <a href="#about">À propos</a>
+        <a href="#book">Contact</a>
+      </nav>
+      <p class="footer-copy">© 2026 Ange Belegue · Personal Branding</p>
+    </div>
   </div>
 </footer>
 
@@ -734,6 +2884,18 @@ document.querySelectorAll('.faq-q').forEach(function(q){
   });
 });
 
+/* Hero slideshow — cycle automatique des images en fade */
+(function(){
+  var slides = document.querySelectorAll('.hero-slide');
+  if(slides.length < 2) return;
+  var current = 0;
+  setInterval(function(){
+    slides[current].classList.remove('is-active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('is-active');
+  }, 2000);
+})();
+
 /* Reveal on scroll */
 var io = new IntersectionObserver(function(entries){
   entries.forEach(function(e){
@@ -741,6 +2903,47 @@ var io = new IntersectionObserver(function(entries){
   });
 },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+/* Parallax scroll effect — l'image se déplace en Y au fil du scroll */
+(function(){
+  var blocks = document.querySelectorAll('[data-parallax]');
+  if(!blocks.length) return;
+  var isMobile = function(){ return window.matchMedia('(max-width: 899px)').matches; };
+  var ticking = false;
+
+  function update(){
+    ticking = false;
+    var mobile = isMobile();
+    blocks.forEach(function(block){
+      var img = block.querySelector('img');
+      if(!img) return;
+      var rect = block.getBoundingClientRect();
+      var vh = window.innerHeight;
+      // Si l'élément n'est pas visible, on ne fait rien
+      if(rect.bottom < 0 || rect.top > vh) return;
+      // Progress entre -1 (à peine entré par le bas) et 1 (à peine sorti par le haut)
+      // 0 = centré dans le viewport
+      var center = rect.top + rect.height / 2;
+      var progress = (center - vh / 2) / (vh / 2 + rect.height / 2);
+      progress = Math.max(-1, Math.min(1, progress));
+      // Intensité du mouvement (px). Plus discret sur mobile.
+      var intensity = mobile ? 20 : 60;
+      var translateY = progress * intensity;
+      var scale = mobile ? 1.08 : 1.18;
+      img.style.transform = 'scale(' + scale + ') translate3d(0, ' + translateY + 'px, 0)';
+    });
+  }
+
+  function onScroll(){
+    if(!ticking){
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  update();
+})();
 </script>
 </body>
 </html>
