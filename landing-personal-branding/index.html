@@ -900,10 +900,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .card-berry {
   background: var(--berry);
-  color: var(--champagne-glow);
+  color: var(--neon-citrus);
 }
 .card-berry .btn-link {
-  color: var(--champagne-glow);
+  color: var(--neon-citrus);
 }
 .card-citrus {
   background: var(--neon-citrus);
@@ -911,6 +911,13 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .card-citrus .btn-link {
   color: var(--espresso);
+}
+.card-marron {
+  background: var(--espresso);
+  color: var(--zest);
+}
+.card-marron .btn-link {
+  color: var(--zest);
 }
 .card-zest .btn-link {
   color: #fff;
@@ -1164,9 +1171,20 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 /* --- TIMELINE WORK WITH ME --- */
 .timeline-section {
   position: relative;
-  background-color: var(--berry);
+  background-color: var(--espresso);
+  background-image: url('https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: #fff;
   padding: clamp(6rem, 12vw, 10rem) var(--gut);
+}
+.timeline-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(58, 26, 8, 0.78);
+  z-index: 1;
 }
 .timeline-container {
   position: relative;
@@ -1914,7 +1932,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
    BIO ANGE - split photo verticale / contenu mini-photo + texte + CTA
    ============================================================ */
 .bio-section{
-  background:var(--champagne);
+  background:var(--berry);
   padding-block: clamp(4rem, 8vw, 7rem);
 }
 .bio-split{
@@ -1969,12 +1987,12 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-family:var(--sans);
   font-size:1.02rem;
   line-height:1.6;
-  color:var(--ink);
+  color:var(--champagne-glow);
   margin:0;
 }
 .bio-text em{
   font-style:italic;
-  color:var(--zest);
+  color:var(--neon-citrus);
   font-weight:500;
 }
 .bio-punch{
@@ -1983,8 +2001,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .bio-cta{
   background:transparent;
-  border:2px solid var(--espresso);
-  color:var(--espresso);
+  border:2px solid var(--champagne-glow);
+  color:var(--champagne-glow);
   border-radius:var(--r-pill);
   padding:1.1rem 2.2rem;
   font-family:var(--sans);
@@ -1999,8 +2017,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   transition:transform .25s, box-shadow .25s, background .25s;
 }
 .bio-cta:hover{
-  background:var(--espresso);
-  color:#fff;
+  background:var(--champagne-glow);
+  color:var(--espresso);
   transform:translateY(-2px);
   box-shadow:0 10px 24px rgba(46,20,16,.18);
 }
@@ -2143,15 +2161,18 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 /* ============================================================
    FAQ
    ============================================================ */
-.faq{background:var(--paper)}
+.faq{background:var(--espresso)}
+.faq .eyebrow{color:var(--neon-citrus)}
+.faq .eyebrow::before{background:var(--neon-citrus)}
+.faq h2{color:#fff}
 .faq-list{max-width:780px;margin-top:1rem}
-.faq-item{border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,transparent)}
+.faq-item{border-bottom:1px solid color-mix(in srgb,var(--champagne-glow) 20%,transparent)}
 .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;
-  font-family:var(--serif);font-size:clamp(1.15rem,2.4vw,1.5rem);font-weight:600;color:var(--ink);
+  font-family:var(--serif);font-size:clamp(1.15rem,2.4vw,1.5rem);font-weight:600;color:#fff;
   padding:1.5rem 2.5rem 1.5rem 0;position:relative;display:block}
-.faq-q::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:1.8rem;color:var(--zest);transition:transform .3s}
+.faq-q::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:1.8rem;color:var(--neon-citrus);transition:transform .3s}
 .faq-item.open .faq-q::after{transform:translateY(-50%) rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--ink-soft);font-size:1.06rem}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--champagne-glow);font-size:1.06rem}
 .faq-a p{padding-bottom:1.5rem}
 
 /* ============================================================
@@ -2502,7 +2523,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     </div>
     <!-- Card -->
     <div class="portfolio-item text-card card-berry reveal" style="align-items:center; text-align:center; gap: 0;">
-      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: #fff;">Make it</h3>
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: var(--neon-citrus);">Make it</h3>
     </div>
     <!-- Photo 2 -->
     <div class="portfolio-item reveal">
@@ -2517,8 +2538,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f1d79e65-8e82-4783-bf6b-4b8d080b8f14/pexels-amar-preciado-10217799.jpg" alt="Projet Thérapeute, Photo 1" />
     </div>
     <!-- Card -->
-    <div class="portfolio-item text-card card-citrus reveal" style="align-items:center; text-align:center; gap: 0;">
-      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: var(--ink);">Iconic</h3>
+    <div class="portfolio-item text-card card-marron reveal" style="align-items:center; text-align:center; gap: 0;">
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--sans); letter-spacing: 0.1em; color: var(--zest);">Iconic</h3>
     </div>
     <!-- Photo 4 -->
     <div class="portfolio-item reveal">
@@ -2528,21 +2549,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 
   </div>
   
-  <div class="hero-cta-row reveal" style="display: flex; justify-content: center; width: 100%; margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(3rem, 6vw, 5rem) var(--gut); background: var(--berry);">
+  <div class="hero-cta-row reveal" style="display: flex; justify-content: center; width: 100%; margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(3rem, 6vw, 5rem) var(--gut); background: var(--espresso);">
     <a href="#book" class="btn btn-primary" style="font-size: 1.25rem; padding: 1.2rem 2.5rem; box-shadow: var(--shadow); border-radius: 999px;">Rends ta marque iconique <span class="arrow">→</span></a>
   </div>
 
-</section>
-
-<!-- ============ TRANSITION · Rends ta marque unique (bis) ============ -->
-<section style="background:var(--espresso); padding:clamp(4rem,10vw,7rem) var(--gut); display:flex; align-items:center; justify-content:center;">
-  <div class="specialize-arrow-wrap">
-    <a href="#method" class="specialize-link">Rends ta marque unique</a>
-    <svg class="scroll-arrow" viewBox="0 0 100 100">
-      <path d="M10,20 C45,20 75,35 75,70" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
-      <path d="M63,58 L75,70 L82,56" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
-    </svg>
-  </div>
 </section>
 
 <!-- ============ S5 · LA MÉTHODE - hills sticky viewport blocks ============ -->
@@ -2599,6 +2609,17 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     </div>
   </div>
 
+</section>
+
+<!-- ============ TRANSITION · Rends ta marque unique (bis) ============ -->
+<section style="padding:clamp(3rem,6vw,5rem) var(--gut); display:flex; align-items:center; justify-content:center;">
+  <div class="specialize-arrow-wrap">
+    <a href="#piliers" class="specialize-link">Rends ta marque unique</a>
+    <svg class="scroll-arrow" viewBox="0 0 100 100">
+      <path d="M10,20 C45,20 75,35 75,70" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
+      <path d="M63,58 L75,70 L82,56" fill="none" stroke="var(--zest)" stroke-width="3.5" stroke-linecap="round" />
+    </svg>
+  </div>
 </section>
 
 <!-- ============ S6 · LES PILIERS ============ -->
