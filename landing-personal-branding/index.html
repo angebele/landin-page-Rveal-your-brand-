@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Révèle ta marque — Ange Belegue · Mentor en Personal Branding</title>
+<title>Révèle ta marque - Ange Belegue · Mentor en Personal Branding</title>
 <meta name="description" content="Et si ton image en ligne reflétait enfin ce que tu vaux vraiment ? Accompagnement personal branding sur-mesure. Réserve ton appel découverte gratuit." />
 
 <!-- Open Graph -->
-<meta property="og:title" content="Révèle ta marque — Ange Belegue" />
-<meta property="og:description" content="Avant même que tu parles, on te cherche, on te juge, on te choisit — ou pas. Révèle ton image de marque." />
+<meta property="og:title" content="Révèle ta marque - Ange Belegue" />
+<meta property="og:description" content="Avant même que tu parles, on te cherche, on te juge, on te choisit - ou pas. Révèle ton image de marque." />
 <meta property="og:type" content="website" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,17 +22,24 @@
 }
 
 /* ============================================================
-   PALETTE — Citrus / Champagne (Ange Belegue)
+   PALETTE - Citrus / Champagne (Ange Belegue)
    ============================================================ */
 :root{
-  --citrus:    #FF9E0F;   /* Neon Citrus  — primaire vif        */
-  --champagne: #F5E5CC;   /* Champagne Glow — fond crème        */
-  --zest:      #C0451B;   /* Orange Zest — orange brûlé         */
-  --fizz:      #FFCC99;   /* Citrus Fizz — pêche douce          */
-  --berry:     #7D0000;   /* Berry Pop — rouge profond          */
-  --ink:       #2E1410;   /* texte — brun quasi-noir chaud      */
-  --ink-soft:  #6b4a3f;   /* texte secondaire                   */
-  --paper:     #FFF9F0;   /* blanc cassé chaud                  */
+  --orange-zest:    #C44020;   /* Orange Zest - couleur principale marque */
+  --neon-citrus:    #FF9E0F;   /* Neon Citrus - accent lumière             */
+  --berry-pop:      #7D0000;   /* Berry Pop - soutien impact               */
+  --warm-ivory:     #FAF7F2;   /* Warm Ivory - fond principal              */
+  --champagne-glow: #F5E5CC;   /* Champagne Glow - alt fond + texte dark   */
+  --espresso:       #3A1A08;   /* Espresso - texte courant + fond sombre   */
+
+  /* Anciens noms conservés pour compatibilité */
+  --citrus: #FF9E0F;
+  --champagne: #F5E5CC;
+  --zest: #C44020;
+  --berry: #7D0000;
+  --ink: #3A1A08;
+  --ink-soft: #6b4a3f;
+  --paper: #FAF7F2;
 
   --max: 1240px;
   --gut: clamp(1.25rem, 5vw, 4rem);
@@ -42,8 +49,8 @@
   --r-lg: 38px;
   --r-pill: 999px;
 
-  --shadow: 0 18px 50px -20px rgba(46,20,16,.35);
-  --shadow-sm: 0 8px 24px -12px rgba(46,20,16,.30);
+  --shadow: 0 18px 50px -20px rgba(196,64,32,.35);
+  --shadow-sm: 0 8px 24px -12px rgba(196,64,32,.30);
 
   --serif: "Fraunces", Georgia, serif;
   --sans:  "DM Sans", system-ui, -apple-system, sans-serif;
@@ -118,7 +125,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
    HERO
    ============================================================ */
 /* ============================================================
-   HERO V2 — Slideshow background + grand titre marque
+   HERO V2 - Slideshow background + grand titre marque
    ============================================================ */
 .hero-v2{
   position:relative;
@@ -269,7 +276,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   transform:translateX(4px);
 }
 
-/* Sticker décoratif tourné — coin haut-droit */
+/* Sticker décoratif tourné - coin haut-droit */
 .hero-v2-sticker{
   position:absolute;
   top:clamp(5rem, 10vw, 8rem);
@@ -392,9 +399,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .problem .wrap { position: relative; z-index: 2; }
 
-/* REFRAME — grande déclaration */
+/* REFRAME - grande déclaration */
 /* ============================================================
-   REFRAME V2 — slide style : photo gauche + titre + 2 cartes
+   REFRAME V2 - slide style : photo gauche + titre + 2 cartes
    ============================================================ */
 .reframe-v2{
   background:var(--champagne);
@@ -627,7 +634,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 
 /* ============================================================
-   SPECIALIZE SECTION — Grand fond noir, typo massive + petite intro
+   SPECIALIZE SECTION - Grand fond noir, typo massive + petite intro
    ============================================================ */
 .specialize-section {
   background: #111111;
@@ -1029,7 +1036,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   margin-top: 1.5rem;
 }
 
-/* Method cards — 3-column layout inspired by reference visual */
+/* Method cards - 3-column layout inspired by reference visual */
 .method-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1138,7 +1145,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 
 /* ============================================================
-   MÉTHODE V2 — hills editorial (Sarah Kleist exact replica)
+   MÉTHODE V2 - hills editorial (Sarah Kleist exact replica)
    Each card lives in its own sticky viewport block.
    Cards are identical size but offset x + rotated for organic feel.
    ============================================================ */
@@ -1586,10 +1593,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 
 /* ============================================================
-   POURQUOI MOI — comparatif
+   POURQUOI MOI - comparatif
    ============================================================ */
 /* ============================================================
-   POURQUOI MOI V2 — split panneaux style affiche + portrait détouré
+   POURQUOI MOI V2 - split panneaux style affiche + portrait détouré
    ============================================================ */
 .why-v2{
   background:var(--paper);
@@ -1733,7 +1740,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   line-height:1.4;
 }
 
-/* Portrait détouré centré — chevauche les deux panneaux */
+/* Portrait détouré centré - chevauche les deux panneaux */
 .why-portrait{
   display:none;
 }
@@ -1904,7 +1911,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 
 /* ============================================================
-   BIO ANGE — split photo verticale / contenu mini-photo + texte + CTA
+   BIO ANGE - split photo verticale / contenu mini-photo + texte + CTA
    ============================================================ */
 .bio-section{
   background:var(--champagne);
@@ -1998,7 +2005,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 
 /* ============================================================
-   TÉMOIGNAGES — titre sticky au centre, cartes qui défilent
+   TÉMOIGNAGES - titre sticky au centre, cartes qui défilent
    ============================================================ */
 .testi-v3{
   background:var(--champagne);
@@ -2176,7 +2183,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 
 /* ============================================================
-   CTA FINAL DARK — "On repart du début ?" (Sarah Kleist style)
+   CTA FINAL DARK - "On repart du début ?" (Sarah Kleist style)
    ============================================================ */
 .cta-final-dark {
   position: relative;
@@ -2349,7 +2356,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   </div>
 </header>
 
-<!-- ============ S1 · HERO — slideshow + grand titre marque ============ -->
+<!-- ============ S1 · HERO - slideshow + grand titre marque ============ -->
 <section class="hero-v2" id="top">
   <!-- Split layout container -->
   <div class="hero-split-container" aria-hidden="true">
@@ -2367,8 +2374,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 
   <!-- Contenu central -->
   <div class="hero-v2-content">
-    <h1 class="hero-huge-title">REVEAL<br>YOUR BRAND</h1>
-    <h2 class="hero-v2-subtitle">Et si ton image reflétait enfin ce que tu vaux vraiment&nbsp;?</h2>
+    <h1 class="hero-huge-title">RENDS TA<br>MARQUE UNIQUE</h1>
+    <h2 class="hero-v2-subtitle">Il est temps de viser plus loin</h2>
     <a href="#book" class="hero-v2-btn" style="pointer-events:all;margin-top:1.5rem;">→ Je veux révéler ma marque</a>
     <p class="hero-v2-trust" style="pointer-events:none;margin-top:.75rem;">&laquo;&nbsp;Une expérience transformatrice.&nbsp;&raquo; &mdash; Marie L.</p>
   </div>
@@ -2418,7 +2425,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
           <h2>Aujourd'hui, ton image compte plus que tes mots.</h2>
         </div>
         <p class="lead reveal">La façon dont tu te présentes au monde, et ce qu'on retient de toi : c'est ça qui décide, avant même que tu parles.</p>
-        <p class="lead reveal">Tu as de la valeur, des résultats — mais en ligne, tu es invisible, ou ton image ne te ressemble plus.</p>
+        <p class="lead reveal">Tu as de la valeur, des résultats - mais en ligne, tu es invisible, ou ton image ne te ressemble plus.</p>
         <p class="punch reveal">Ce n'est pas un problème de talent. C'est un problème de présence et de méthode.</p>
       </div>
       
@@ -2445,7 +2452,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 <section class="specialize-section" id="portfolio" style="padding-bottom: 8rem;">
   <div class="specialize-inner reveal">
     <div class="specialize-text-wrap">
-        <p class="specialize-small">Je ne me spécialise pas dans un secteur —</p>
+        <p class="specialize-small">Je ne me spécialise pas dans un secteur -</p>
         
         <div class="comment-bubble bubble-1 reveal" style="transition-delay: 2.0s;">C'est la perfection. 💖</div>
         <div class="comment-bubble bubble-2 reveal" style="transition-delay: 2.3s;">C'est trop cool, oh my god ! Tu me fais passer pour un pro 🔥</div>
@@ -2526,7 +2533,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   
 </section>
 
-<!-- ============ S5 · LA MÉTHODE — hills sticky viewport blocks ============ -->
+<!-- ============ S5 · LA MÉTHODE - hills sticky viewport blocks ============ -->
 <section class="hills-section" id="method" style="background-image:url('https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg'); background-size:cover; background-position:center; background-attachment:fixed;">
 
   <!-- Block 1: has the big title on left + first card on right -->
@@ -2545,7 +2552,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         <ul class="hill-sublist">
           <li>Qui tu es. Ce qui te rend unique et lisible. Ce qui te rend désirable.</li>
         </ul>
-        <p class="hill-text tagline">Ton message parle aux bonnes personnes — immédiatement.</p>
+        <p class="hill-text tagline">Ton message parle aux bonnes personnes - immédiatement.</p>
       </div>
     </div>
   </div>
@@ -2574,7 +2581,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <div class="hill-body">
         <div class="hill-num">3</div>
         <h3 class="hill-title">Une présence totale et alignée</h3>
-        <p class="hill-text">On active les bons canaux, les bons formats, la bonne stratégie — selon toi et ton business.</p>
+        <p class="hill-text">On active les bons canaux, les bons formats, la bonne stratégie - selon toi et ton business.</p>
         <p class="hill-text tagline">Trouvable partout où ta cible te cherche.</p>
       </div>
     </div>
@@ -2599,7 +2606,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         </div>
         <div class="pillar-row" style="border-top-color: color-mix(in srgb, var(--paper) 15%, transparent);">
           <h3 style="color: var(--paper);"><span class="italic-accent" style="color: var(--fizz);">Identité</span></h3>
-          <p style="color: color-mix(in srgb, var(--paper) 80%, transparent);">Logo, charte, palette, templates Canva — une image pensée pour refléter qui tu es aujourd'hui.</p>
+          <p style="color: color-mix(in srgb, var(--paper) 80%, transparent);">Logo, charte, palette, templates Canva - une image pensée pour refléter qui tu es aujourd'hui.</p>
         </div>
         <div class="pillar-row" style="border-top-color: color-mix(in srgb, var(--paper) 15%, transparent);">
           <h3 style="color: var(--paper);"><span class="italic-accent" style="color: var(--fizz);">Contenu</span></h3>
@@ -2634,7 +2641,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 </section>
 
 
-<!-- ============ S7b · BIO ANGE — split photo / texte ============ -->
+<!-- ============ S7b · BIO ANGE - split photo / texte ============ -->
 <section class="bio-section">
   <div class="bio-split">
     <div class="bio-photo reveal">
@@ -2644,8 +2651,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <div class="bio-mini-photo">
         <img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" />
       </div>
-      <p class="bio-text">Si tu es entrepreneure, consultante, créative ou experte indépendante — tu connais la sensation : tu as de la valeur, tu sais ce que tu fais, mais ton image en ligne ne le raconte pas encore.</p>
-      <p class="bio-text">Tu travailles dur, mais tu te demandes pourquoi les bons clients ne te trouvent pas — ou pourquoi tes tarifs doivent toujours se défendre.</p>
+      <p class="bio-text">Si tu es entrepreneure, consultante, créative ou experte indépendante - tu connais la sensation : tu as de la valeur, tu sais ce que tu fais, mais ton image en ligne ne le raconte pas encore.</p>
+      <p class="bio-text">Tu travailles dur, mais tu te demandes pourquoi les bons clients ne te trouvent pas - ou pourquoi tes tarifs doivent toujours se défendre.</p>
       <p class="bio-text">La vérité : tu <em>peux</em> avoir une marque qui te ressemble, qui parle pour toi, et qui attire les clients que tu mérites. Il te faut juste la bonne méthode et le bon accompagnement.</p>
       <p class="bio-text bio-punch">C'est là que j'interviens.</p>
       <a href="#book" class="btn bio-cta">On travaille ensemble</a>
@@ -2662,7 +2669,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         <h2 class="timeline-title">COMMENT ON<br/>TRAVAILLE<br/>ENSEMBLE</h2>
         <div class="timeline-intro">
           <p>Ce n'est pas une prestation. C'est une vraie collaboration.</p>
-          <p>Je ne crée pas pour toi — je construis avec toi. Tu es impliquée, présente, et ce qu'on fait ensemble te ressemble de A à Z.</p>
+          <p>Je ne crée pas pour toi - je construis avec toi. Tu es impliquée, présente, et ce qu'on fait ensemble te ressemble de A à Z.</p>
         </div>
       </div>
     </div>
@@ -2672,30 +2679,30 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       
       <div class="timeline-step reveal">
         <div class="timeline-step-marker">★</div>
-        <div class="timeline-eyebrow">01 —</div>
+        <div class="timeline-eyebrow">01 -</div>
         <h3 class="timeline-heading">On se rencontre</h3>
         <p class="timeline-text">Un appel découverte gratuit. Je veux comprendre qui tu es, ce que tu construis, et ce qui coince. Pas de pitch, pas de pression. Juste une heure pour voir si on est faites pour bosser ensemble.</p>
       </div>
 
       <div class="timeline-step reveal">
         <div class="timeline-step-marker">★</div>
-        <div class="timeline-eyebrow">02 —</div>
+        <div class="timeline-eyebrow">02 -</div>
         <h3 class="timeline-heading">On creuse</h3>
         <p class="timeline-text">Avant de toucher à la moindre couleur ou au moindre mot, on pose les fondations. Ton positionnement, ton message, ton histoire. Ce que tu veux que les gens ressentent en te découvrant.</p>
       </div>
 
       <div class="timeline-step reveal">
         <div class="timeline-step-marker">★</div>
-        <div class="timeline-eyebrow">03 —</div>
+        <div class="timeline-eyebrow">03 -</div>
         <h3 class="timeline-heading">On construit</h3>
-        <p class="timeline-text">Séance par séance, on active les bons leviers — selon toi, selon ton business, selon tes objectifs. Rien n'est standard, tout est pensé pour toi.</p>
+        <p class="timeline-text">Séance par séance, on active les bons leviers - selon toi, selon ton business, selon tes objectifs. Rien n'est standard, tout est pensé pour toi.</p>
       </div>
 
       <div class="timeline-step reveal">
         <div class="timeline-step-marker">★</div>
-        <div class="timeline-eyebrow">04 —</div>
+        <div class="timeline-eyebrow">04 -</div>
         <h3 class="timeline-heading">Ta marque grandit avec toi</h3>
-        <p class="timeline-text">La fin de l'accompagnement n'est pas une fin. C'est un nouveau départ. Tout t'appartient — et ta marque continue d'évoluer avec toi, avec les bonnes bases pour durer.</p>
+        <p class="timeline-text">La fin de l'accompagnement n'est pas une fin. C'est un nouveau départ. Tout t'appartient - et ta marque continue d'évoluer avec toi, avec les bonnes bases pour durer.</p>
       </div>
       
     </div>
@@ -2708,7 +2715,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   <div class="wrap">
     <div class="fw-split">
       <div class="fw-col fw-col--intro reveal">
-        <span class="fw-eyebrow">Time-out —</span>
+        <span class="fw-eyebrow">Time-out -</span>
         <h2 class="fw-title-big">C'est fait <span class="fw-script">pour toi</span> ?</h2>
         <p class="fw-intro">Ce mentorat n'est pas universel. Si ce qui suit te parle, alors on est probablement faites pour bosser ensemble.</p>
       </div>
@@ -2719,7 +2726,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         <a href="#book" class="btn btn-primary fw-cta" style="align-self:center;margin:0 auto;">Je réserve mon appel <span class="arrow">→</span></a>
       </div>
       <div class="fw-col fw-col--list reveal">
-        <h3 class="fw-title-small">Au lieu de tourner autour du pot — on fera un <em>bon match</em> si :</h3>
+        <h3 class="fw-title-small">Au lieu de tourner autour du pot - on fera un <em>bon match</em> si :</h3>
         <ul class="fw-list">
           <li>Tu veux une présence en ligne qui reflète vraiment ta marque</li>
           <li>Tu es prête à faire passer ta marque au niveau supérieur</li>
@@ -2731,7 +2738,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   </div>
 </section>
 
-<!-- ============ S8 · TÉMOIGNAGES — titre sticky central + cartes scatter ============ -->
+<!-- ============ S8 · TÉMOIGNAGES - titre sticky central + cartes scatter ============ -->
 <section class="testi-v3">
   <div class="wrap testi-wrap">
     <div class="testi-grid">
@@ -2752,7 +2759,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <article class="tcard-v2 tcard-pos-2 reveal">
         <span class="tcard-stars">★ ★ ★ ★ ★</span>
         <h3 class="tcard-title">"MES TARIFS ONT SUIVI, SANS NÉGOCIATION."</h3>
-        <p class="tcard-quote">« Mon image reflète enfin mon niveau. Je ne me bats plus pour justifier mes prix — ils sont simplement acceptés. »</p>
+        <p class="tcard-quote">« Mon image reflète enfin mon niveau. Je ne me bats plus pour justifier mes prix - ils sont simplement acceptés. »</p>
         <div class="tcard-who">
           <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" /></div>
           <span class="tcard-name"><em>Sarah,</em><br>Consultante</span>
@@ -2762,7 +2769,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <article class="tcard-v2 tcard-pos-3 reveal">
         <span class="tcard-stars">★ ★ ★ ★ ★</span>
         <h3 class="tcard-title">"RIEN À VOIR AVEC UNE AGENCE."</h3>
-        <p class="tcard-quote">« Un accompagnement humain, exigeant, sur-mesure. J'ai senti une vraie implication — comme si mon projet était le sien. »</p>
+        <p class="tcard-quote">« Un accompagnement humain, exigeant, sur-mesure. J'ai senti une vraie implication - comme si mon projet était le sien. »</p>
         <div class="tcard-who">
           <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="" /></div>
           <span class="tcard-name"><em>Léa,</em><br>Thérapeute</span>
@@ -2772,7 +2779,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <article class="tcard-v2 tcard-pos-4 reveal">
         <span class="tcard-stars">★ ★ ★ ★ ★</span>
         <h3 class="tcard-title">"JE ME SENS ENFIN ALIGNÉE."</h3>
-        <p class="tcard-quote">« Ma marque, mon site, mon contenu — tout raconte la même histoire. Et c'est la mienne, enfin. »</p>
+        <p class="tcard-quote">« Ma marque, mon site, mon contenu - tout raconte la même histoire. Et c'est la mienne, enfin. »</p>
         <div class="tcard-who">
           <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" /></div>
           <span class="tcard-name"><em>Inès,</em><br>Designer freelance</span>
@@ -2796,7 +2803,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Quelle différence avec un graphiste ou un coach ?</button>
-        <div class="faq-a"><p>Un graphiste crée ton logo. Un coach travaille ton mindset. Moi je suis mentor — stratégie, image, contenu, site. Tout connecté. Tout cohérent.</p></div>
+        <div class="faq-a"><p>Un graphiste crée ton logo. Un coach travaille ton mindset. Moi je suis mentor - stratégie, image, contenu, site. Tout connecté. Tout cohérent.</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Combien de temps ça demande ?</button>
@@ -2812,7 +2819,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Et si ça ne marche pas ?</button>
-        <div class="faq-a"><p>On ajuste la stratégie ensemble à chaque séance — c'est pour ça qu'on avance étape par étape, pas en aveugle.</p></div>
+        <div class="faq-a"><p>On ajuste la stratégie ensemble à chaque séance - c'est pour ça qu'on avance étape par étape, pas en aveugle.</p></div>
       </div>
     </div>
   </div>
@@ -2826,7 +2833,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   </div>
 </div>
 
-<!-- ============ S11 · CTA FINAL — "On repart du début ?" ============ -->
+<!-- ============ S11 · CTA FINAL - "On repart du début ?" ============ -->
 <section class="cta-final-dark" id="book">
   <!-- Vidéo de fond -->
   <video class="cta-final-video" autoplay muted loop playsinline poster="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg">
@@ -2842,7 +2849,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       TA MARQUE<br/>
       AU NIVEAU SUPÉRIEUR.
     </h2>
-    <p class="cta-final-body reveal" style="max-width: 60ch; margin-bottom: 3rem;">Tu as tout vu — la méthode, les piliers, les preuves. Reste à passer à l'action. Un echange avec moi pour comprendre ce qui bloque et ce qu'on construit en premier.</p>
+    <p class="cta-final-body reveal" style="max-width: 60ch; margin-bottom: 3rem;">Tu as tout vu - la méthode, les piliers, les preuves. Reste à passer à l'action. Un echange avec moi pour comprendre ce qui bloque et ce qu'on construit en premier.</p>
     
     <div class="cta-final-actions reveal">
       <a href="mailto:contact@angebelegue.com" class="btn btn-primary" style="font-size: 1.25rem; padding: 1.2rem 2.5rem; border-radius: 999px;">Réserve ton appel <span class="arrow">→</span></a>
@@ -2884,7 +2891,7 @@ document.querySelectorAll('.faq-q').forEach(function(q){
   });
 });
 
-/* Hero slideshow — cycle automatique des images en fade */
+/* Hero slideshow - cycle automatique des images en fade */
 (function(){
   var slides = document.querySelectorAll('.hero-slide');
   if(slides.length < 2) return;
@@ -2904,7 +2911,7 @@ var io = new IntersectionObserver(function(entries){
 },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-/* Parallax scroll effect — l'image se déplace en Y au fil du scroll */
+/* Parallax scroll effect - l'image se déplace en Y au fil du scroll */
 (function(){
   var blocks = document.querySelectorAll('[data-parallax]');
   if(!blocks.length) return;
