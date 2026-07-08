@@ -54,7 +54,7 @@
 
   --serif: "Fraunces", Georgia, serif;
   --sans:  "Space Mono", "Courier New", monospace;
-  --display: "Space Mono", "Courier New", monospace;
+  --display: "Anton", "Jost", sans-serif;
   --heading: "Jost", system-ui, sans-serif;
   --mono: "Space Mono", "Courier New", monospace;
 }
@@ -815,9 +815,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 
 .reframe-portfolio {
-  background: var(--champagne);
+  background: var(--espresso);
   overflow: hidden;
-  border-top: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--champagne-glow) 12%, transparent);
 }
 .scroll-indicator {
   margin-top: 3rem;
@@ -3018,8 +3018,8 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   background:#1a1a1a;color:#fff;
   border-radius:14px;
   box-shadow:0 12px 40px rgba(0,0,0,.4);
-  width:280px;
-  max-height:80vh;
+  width:290px;
+  max-height:82vh;
   overflow-y:auto;
   transition:width .25s;
 }
@@ -3030,34 +3030,45 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   font-size:.8rem;font-weight:600;letter-spacing:.02em;
   position:sticky;top:0;z-index:1;
 }
-#color-widget-body{padding:.9rem 1rem 1.1rem;display:flex;flex-direction:column;gap:.8rem}
+#color-widget-body{padding:.9rem 1rem 1.1rem;display:flex;flex-direction:column;gap:.7rem}
 #color-widget.collapsed #color-widget-body{display:none}
 .cw-row label{display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;opacity:.6;margin-bottom:.3rem}
 .cw-row select{
   width:100%;padding:.45rem .5rem;border-radius:7px;border:1px solid #444;
   background:#262626;color:#fff;font-size:.85rem;cursor:pointer;
 }
-.cw-swatches{display:flex;gap:.4rem;flex-wrap:wrap}
+.cw-target-group{display:flex;flex-direction:column;gap:.5rem;border-top:1px solid #333;padding-top:.6rem;margin-top:.2rem}
+.cw-target-row{display:flex;align-items:center;gap:.5rem}
+.cw-target-row .cw-target-label{
+  font-size:.7rem;font-weight:600;width:52px;flex-shrink:0;opacity:.85;
+}
+.cw-swatches{display:flex;gap:.32rem;flex-wrap:wrap}
 .cw-swatch{
-  width:30px;height:30px;border-radius:50%;cursor:pointer;
+  width:24px;height:24px;border-radius:50%;cursor:pointer;
   border:2px solid transparent;position:relative;flex-shrink:0;
   transition:transform .15s;
 }
-.cw-swatch:hover{transform:scale(1.12)}
+.cw-swatch:hover{transform:scale(1.15)}
 .cw-swatch.active{border-color:#fff;box-shadow:0 0 0 2px #1a1a1a, 0 0 0 4px #fff}
-.cw-current{font-size:.68rem;opacity:.65;margin-top:.2rem;line-height:1.4}
-#color-widget-reset-section{
+.cw-swatch.clear{
+  background:repeating-linear-gradient(45deg,#444,#444 3px,#222 3px,#222 6px);
+}
+.cw-current{font-size:.66rem;opacity:.65;margin-top:.1rem;line-height:1.45}
+.cw-btn{
   background:none;border:1px solid #444;color:#ccc;
-  border-radius:7px;padding:.4rem;font-size:.72rem;cursor:pointer;
+  border-radius:7px;padding:.4rem;font-size:.7rem;cursor:pointer;
 }
-#color-widget-reset-section:hover{background:#262626}
-#color-widget-reset-all{
-  background:none;border:1px solid #7d0000;color:#ff9e9e;
-  border-radius:7px;padding:.4rem;font-size:.72rem;cursor:pointer;
-  margin-top:.3rem;
+.cw-btn:hover{background:#262626}
+.cw-btn.danger{border-color:#7d0000;color:#ff9e9e}
+.cw-btn.danger:hover{background:#3a1a08}
+.cw-btn.primary{border-color:#FF9E0F;color:#FF9E0F}
+.cw-btn.primary:hover{background:#3a1a08}
+#cw-export-box{
+  width:100%;background:#111;color:#9f9;border:1px solid #444;border-radius:7px;
+  font-family:monospace;font-size:.62rem;padding:.5rem;resize:vertical;min-height:70px;
+  display:none;
 }
-#color-widget-reset-all:hover{background:#3a1a08}
-#color-widget-note{font-size:.6rem;line-height:1.4;opacity:.5;margin-top:.2rem}
+#color-widget-note{font-size:.6rem;line-height:1.4;opacity:.5;margin-top:.1rem}
 </style>
 
 <div id="color-widget">
@@ -3070,18 +3081,15 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
       <label for="cw-section">Section a modifier</label>
       <select id="cw-section"></select>
     </div>
-    <div class="cw-row">
-      <label>Fond</label>
-      <div class="cw-swatches" id="cw-bg-swatches"></div>
-    </div>
-    <div class="cw-row">
-      <label>Texte</label>
-      <div class="cw-swatches" id="cw-text-swatches"></div>
-    </div>
+
+    <div class="cw-target-group" id="cw-target-group"></div>
+
     <div class="cw-current" id="cw-current"></div>
-    <button id="color-widget-reset-section" type="button">Reinitialiser cette section</button>
-    <button id="color-widget-reset-all" type="button">Tout reinitialiser</button>
-    <p id="color-widget-note">Change le fond/texte de chaque section pour tester des associations. Les accents internes (mots colores, icones) ne changent pas.</p>
+    <button class="cw-btn" id="color-widget-reset-section" type="button">Reinitialiser cette section</button>
+    <button class="cw-btn danger" id="color-widget-reset-all" type="button">Tout reinitialiser</button>
+    <button class="cw-btn primary" id="color-widget-export" type="button">Exporter mes choix</button>
+    <textarea id="cw-export-box" readonly></textarea>
+    <p id="color-widget-note">Choisis une section puis clique une pastille pour chaque niveau (Fond, Texte, H1, H2, H3). Tes choix sont sauvegardes automatiquement dans ce navigateur. Clique "Exporter" et colle-moi le resultat dans le chat pour que je les rende definitifs.</p>
   </div>
 </div>
 
@@ -3094,6 +3102,14 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     { name: 'Warm Ivory',     value: '#FAF7F2' },
     { name: 'Champagne Glow', value: '#F5E5CC' },
     { name: 'Espresso',       value: '#3A1A08' }
+  ];
+
+  var TARGETS = [
+    { key: 'bg',   label: 'Fond', selector: null,           cssProp: 'background' },
+    { key: 'text', label: 'Texte', selector: null,          cssProp: 'color' },
+    { key: 'h1',   label: 'H1',   selector: 'h1',           cssProp: 'color' },
+    { key: 'h2',   label: 'H2',   selector: 'h2',           cssProp: 'color' },
+    { key: 'h3',   label: 'H3',   selector: 'h3',           cssProp: 'color' }
   ];
 
   var SECTIONS = [
@@ -3115,7 +3131,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     { id: 'footer-section',         label: 'Footer' }
   ];
 
-  var STORAGE_KEY = 'ange-color-widget-choices';
+  var STORAGE_KEY = 'ange-color-widget-choices-v2';
   var currentSectionId = SECTIONS[0].id;
 
   function getEl(id){ return document.getElementById(id); }
@@ -3127,25 +3143,30 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     localStorage.setItem(STORAGE_KEY, JSON.stringify(choices));
   }
 
-  function applyToSection(sectionId, bg, text){
-    var el = getEl(sectionId);
-    if(!el) return;
-    if(bg)   el.style.setProperty('background', bg, 'important');
-    if(text) el.style.setProperty('color', text, 'important');
-  }
-
-  function clearSection(sectionId){
-    var el = getEl(sectionId);
-    if(!el) return;
-    el.style.removeProperty('background');
-    el.style.removeProperty('color');
+  function applyTarget(sectionId, targetKey, value){
+    var sectionEl = getEl(sectionId);
+    if(!sectionEl) return;
+    var target = TARGETS.filter(function(t){ return t.key === targetKey; })[0];
+    if(!target) return;
+    if(target.selector){
+      var matches = sectionEl.querySelectorAll(target.selector);
+      matches.forEach(function(el){
+        if(value) el.style.setProperty(target.cssProp, value, 'important');
+        else el.style.removeProperty(target.cssProp);
+      });
+    } else {
+      if(value) sectionEl.style.setProperty(target.cssProp, value, 'important');
+      else sectionEl.style.removeProperty(target.cssProp);
+    }
   }
 
   function reapplyAll(){
     var choices = loadChoices();
     Object.keys(choices).forEach(function(sectionId){
       var c = choices[sectionId];
-      applyToSection(sectionId, c.bg, c.text);
+      Object.keys(c).forEach(function(targetKey){
+        applyTarget(sectionId, targetKey, c[targetKey]);
+      });
     });
   }
 
@@ -3159,81 +3180,134 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     });
     sel.addEventListener('change', function(){
       currentSectionId = sel.value;
-      refreshSwatchActiveStates();
+      refreshAllSwatchStates();
       updateCurrentLabel();
     });
   }
 
-  function buildSwatches(containerId, kind){
-    var container = getEl(containerId);
-    PALETTE.forEach(function(color){
-      var sw = document.createElement('div');
-      sw.className = 'cw-swatch';
-      sw.style.background = color.value;
-      sw.title = color.name;
-      sw.dataset.value = color.value;
-      sw.addEventListener('click', function(){
-        var choices = loadChoices();
-        choices[currentSectionId] = choices[currentSectionId] || {};
-        choices[currentSectionId][kind] = color.value;
-        saveChoices(choices);
-        applyToSection(currentSectionId, choices[currentSectionId].bg, choices[currentSectionId].text);
-        refreshSwatchActiveStates();
-        updateCurrentLabel();
+  function buildTargetRows(){
+    var group = getEl('cw-target-group');
+    TARGETS.forEach(function(target){
+      var row = document.createElement('div');
+      row.className = 'cw-target-row';
+
+      var label = document.createElement('div');
+      label.className = 'cw-target-label';
+      label.textContent = target.label;
+      row.appendChild(label);
+
+      var swatchWrap = document.createElement('div');
+      swatchWrap.className = 'cw-swatches';
+      swatchWrap.dataset.target = target.key;
+
+      var clearSw = document.createElement('div');
+      clearSw.className = 'cw-swatch clear';
+      clearSw.title = 'Par defaut';
+      clearSw.dataset.value = '';
+      clearSw.addEventListener('click', function(){ setChoice(target.key, ''); });
+      swatchWrap.appendChild(clearSw);
+
+      PALETTE.forEach(function(color){
+        var sw = document.createElement('div');
+        sw.className = 'cw-swatch';
+        sw.style.background = color.value;
+        sw.title = color.name;
+        sw.dataset.value = color.value;
+        sw.addEventListener('click', function(){ setChoice(target.key, color.value); });
+        swatchWrap.appendChild(sw);
       });
-      container.appendChild(sw);
+
+      row.appendChild(swatchWrap);
+      group.appendChild(row);
     });
   }
 
-  function refreshSwatchActiveStates(){
+  function setChoice(targetKey, value){
+    var choices = loadChoices();
+    choices[currentSectionId] = choices[currentSectionId] || {};
+    if(value) choices[currentSectionId][targetKey] = value;
+    else delete choices[currentSectionId][targetKey];
+    saveChoices(choices);
+    applyTarget(currentSectionId, targetKey, value);
+    refreshAllSwatchStates();
+    updateCurrentLabel();
+  }
+
+  function refreshAllSwatchStates(){
     var choices = loadChoices();
     var current = choices[currentSectionId] || {};
-    ['cw-bg-swatches','cw-text-swatches'].forEach(function(containerId, idx){
-      var kind = idx === 0 ? 'bg' : 'text';
-      var swatches = getEl(containerId).children;
+    var groups = document.querySelectorAll('.cw-swatches');
+    groups.forEach(function(g){
+      var key = g.dataset.target;
+      var val = current[key] || '';
+      var swatches = g.children;
       for(var i=0; i<swatches.length; i++){
-        var sw = swatches[i];
-        sw.classList.toggle('active', sw.dataset.value === current[kind]);
+        swatches[i].classList.toggle('active', swatches[i].dataset.value === val);
       }
     });
   }
 
   function colorName(value){
     var match = PALETTE.filter(function(c){ return c.value === value; })[0];
-    return match ? match.name : value;
+    return match ? match.name : 'defaut';
   }
 
   function updateCurrentLabel(){
     var choices = loadChoices();
     var current = choices[currentSectionId] || {};
     var label = SECTIONS.filter(function(s){ return s.id === currentSectionId; })[0].label;
-    var bgTxt = current.bg ? colorName(current.bg) : 'defaut';
-    var textTxt = current.text ? colorName(current.text) : 'defaut';
-    getEl('cw-current').textContent = label + ' : fond ' + bgTxt + ' / texte ' + textTxt;
+    var parts = TARGETS.map(function(t){
+      return t.label + ': ' + (current[t.key] ? colorName(current[t.key]) : 'defaut');
+    });
+    getEl('cw-current').textContent = label + ' -> ' + parts.join(' / ');
   }
 
   buildSectionSelect();
-  buildSwatches('cw-bg-swatches', 'bg');
-  buildSwatches('cw-text-swatches', 'text');
+  buildTargetRows();
   reapplyAll();
-  refreshSwatchActiveStates();
+  refreshAllSwatchStates();
   updateCurrentLabel();
 
   getEl('color-widget-reset-section').addEventListener('click', function(){
     var choices = loadChoices();
+    var current = choices[currentSectionId] || {};
+    Object.keys(current).forEach(function(targetKey){
+      applyTarget(currentSectionId, targetKey, '');
+    });
     delete choices[currentSectionId];
     saveChoices(choices);
-    clearSection(currentSectionId);
-    refreshSwatchActiveStates();
+    refreshAllSwatchStates();
     updateCurrentLabel();
   });
 
   getEl('color-widget-reset-all').addEventListener('click', function(){
     var choices = loadChoices();
-    Object.keys(choices).forEach(function(sectionId){ clearSection(sectionId); });
+    Object.keys(choices).forEach(function(sectionId){
+      Object.keys(choices[sectionId]).forEach(function(targetKey){
+        applyTarget(sectionId, targetKey, '');
+      });
+    });
     localStorage.removeItem(STORAGE_KEY);
-    refreshSwatchActiveStates();
+    refreshAllSwatchStates();
     updateCurrentLabel();
+  });
+
+  getEl('color-widget-export').addEventListener('click', function(){
+    var choices = loadChoices();
+    var lines = [];
+    SECTIONS.forEach(function(s){
+      var c = choices[s.id];
+      if(!c || !Object.keys(c).length) return;
+      var parts = TARGETS.filter(function(t){ return c[t.key]; }).map(function(t){
+        return t.label + '=' + colorName(c[t.key]);
+      });
+      lines.push(s.label + ': ' + parts.join(', '));
+    });
+    var box = getEl('cw-export-box');
+    box.value = lines.length ? lines.join('\n') : 'Aucun changement pour le moment.';
+    box.style.display = 'block';
+    box.focus();
+    box.select();
   });
 
   var widget = getEl('color-widget');
