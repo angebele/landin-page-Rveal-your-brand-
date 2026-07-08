@@ -53,8 +53,8 @@
   --shadow-sm: 0 8px 24px -12px rgba(196,64,32,.30);
 
   --serif: "Fraunces", Georgia, serif;
-  --sans:  "Jost", system-ui, -apple-system, sans-serif;
-  --display: "Archivo Black", "Jost", system-ui, sans-serif;
+  --sans:  "Space Mono", "Courier New", monospace;
+  --display: "Space Mono", "Courier New", monospace;
   --heading: "Jost", system-ui, sans-serif;
   --mono: "Space Mono", "Courier New", monospace;
 }
@@ -79,14 +79,14 @@ a{color:inherit;text-decoration:none}
 h1{
   font-family:var(--display);
   text-transform:uppercase;
-  letter-spacing:-.02em;
+  letter-spacing:0;
   line-height:1.05;
   font-weight:400;
 }
 h2{
   font-family:var(--display);
   text-transform:uppercase;
-  letter-spacing:-.01em;
+  letter-spacing:0;
   line-height:1.08;
   font-weight:400;
   font-size:clamp(2.75rem, 6vw, 5rem);
@@ -149,7 +149,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   border-bottom:1px solid color-mix(in srgb, var(--ink) 8%, transparent);
 }
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:1rem}
-.logo{font-family:var(--display);font-weight:400;font-size:1.2rem;letter-spacing:-.01em;text-transform:uppercase}
+.logo{font-family:var(--display);font-weight:400;font-size:1.2rem;letter-spacing:0;text-transform:uppercase}
 .logo b{color:var(--zest);font-style:normal;font-weight:400}
 .nav-cta{display:none}
 @media(min-width:760px){.nav-cta{display:inline-flex;padding:.7rem 1.4rem;font-size:.92rem}}
@@ -227,9 +227,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-weight:400;
   color:var(--paper);
   text-transform:uppercase;
-  letter-spacing:-0.02em;
+  letter-spacing:0;
   margin:0 0 1rem 0;
-  line-height:1.05;
+  line-height:1.15;
   text-align:center;
   text-shadow:0 10px 40px rgba(0,0,0,.5);
 }
@@ -748,7 +748,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-family: var(--display);
   font-size: clamp(3rem, 7vw, 6rem);
   text-transform: uppercase;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 .marquee-large .marquee-track span {
   display: inline-flex;
@@ -757,8 +757,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-family: var(--display);
   font-weight: 400;
   font-size: clamp(2.8rem, 7.5vw, 8.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: 0;
   text-transform: uppercase;
   margin: 0 auto;
   color: #ffffff;
@@ -1222,8 +1222,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-size: clamp(4rem, 8vw, 8rem);
   font-weight: 400;
   text-transform: uppercase;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: 0;
   margin-bottom: 2rem;
   color: #fff;
 }
@@ -1324,10 +1324,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-family: var(--display);
   font-size: clamp(2.75rem, 5.5vw, 5rem);
   text-transform: uppercase;
-  line-height: 1.08;
+  line-height: 1.15;
   color: var(--paper);
   margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   font-weight: 400;
 }
 
@@ -1861,10 +1861,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   text-transform:uppercase;
   font-size:clamp(2.6rem, 5.5vw, 4.4rem);
   font-weight:400;
-  line-height:.92;
+  line-height:1.1;
   color:var(--berry);
   margin-bottom:1.6rem;
-  letter-spacing:-.01em;
+  letter-spacing:0;
 }
 .fw-title-big .fw-script{
   font-style:normal;
@@ -2086,8 +2086,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-weight:400;
   text-transform:uppercase;
   font-size:clamp(2.4rem, 7.5vw, 7rem);
-  line-height:.9;
-  letter-spacing:-.02em;
+  line-height:1.1;
+  letter-spacing:0;
   color:var(--champagne-glow);
   margin:0 0 2.5rem;
   pointer-events:none;
@@ -2267,8 +2267,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   font-family: var(--display);
   font-weight: 400;
   font-size: clamp(4rem, 11vw, 8.75rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: #ffffff;
   margin: 0 0 3rem;
@@ -2541,7 +2541,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     </div>
     <!-- Card -->
     <div class="portfolio-item text-card card-berry reveal" style="align-items:center; text-align:center; gap: 0;">
-      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--display); font-weight:400; letter-spacing: -0.01em; color: #fff;">Make it</h3>
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--display); font-weight:400; letter-spacing: 0; color: #fff;">Make it</h3>
     </div>
     <!-- Photo 2 -->
     <div class="portfolio-item reveal">
@@ -2557,7 +2557,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     </div>
     <!-- Card -->
     <div class="portfolio-item text-card card-marron reveal" style="align-items:center; text-align:center; gap: 0;">
-      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--display); font-weight:400; letter-spacing: -0.01em; color: var(--neon-citrus);">Iconic</h3>
+      <h3 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; margin: 0; font-family: var(--display); font-weight:400; letter-spacing: 0; color: var(--neon-citrus);">Iconic</h3>
     </div>
     <!-- Photo 4 -->
     <div class="portfolio-item reveal">
