@@ -126,15 +126,15 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .25s;
   will-change:transform;
 }
-.btn-primary{background:var(--neon-citrus);color:var(--espresso);box-shadow:var(--shadow-sm)}
-.btn-primary:hover{transform:translateY(-3px) rotate(-.5deg);box-shadow:0 22px 40px -16px rgba(255,158,15,.7)}
+.btn-primary{background:var(--champagne-glow);color:var(--espresso);box-shadow:var(--shadow-sm)}
+.btn-primary:hover{background:var(--neon-citrus);color:var(--espresso);transform:translateY(-3px) rotate(-.5deg);box-shadow:0 22px 40px -16px rgba(255,158,15,.7)}
 .btn-citrus{background:var(--neon-citrus);color:var(--espresso)}
 .btn-citrus:hover{transform:translateY(-3px);box-shadow:0 22px 40px -16px rgba(255,158,15,.7)}
 .btn-ghost{background:transparent;border-color:var(--espresso);color:var(--espresso)}
 .btn-ghost:hover{background:var(--espresso);color:#fff}
 .btn-urgent{background:var(--berry);color:#fff}
 .btn-urgent:hover{transform:translateY(-3px) rotate(-.5deg);box-shadow:0 22px 40px -16px rgba(125,0,0,.6)}
-.pillar-cta-btn{background:transparent;color:var(--champagne-glow);border:1px solid var(--champagne-glow)}
+.pillar-cta-btn{background:var(--champagne-glow);color:var(--espresso);border:1px solid var(--champagne-glow)}
 .pillar-cta-btn:hover{background:var(--neon-citrus);color:var(--espresso);border-color:var(--neon-citrus);transform:translateY(-3px);box-shadow:0 22px 40px -16px rgba(255,158,15,.5)}
 .btn .arrow{transition:transform .25s}
 .btn:hover .arrow{transform:translateX(4px)}
@@ -285,8 +285,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   align-items:center;
   gap:.7rem;
   padding:1.3rem 2.8rem;
-  background:var(--paper);
-  color:var(--ink);
+  background:var(--champagne-glow);
+  color:var(--berry);
   border-radius:var(--r-pill);
   font-family:var(--sans);
   font-weight:700;
@@ -2014,9 +2014,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   margin-top:.2rem;
 }
 .bio-cta{
-  background:transparent;
+  background:var(--champagne-glow);
   border:2px solid var(--champagne-glow);
-  color:var(--champagne-glow);
+  color:var(--espresso);
   border-radius:var(--r-pill);
   padding:1.1rem 2.2rem;
   font-family:var(--sans);
@@ -2031,7 +2031,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   transition:transform .25s, box-shadow .25s, background .25s;
 }
 .bio-cta:hover{
-  background:var(--champagne-glow);
+  background:var(--neon-citrus);
+  border-color:var(--neon-citrus);
   color:var(--espresso);
   transform:translateY(-2px);
   box-shadow:0 10px 24px rgba(46,20,16,.18);
@@ -2416,7 +2417,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   <div class="hero-v2-content">
     <h1 class="hero-huge-title">REVEAL<br>YOUR BRAND</h1>
     <h2 class="hero-v2-subtitle">Et si ton image reflétait enfin ce que tu vaux vraiment&nbsp;?</h2>
-    <a href="#book" class="hero-v2-btn" style="pointer-events:all;margin-top:1.5rem;">→ Je veux révéler ma marque</a>
+    <a href="#book" class="hero-v2-btn" style="pointer-events:all;margin-top:1.5rem;">Je veux révéler ma marque <span class="arrow">→</span></a>
     <p class="hero-v2-trust" style="pointer-events:none;margin-top:.75rem;">&laquo;&nbsp;Une expérience transformatrice.&nbsp;&raquo; Marie L.</p>
   </div>
 
@@ -2660,7 +2661,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       </div>
       
       <div class="pillar-cta" style="margin-top: 2rem; text-align: left; padding-bottom: 4rem;">
-        <a href="#book" class="btn pillar-cta-btn" style="font-size: 1rem; padding: 0.9rem 1.8rem; border-radius: 50px; box-shadow: none;">Révèle ta marque →</a>
+        <a href="#book" class="btn pillar-cta-btn" style="font-size: 1rem; padding: 0.9rem 1.8rem; border-radius: 50px; box-shadow: none;">Révèle ta marque <span class="arrow">→</span></a>
       </div>
     </div>
 
@@ -2696,7 +2697,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       <p class="bio-text">Tu travailles dur, mais tu te demandes pourquoi les bons clients ne te trouvent pas, ou pourquoi tes tarifs doivent toujours se défendre.</p>
       <p class="bio-text">La vérité : tu <em>peux</em> avoir une marque qui te ressemble, qui parle pour toi, et qui attire les clients que tu mérites. Il te faut juste la bonne méthode et le bon accompagnement.</p>
       <p class="bio-text bio-punch">C'est là que j'interviens.</p>
-      <a href="#book" class="btn bio-cta">On travaille ensemble</a>
+      <a href="#book" class="btn bio-cta">On travaille ensemble <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
