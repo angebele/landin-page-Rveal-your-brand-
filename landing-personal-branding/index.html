@@ -3018,7 +3018,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   background:#1a1a1a;color:#fff;
   border-radius:14px;
   box-shadow:0 12px 40px rgba(0,0,0,.4);
-  width:290px;
+  width:300px;
   max-height:82vh;
   overflow-y:auto;
   transition:width .25s;
@@ -3037,14 +3037,14 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   width:100%;padding:.45rem .5rem;border-radius:7px;border:1px solid #444;
   background:#262626;color:#fff;font-size:.85rem;cursor:pointer;
 }
-.cw-target-group{display:flex;flex-direction:column;gap:.5rem;border-top:1px solid #333;padding-top:.6rem;margin-top:.2rem}
+#cw-target-group{display:flex;flex-direction:column;gap:.5rem;border-top:1px solid #333;padding-top:.6rem;margin-top:.2rem}
 .cw-target-row{display:flex;align-items:center;gap:.5rem}
 .cw-target-row .cw-target-label{
-  font-size:.7rem;font-weight:600;width:52px;flex-shrink:0;opacity:.85;
+  font-size:.68rem;font-weight:600;width:88px;flex-shrink:0;opacity:.85;line-height:1.2;
 }
-.cw-swatches{display:flex;gap:.32rem;flex-wrap:wrap}
+.cw-swatches{display:flex;gap:.3rem;flex-wrap:wrap}
 .cw-swatch{
-  width:24px;height:24px;border-radius:50%;cursor:pointer;
+  width:22px;height:22px;border-radius:50%;cursor:pointer;
   border:2px solid transparent;position:relative;flex-shrink:0;
   transition:transform .15s;
 }
@@ -3053,7 +3053,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 .cw-swatch.clear{
   background:repeating-linear-gradient(45deg,#444,#444 3px,#222 3px,#222 6px);
 }
-.cw-current{font-size:.66rem;opacity:.65;margin-top:.1rem;line-height:1.45}
+.cw-current{font-size:.64rem;opacity:.65;margin-top:.1rem;line-height:1.5;max-height:110px;overflow-y:auto}
 .cw-btn{
   background:none;border:1px solid #444;color:#ccc;
   border-radius:7px;padding:.4rem;font-size:.7rem;cursor:pointer;
@@ -3065,7 +3065,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 .cw-btn.primary:hover{background:#3a1a08}
 #cw-export-box{
   width:100%;background:#111;color:#9f9;border:1px solid #444;border-radius:7px;
-  font-family:monospace;font-size:.62rem;padding:.5rem;resize:vertical;min-height:70px;
+  font-family:monospace;font-size:.62rem;padding:.5rem;resize:vertical;min-height:90px;
   display:none;
 }
 #color-widget-note{font-size:.6rem;line-height:1.4;opacity:.5;margin-top:.1rem}
@@ -3082,14 +3082,14 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
       <select id="cw-section"></select>
     </div>
 
-    <div class="cw-target-group" id="cw-target-group"></div>
+    <div id="cw-target-group"></div>
 
     <div class="cw-current" id="cw-current"></div>
     <button class="cw-btn" id="color-widget-reset-section" type="button">Reinitialiser cette section</button>
     <button class="cw-btn danger" id="color-widget-reset-all" type="button">Tout reinitialiser</button>
     <button class="cw-btn primary" id="color-widget-export" type="button">Exporter mes choix</button>
     <textarea id="cw-export-box" readonly></textarea>
-    <p id="color-widget-note">Choisis une section puis clique une pastille pour chaque niveau (Fond, Texte, H1, H2, H3). Tes choix sont sauvegardes automatiquement dans ce navigateur. Clique "Exporter" et colle-moi le resultat dans le chat pour que je les rende definitifs.</p>
+    <p id="color-widget-note">Chaque section liste ses vrais elements (titre, texte, bouton...). Choisis une pastille par element. Clique "Exporter" et colle-moi le resultat dans le chat pour que je les rende definitifs.</p>
   </div>
 </div>
 
@@ -3104,37 +3104,128 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     { name: 'Espresso',       value: '#3A1A08' }
   ];
 
-  var TARGETS = [
-    { key: 'bg',   label: 'Fond', selector: null,           cssProp: 'background' },
-    { key: 'text', label: 'Texte', selector: null,          cssProp: 'color' },
-    { key: 'h1',   label: 'H1',   selector: 'h1',           cssProp: 'color' },
-    { key: 'h2',   label: 'H2',   selector: 'h2',           cssProp: 'color' },
-    { key: 'h3',   label: 'H3',   selector: 'h3',           cssProp: 'color' }
-  ];
-
+  /* Chaque section liste ses VRAIS elements (classes reellement utilisees dans le HTML),
+     pas juste h1/h2/h3 generiques. 'selector' null = le fond de la section elle-meme. */
   var SECTIONS = [
-    { id: 'top',                    label: 'Hero' },
-    { id: 'marquee-small',          label: 'Bandeau Invisible -> Incontournable' },
-    { id: 'constat',                label: 'Le constat' },
-    { id: 'portfolio',              label: 'Portfolio (grand texte)' },
-    { id: 'realisations',           label: 'Realisations avant/apres' },
-    { id: 'cta-iconique',           label: 'CTA Rends ta marque iconique' },
-    { id: 'method',                 label: 'La methode' },
-    { id: 'piliers',                label: 'Piliers (viser plus loin)' },
-    { id: 'bio',                    label: 'Bio (entrepreneure...)' },
-    { id: 'timeline-process',       label: 'Comment on travaille ensemble' },
-    { id: 'pourqui',                label: 'Pour qui' },
-    { id: 'temoignages',            label: 'Temoignages' },
-    { id: 'faq-section',            label: 'FAQ' },
-    { id: 'marquee-large-section',  label: 'Bandeau Reveal Your Brand' },
-    { id: 'book',                   label: 'CTA final' },
-    { id: 'footer-section',         label: 'Footer' }
+    { id: 'top', label: 'Hero', targets: [
+      { key:'bg',     label:'Fond',           selector:null },
+      { key:'h1',     label:'Titre',          selector:'.hero-huge-title' },
+      { key:'sub',    label:'Sous-titre',     selector:'.hero-v2-subtitle' },
+      { key:'btn',    label:'Bouton',         selector:'.hero-v2-btn' },
+      { key:'quote',  label:'Citation',       selector:'.hero-v2-trust' },
+      { key:'scroll', label:'Scroll',         selector:'.hero-v2-scroll .specialize-link' }
+    ]},
+    { id: 'marquee-small', label: 'Bandeau Invisible -> Incontournable', targets: [
+      { key:'bg',   label:'Fond',  selector:null },
+      { key:'text', label:'Texte', selector:'.marquee-track span' }
+    ]},
+    { id: 'constat', label: 'Le constat', targets: [
+      { key:'bg',      label:'Fond',    selector:null },
+      { key:'eyebrow', label:'Eyebrow', selector:'.eyebrow' },
+      { key:'h2',      label:'Titre',   selector:'h2' },
+      { key:'lead',    label:'Texte',   selector:'.lead' },
+      { key:'punch',   label:'Punch',   selector:'.punch' }
+    ]},
+    { id: 'portfolio', label: 'Portfolio (grand texte)', targets: [
+      { key:'bg',     label:'Fond',        selector:null },
+      { key:'small',  label:'Petit texte', selector:'.specialize-small' },
+      { key:'h2',     label:'Grand titre', selector:'.specialize-big' },
+      { key:'link',   label:'Lien scroll', selector:'.specialize-link' }
+    ]},
+    { id: 'realisations', label: 'Realisations avant/apres', targets: [
+      { key:'bg',    label:'Fond',           selector:null },
+      { key:'tag',   label:'Tags Avant/Apres', selector:'.photo-tag' },
+      { key:'card1', label:'Titre Make it',  selector:'.card-berry h3' },
+      { key:'card2', label:'Titre Iconic',   selector:'.card-marron h3' }
+    ]},
+    { id: 'cta-iconique', label: 'CTA Rends ta marque iconique', targets: [
+      { key:'bg',  label:'Fond',   selector:null },
+      { key:'btn', label:'Bouton', selector:'.btn' }
+    ]},
+    { id: 'method', label: 'La methode', targets: [
+      { key:'bg',      label:'Fond',        selector:null },
+      { key:'eyebrow', label:'Eyebrow',     selector:'.eyebrow' },
+      { key:'h2',      label:'Titre',       selector:'h2' },
+      { key:'num',     label:'Chiffres',    selector:'.hill-num' },
+      { key:'h3',      label:'Titre carte', selector:'.hill-title' },
+      { key:'list',    label:'Liste',       selector:'.hill-sublist li' },
+      { key:'text',    label:'Texte',       selector:'.hill-text' }
+    ]},
+    { id: 'piliers', label: 'Piliers (viser plus loin)', targets: [
+      { key:'bg',     label:'Fond',          selector:null },
+      { key:'h2',     label:'Titre',         selector:'h2' },
+      { key:'h3',     label:'Titre carte',   selector:'h3' },
+      { key:'accent', label:'Accent colore', selector:'.italic-accent' },
+      { key:'text',   label:'Texte',         selector:'.pillar-row p' },
+      { key:'btn',    label:'Bouton',        selector:'.pillar-cta-btn' }
+    ]},
+    { id: 'bio', label: 'Bio (entrepreneure...)', targets: [
+      { key:'bg',     label:'Fond',    selector:null },
+      { key:'text',   label:'Texte',   selector:'.bio-text' },
+      { key:'accent', label:'Accent',  selector:'.bio-text em' },
+      { key:'punch',  label:'Punch',   selector:'.bio-punch' },
+      { key:'btn',    label:'Bouton',  selector:'.bio-cta' }
+    ]},
+    { id: 'timeline-process', label: 'Comment on travaille ensemble', targets: [
+      { key:'bg',      label:'Fond',         selector:null },
+      { key:'h2',      label:'Titre',        selector:'.timeline-title' },
+      { key:'intro',   label:'Intro',        selector:'.timeline-intro p' },
+      { key:'eyebrow', label:'Eyebrow 01-06', selector:'.timeline-eyebrow' },
+      { key:'h3',      label:'Titre etape',  selector:'.timeline-heading' },
+      { key:'text',    label:'Texte',        selector:'.timeline-text' },
+      { key:'star',    label:'Etoile',       selector:'.timeline-step-marker' }
+    ]},
+    { id: 'pourqui', label: 'Pour qui', targets: [
+      { key:'bg',      label:'Fond',         selector:null },
+      { key:'eyebrow', label:'Eyebrow',      selector:'.fw-eyebrow' },
+      { key:'h2',      label:'Titre',        selector:'.fw-title-big' },
+      { key:'script',  label:'Accent script', selector:'.fw-script' },
+      { key:'intro',   label:'Intro',        selector:'.fw-intro' },
+      { key:'h3',      label:'Sous-titre',   selector:'.fw-title-small' },
+      { key:'em',      label:'Accent',       selector:'.fw-title-small em' },
+      { key:'list',    label:'Liste',        selector:'.fw-list li' },
+      { key:'btn',     label:'Bouton',       selector:'.fw-cta' }
+    ]},
+    { id: 'temoignages', label: 'Temoignages', targets: [
+      { key:'bg',    label:'Fond',        selector:null },
+      { key:'h2',    label:'Grand titre', selector:'.testi-bg-title' },
+      { key:'em',    label:'Accent',      selector:'.testi-bg-title em' },
+      { key:'stars', label:'Etoiles',     selector:'.tcard-stars' },
+      { key:'h3',    label:'Titre carte', selector:'.tcard-title' },
+      { key:'quote', label:'Citation',    selector:'.tcard-quote' },
+      { key:'name',  label:'Nom',         selector:'.tcard-name' }
+    ]},
+    { id: 'faq-section', label: 'FAQ', targets: [
+      { key:'bg',      label:'Fond',     selector:null },
+      { key:'eyebrow', label:'Eyebrow',  selector:'.eyebrow' },
+      { key:'h2',      label:'Titre',    selector:'h2' },
+      { key:'q',       label:'Question', selector:'.faq-q' },
+      { key:'a',       label:'Reponse',  selector:'.faq-a p' }
+    ]},
+    { id: 'marquee-large-section', label: 'Bandeau Reveal Your Brand', targets: [
+      { key:'bg',   label:'Fond',  selector:null },
+      { key:'text', label:'Texte', selector:'.marquee-track span' }
+    ]},
+    { id: 'book', label: 'CTA final', targets: [
+      { key:'bg',      label:'Fond',    selector:null },
+      { key:'eyebrow', label:'Eyebrow', selector:'.cta-final-eyebrow' },
+      { key:'h2',      label:'Titre',   selector:'.cta-final-title' },
+      { key:'text',    label:'Texte',   selector:'.cta-final-body' },
+      { key:'btn',     label:'Bouton',  selector:'.btn' }
+    ]},
+    { id: 'footer-section', label: 'Footer', targets: [
+      { key:'bg',    label:'Fond',       selector:null },
+      { key:'logo',  label:'Logo',       selector:'.logo' },
+      { key:'nav',   label:'Navigation', selector:'.footer-nav a' },
+      { key:'copy',  label:'Copyright',  selector:'.footer-copy' }
+    ]}
   ];
 
-  var STORAGE_KEY = 'ange-color-widget-choices-v2';
+  var STORAGE_KEY = 'ange-color-widget-choices-v3';
   var currentSectionId = SECTIONS[0].id;
 
   function getEl(id){ return document.getElementById(id); }
+  function currentSection(){ return SECTIONS.filter(function(s){ return s.id === currentSectionId; })[0]; }
 
   function loadChoices(){
     try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }catch(e){ return {}; }
@@ -3144,19 +3235,22 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   }
 
   function applyTarget(sectionId, targetKey, value){
+    var section = SECTIONS.filter(function(s){ return s.id === sectionId; })[0];
+    if(!section) return;
+    var target = section.targets.filter(function(t){ return t.key === targetKey; })[0];
+    if(!target) return;
     var sectionEl = getEl(sectionId);
     if(!sectionEl) return;
-    var target = TARGETS.filter(function(t){ return t.key === targetKey; })[0];
-    if(!target) return;
-    if(target.selector){
+    var cssProp = target.selector === null ? 'background' : 'color';
+    if(target.selector === null){
+      if(value) sectionEl.style.setProperty(cssProp, value, 'important');
+      else sectionEl.style.removeProperty(cssProp);
+    } else {
       var matches = sectionEl.querySelectorAll(target.selector);
       matches.forEach(function(el){
-        if(value) el.style.setProperty(target.cssProp, value, 'important');
-        else el.style.removeProperty(target.cssProp);
+        if(value) el.style.setProperty(cssProp, value, 'important');
+        else el.style.removeProperty(cssProp);
       });
-    } else {
-      if(value) sectionEl.style.setProperty(target.cssProp, value, 'important');
-      else sectionEl.style.removeProperty(target.cssProp);
     }
   }
 
@@ -3180,14 +3274,28 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     });
     sel.addEventListener('change', function(){
       currentSectionId = sel.value;
-      refreshAllSwatchStates();
+      buildTargetRows();
       updateCurrentLabel();
     });
   }
 
+  function setChoice(targetKey, value){
+    var choices = loadChoices();
+    choices[currentSectionId] = choices[currentSectionId] || {};
+    if(value) choices[currentSectionId][targetKey] = value;
+    else delete choices[currentSectionId][targetKey];
+    saveChoices(choices);
+    applyTarget(currentSectionId, targetKey, value);
+    refreshSwatchStates();
+    updateCurrentLabel();
+  }
+
   function buildTargetRows(){
     var group = getEl('cw-target-group');
-    TARGETS.forEach(function(target){
+    group.innerHTML = '';
+    var choices = loadChoices();
+    var current = choices[currentSectionId] || {};
+    currentSection().targets.forEach(function(target){
       var row = document.createElement('div');
       row.className = 'cw-target-row';
 
@@ -3220,23 +3328,13 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
       row.appendChild(swatchWrap);
       group.appendChild(row);
     });
+    refreshSwatchStates();
   }
 
-  function setChoice(targetKey, value){
-    var choices = loadChoices();
-    choices[currentSectionId] = choices[currentSectionId] || {};
-    if(value) choices[currentSectionId][targetKey] = value;
-    else delete choices[currentSectionId][targetKey];
-    saveChoices(choices);
-    applyTarget(currentSectionId, targetKey, value);
-    refreshAllSwatchStates();
-    updateCurrentLabel();
-  }
-
-  function refreshAllSwatchStates(){
+  function refreshSwatchStates(){
     var choices = loadChoices();
     var current = choices[currentSectionId] || {};
-    var groups = document.querySelectorAll('.cw-swatches');
+    var groups = document.querySelectorAll('#cw-target-group .cw-swatches');
     groups.forEach(function(g){
       var key = g.dataset.target;
       var val = current[key] || '';
@@ -3255,17 +3353,18 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   function updateCurrentLabel(){
     var choices = loadChoices();
     var current = choices[currentSectionId] || {};
-    var label = SECTIONS.filter(function(s){ return s.id === currentSectionId; })[0].label;
-    var parts = TARGETS.map(function(t){
-      return t.label + ': ' + (current[t.key] ? colorName(current[t.key]) : 'defaut');
-    });
-    getEl('cw-current').textContent = label + ' -> ' + parts.join(' / ');
+    var section = currentSection();
+    var parts = section.targets
+      .filter(function(t){ return current[t.key]; })
+      .map(function(t){ return t.label + ': ' + colorName(current[t.key]); });
+    getEl('cw-current').textContent = parts.length
+      ? section.label + ' -> ' + parts.join(' / ')
+      : section.label + ' -> aucun changement';
   }
 
   buildSectionSelect();
   buildTargetRows();
   reapplyAll();
-  refreshAllSwatchStates();
   updateCurrentLabel();
 
   getEl('color-widget-reset-section').addEventListener('click', function(){
@@ -3276,7 +3375,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     });
     delete choices[currentSectionId];
     saveChoices(choices);
-    refreshAllSwatchStates();
+    refreshSwatchStates();
     updateCurrentLabel();
   });
 
@@ -3288,7 +3387,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
       });
     });
     localStorage.removeItem(STORAGE_KEY);
-    refreshAllSwatchStates();
+    refreshSwatchStates();
     updateCurrentLabel();
   });
 
@@ -3298,7 +3397,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     SECTIONS.forEach(function(s){
       var c = choices[s.id];
       if(!c || !Object.keys(c).length) return;
-      var parts = TARGETS.filter(function(t){ return c[t.key]; }).map(function(t){
+      var parts = s.targets.filter(function(t){ return c[t.key]; }).map(function(t){
         return t.label + '=' + colorName(c[t.key]);
       });
       lines.push(s.label + ': ' + parts.join(', '));
