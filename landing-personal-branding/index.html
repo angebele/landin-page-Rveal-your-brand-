@@ -713,6 +713,23 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   border:8px solid transparent;
   border-bottom:0;
 }
+.cb-text{
+  margin:0;
+}
+.cb-meta{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:.25rem;
+  margin-top:.25rem;
+  font-size:.65rem;
+  color:#667781;
+}
+.cb-check{
+  color:#53bdeb;
+  font-size:.78rem;
+  line-height:1;
+}
 .bubble-1, .bubble-3, .bubble-5{
   border-top-left-radius: 7.5px;
 }
@@ -721,10 +738,10 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   border-right-color:#fff;
   border-left:0;
 }
-.bubble-2, .bubble-4{
+.bubble-2, .bubble-4, .bubble-6{
   border-top-right-radius: 7.5px;
 }
-.bubble-2::after, .bubble-4::after{
+.bubble-2::after, .bubble-4::after, .bubble-6::after{
   right:-7px;
   border-left-color:#fff;
   border-right:0;
@@ -755,6 +772,12 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   bottom: -8%;
   left: 30%;
   transform: rotate(-4deg);
+}
+.bubble-6 {
+  top: 42%;
+  right: -9%;
+  transform: rotate(4deg);
+  max-width: 270px;
 }
 @media (max-width: 900px) {
   .comment-bubble { display: none; }
@@ -2558,11 +2581,30 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     <div class="specialize-text-wrap">
         <p class="specialize-small">Je ne me spécialise pas dans un secteur.</p>
         
-        <div class="comment-bubble bubble-1 reveal" style="transition-delay: 2.0s;">Gros coup de cœur pour ce document 🤍</div>
-        <div class="comment-bubble bubble-2 reveal" style="transition-delay: 2.3s;">J'ai eu envie de crier sur tous les toits que je suis coiffeuse !</div>
-        <div class="comment-bubble bubble-3 reveal" style="transition-delay: 2.6s;">Un vrai moment structurant.</div>
-        <div class="comment-bubble bubble-4 reveal" style="transition-delay: 2.9s;">J'ai enfin attiré le type de cliente que je voulais ! T'as tellement eu raison de me dire de revoir mon positionnement. J'ai décroché un gros contrat, je t'expliquerai !</div>
-        <div class="comment-bubble bubble-5 reveal" style="transition-delay: 3.2s;">Merci d'avoir mis le focus au bon endroit.</div>
+        <div class="comment-bubble bubble-1 reveal" style="transition-delay: 2.0s;">
+          <p class="cb-text">Gros coup de cœur pour ce document 🤍</p>
+          <span class="cb-meta">09:41<span class="cb-check">✓✓</span></span>
+        </div>
+        <div class="comment-bubble bubble-2 reveal" style="transition-delay: 2.3s;">
+          <p class="cb-text">Franchement, ça claque tellement que j'ai envie de crier sur tous les toits que je suis coiffeuse.</p>
+          <span class="cb-meta">16:07<span class="cb-check">✓✓</span></span>
+        </div>
+        <div class="comment-bubble bubble-3 reveal" style="transition-delay: 2.6s;">
+          <p class="cb-text">C'est ouf, t'as vraiment réussi à concrétiser ce que j'avais en tête. Et que je n'arrivais pas à faire depuis.</p>
+          <span class="cb-meta">11:52<span class="cb-check">✓✓</span></span>
+        </div>
+        <div class="comment-bubble bubble-4 reveal" style="transition-delay: 2.9s;">
+          <p class="cb-text">J'ai enfin attiré le type de cliente que je voulais ! T'as tellement eu raison de me dire de revoir mon positionnement. J'ai décroché un gros contrat, je t'expliquerai !</p>
+          <span class="cb-meta">20:15<span class="cb-check">✓✓</span></span>
+        </div>
+        <div class="comment-bubble bubble-5 reveal" style="transition-delay: 3.2s;">
+          <p class="cb-text">Merci d'avoir mis le focus au bon endroit.</p>
+          <span class="cb-meta">08:26<span class="cb-check">✓✓</span></span>
+        </div>
+        <div class="comment-bubble bubble-6 reveal" style="transition-delay: 3.5s;">
+          <p class="cb-text">Franchement chuis impressionnée, j'ai déjà travaillé avec une agence de design, pourtant tu as une meilleure qualité de réflexion et de créa.</p>
+          <span class="cb-meta">13:38<span class="cb-check">✓✓</span></span>
+        </div>
 
         <h2 class="specialize-big">
           <span class="word-line">
