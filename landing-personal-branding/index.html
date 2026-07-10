@@ -705,14 +705,6 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   line-height: 1.35;
   text-align: left;
 }
-.comment-bubble::after{
-  content:"";
-  position:absolute;
-  bottom:0;
-  width:0;height:0;
-  border:8px solid transparent;
-  border-bottom:0;
-}
 .cb-text{
   margin:0;
 }
@@ -727,29 +719,12 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .cb-check{
   color:#53bdeb;
-  font-size:.78rem;
   line-height:1;
 }
-.bubble-1, .bubble-3, .bubble-5{
-  border-top-left-radius: 7.5px;
-}
-.bubble-1::after, .bubble-3::after, .bubble-5::after{
-  left:-7px;
-  border-right-color:#fff;
-  border-left:0;
-}
-.bubble-2, .bubble-4, .bubble-6{
-  border-top-right-radius: 7.5px;
-}
-.bubble-2::after, .bubble-4::after, .bubble-6::after{
-  right:-7px;
-  border-left-color:#fff;
-  border-right:0;
-}
-.bubble-1 {
-  top: 15%;
-  left: -5%;
-  transform: rotate(-4deg);
+.cb-check svg{
+  display:block;
+  width:16px;
+  height:11px;
 }
 .bubble-2 {
   bottom: -5%;
@@ -2247,8 +2222,12 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .tcard-check{
   color:#53bdeb;
-  font-size:.8rem;
   line-height:1;
+}
+.tcard-check svg{
+  display:block;
+  width:16px;
+  height:11px;
 }
 
 /* ============================================================
@@ -2581,29 +2560,25 @@ section{padding-block:clamp(4rem,9vw,8rem)}
     <div class="specialize-text-wrap">
         <p class="specialize-small">Je ne me spécialise pas dans un secteur.</p>
         
-        <div class="comment-bubble bubble-1 reveal" style="transition-delay: 2.0s;">
-          <p class="cb-text">Gros coup de cœur pour ce document 🤍</p>
-          <span class="cb-meta">09:41<span class="cb-check">✓✓</span></span>
-        </div>
         <div class="comment-bubble bubble-2 reveal" style="transition-delay: 2.3s;">
           <p class="cb-text">Franchement, ça claque tellement que j'ai envie de crier sur tous les toits que je suis coiffeuse.</p>
-          <span class="cb-meta">16:07<span class="cb-check">✓✓</span></span>
+          <span class="cb-meta">16:07<span class="cb-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
         </div>
         <div class="comment-bubble bubble-3 reveal" style="transition-delay: 2.6s;">
           <p class="cb-text">C'est ouf, t'as vraiment réussi à concrétiser ce que j'avais en tête. Et que je n'arrivais pas à faire depuis.</p>
-          <span class="cb-meta">11:52<span class="cb-check">✓✓</span></span>
+          <span class="cb-meta">11:52<span class="cb-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
         </div>
         <div class="comment-bubble bubble-4 reveal" style="transition-delay: 2.9s;">
           <p class="cb-text">J'ai enfin attiré le type de cliente que je voulais ! T'as tellement eu raison de me dire de revoir mon positionnement. J'ai décroché un gros contrat, je t'expliquerai !</p>
-          <span class="cb-meta">20:15<span class="cb-check">✓✓</span></span>
+          <span class="cb-meta">20:15<span class="cb-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
         </div>
         <div class="comment-bubble bubble-5 reveal" style="transition-delay: 3.2s;">
           <p class="cb-text">Merci d'avoir mis le focus au bon endroit.</p>
-          <span class="cb-meta">08:26<span class="cb-check">✓✓</span></span>
+          <span class="cb-meta">08:26<span class="cb-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
         </div>
         <div class="comment-bubble bubble-6 reveal" style="transition-delay: 3.5s;">
           <p class="cb-text">Franchement chuis impressionnée, j'ai déjà travaillé avec une agence de design, pourtant tu as une meilleure qualité de réflexion et de créa.</p>
-          <span class="cb-meta">13:38<span class="cb-check">✓✓</span></span>
+          <span class="cb-meta">13:38<span class="cb-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
         </div>
 
         <h2 class="specialize-big">
@@ -2913,7 +2888,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         </div>
         <div class="tcard-bubble">
           <p class="tcard-quote">Je ne cours plus après personne. Les demandes arrivent. Et ce sont les bonnes. Je n'imaginais pas qu'on pouvait construire ça aussi vite.</p>
-          <div class="tcard-meta"><span class="tcard-time">14:32</span><span class="tcard-check">✓✓</span></div>
+          <div class="tcard-meta"><span class="tcard-time">14:32</span><span class="tcard-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
         </div>
       </article>
 
@@ -2924,7 +2899,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         </div>
         <div class="tcard-bubble">
           <p class="tcard-quote">Mes tarifs ont suivi, sans négociation. Mon image reflète enfin mon niveau, je ne me bats plus pour justifier mes prix.</p>
-          <div class="tcard-meta"><span class="tcard-time">09:14</span><span class="tcard-check">✓✓</span></div>
+          <div class="tcard-meta"><span class="tcard-time">09:14</span><span class="tcard-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
         </div>
       </article>
 
@@ -2935,7 +2910,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         </div>
         <div class="tcard-bubble">
           <p class="tcard-quote">Rien à voir avec une agence. Un accompagnement humain, exigeant, sur-mesure. J'ai senti une vraie implication.</p>
-          <div class="tcard-meta"><span class="tcard-time">18:47</span><span class="tcard-check">✓✓</span></div>
+          <div class="tcard-meta"><span class="tcard-time">18:47</span><span class="tcard-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
         </div>
       </article>
 
@@ -2946,7 +2921,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         </div>
         <div class="tcard-bubble">
           <p class="tcard-quote">Je me sens enfin alignée. Ma marque, mon site, mon contenu, tout raconte la même histoire. Et c'est la mienne, enfin.</p>
-          <div class="tcard-meta"><span class="tcard-time">11:03</span><span class="tcard-check">✓✓</span></div>
+          <div class="tcard-meta"><span class="tcard-time">11:03</span><span class="tcard-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
         </div>
       </article>
     </div>
