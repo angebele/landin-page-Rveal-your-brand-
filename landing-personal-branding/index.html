@@ -2124,26 +2124,51 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   color:var(--neon-citrus);
   font-weight:400;
 }
-/* Bulles style WhatsApp */
 .tcard-v2{
   position:relative;
   z-index:1;
-  max-width:360px;
+  background:var(--paper);
+  border-radius:var(--r-md);
+  padding:clamp(1.6rem, 2.6vw, 2rem);
+  box-shadow:0 12px 40px rgba(46,20,16,.12);
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+.tcard-stars{
+  color:var(--ink);
+  font-size:1rem;
+  letter-spacing:.3em;
+}
+.tcard-title{
+  font-family:var(--heading);
+  font-size:clamp(1rem, 1.6vw, 1.1rem);
+  font-weight:600;
+  line-height:1.2;
+  color:var(--ink);
+  letter-spacing:.01em;
+  margin:0;
+}
+.tcard-quote{
+  font-family:var(--sans);
+  font-size:.95rem;
+  line-height:1.55;
+  color:color-mix(in srgb, var(--ink) 78%, transparent);
+  margin:0;
 }
 .tcard-who{
   display:flex;
   align-items:center;
-  gap:.6rem;
-  margin-bottom:.5rem;
+  gap:.7rem;
+  margin-top:.3rem;
 }
 .tcard-avatar{
-  width:34px;
-  height:34px;
+  width:42px;
+  height:42px;
   border-radius:50%;
   overflow:hidden;
   flex-shrink:0;
   background:var(--champagne);
-  box-shadow:0 2px 6px rgba(0,0,0,.25);
 }
 .tcard-avatar img{
   width:100%;
@@ -2161,82 +2186,16 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   color:var(--espresso);
 }
 .tcard-name{
-  font-family:var(--whatsapp-font);
-  font-size:.82rem;
+  font-family:var(--sans);
+  font-size:.88rem;
   line-height:1.3;
-  color:var(--champagne-glow);
+  color:var(--ink);
 }
 .tcard-name em{
   font-family:var(--heading);
   font-style:normal;
-  font-weight:700;
-  font-size:.92rem;
-  color:#fff;
-  display:block;
-}
-.tcard-bubble{
-  background:#DCF8C6;
-  color:#111b21;
-  border-radius:14px 14px 14px 3px;
-  padding:.7rem .9rem .5rem;
-  box-shadow:0 3px 12px rgba(0,0,0,.25);
-  position:relative;
-}
-.tcard-bubble::before{
-  content:"";
-  position:absolute;
-  left:-7px;
-  bottom:0;
-  width:0;height:0;
-  border:8px solid transparent;
-  border-right-color:#DCF8C6;
-  border-bottom:0;
-  border-left:0;
-}
-.tcard-stars{
-  display:block;
-  color:var(--zest);
-  font-size:.85rem;
-  letter-spacing:.25em;
-  margin-bottom:.3rem;
-}
-.tcard-title{
-  font-family:var(--whatsapp-font);
-  font-size:.95rem;
-  font-weight:700;
-  line-height:1.35;
-  color:#075E54;
-  letter-spacing:0;
-  margin:0 0 .3rem;
-  text-transform:none;
-}
-.tcard-quote{
-  font-family:var(--whatsapp-font);
-  font-size:.92rem;
-  line-height:1.5;
-  color:#111b21;
-  margin:0;
-}
-.tcard-meta{
-  display:flex;
-  justify-content:flex-end;
-  align-items:center;
-  gap:.3rem;
-  margin-top:.3rem;
-}
-.tcard-time{
-  font-family:var(--whatsapp-font);
-  font-size:.68rem;
-  color:#667781;
-}
-.tcard-check{
-  color:#53bdeb;
-  line-height:1;
-}
-.tcard-check svg{
-  display:block;
-  width:16px;
-  height:11px;
+  font-weight:600;
+  font-size:.9rem;
 }
 
 /* ============================================================
@@ -2903,46 +2862,42 @@ section{padding-block:clamp(4rem,9vw,8rem)}
       </h2>
 
       <article class="tcard-v2 tcard-pos-1 reveal">
+        <span class="tcard-stars">★ ★ ★ ★ ★</span>
+        <h3 class="tcard-title">"JE NE COURS PLUS APRÈS PERSONNE."</h3>
+        <p class="tcard-quote">« Les demandes arrivent. Et ce sont les bonnes. Je n'imaginais pas qu'on pouvait construire ça aussi vite. »</p>
         <div class="tcard-who">
           <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="" /></div>
-          <span class="tcard-name"><em>Camille</em>Coach business</span>
-        </div>
-        <div class="tcard-bubble">
-          <p class="tcard-quote">Je ne cours plus après personne. Les demandes arrivent. Et ce sont les bonnes. Je n'imaginais pas qu'on pouvait construire ça aussi vite.</p>
-          <div class="tcard-meta"><span class="tcard-time">14:32</span><span class="tcard-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <span class="tcard-name"><em>Camille,</em><br>Coach business</span>
         </div>
       </article>
 
       <article class="tcard-v2 tcard-pos-2 reveal">
+        <span class="tcard-stars">★ ★ ★ ★ ★</span>
+        <h3 class="tcard-title">"MES TARIFS ONT SUIVI, SANS NÉGOCIATION."</h3>
+        <p class="tcard-quote">« Mon image reflète enfin mon niveau. Je ne me bats plus pour justifier mes prix, ils sont simplement acceptés. »</p>
         <div class="tcard-who">
           <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/143cf3b2-0a63-47ae-a93e-f13657ac7f00/pexels-olga-pozney-9940848.jpg" alt="" /></div>
-          <span class="tcard-name"><em>Sarah</em>Consultante</span>
-        </div>
-        <div class="tcard-bubble">
-          <p class="tcard-quote">Mes tarifs ont suivi, sans négociation. Mon image reflète enfin mon niveau, je ne me bats plus pour justifier mes prix.</p>
-          <div class="tcard-meta"><span class="tcard-time">09:14</span><span class="tcard-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <span class="tcard-name"><em>Sarah,</em><br>Consultante</span>
         </div>
       </article>
 
       <article class="tcard-v2 tcard-pos-3 reveal">
+        <span class="tcard-stars">★ ★ ★ ★ ★</span>
+        <h3 class="tcard-title">"RIEN À VOIR AVEC UNE AGENCE."</h3>
+        <p class="tcard-quote">« Un accompagnement humain, exigeant, sur-mesure. J'ai senti une vraie implication, comme si mon projet était le sien. »</p>
         <div class="tcard-who">
           <div class="tcard-avatar"><img src="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg" alt="" /></div>
-          <span class="tcard-name"><em>Léa</em>Thérapeute</span>
-        </div>
-        <div class="tcard-bubble">
-          <p class="tcard-quote">Rien à voir avec une agence. Un accompagnement humain, exigeant, sur-mesure. J'ai senti une vraie implication.</p>
-          <div class="tcard-meta"><span class="tcard-time">18:47</span><span class="tcard-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <span class="tcard-name"><em>Léa,</em><br>Thérapeute</span>
         </div>
       </article>
 
       <article class="tcard-v2 tcard-pos-4 reveal">
+        <span class="tcard-stars">★ ★ ★ ★ ★</span>
+        <h3 class="tcard-title">"JE ME SUIS VU DANS UN MIROIR."</h3>
+        <p class="tcard-quote">« Ça a changé ma façon de me présenter. Rien que le nom fait déjà son effet, personne n'est surpris, tout le monde me parle de clarté. »</p>
         <div class="tcard-who">
           <div class="tcard-avatar tcard-avatar-initials">FG</div>
-          <span class="tcard-name"><em>Fabien Gautier</em>Expert en stratégie d'adressage marché</span>
-        </div>
-        <div class="tcard-bubble">
-          <p class="tcard-quote">En découvrant le document de branding, j'ai eu l'impression de me voir dans un miroir. Ça a changé ma façon de me présenter, et rien que le nom fait déjà son effet, personne n'est surpris, tout le monde me parle de clarté. Aujourd'hui, j'ai hâte de faire vivre tout ça à travers le site.</p>
-          <div class="tcard-meta"><span class="tcard-time">17:20</span><span class="tcard-check"><svg viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6.5L4.5 10L11 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6.5L9.5 10L17 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <span class="tcard-name"><em>Fabien Gautier,</em><br>Expert en stratégie d'adressage marché</span>
         </div>
       </article>
     </div>
