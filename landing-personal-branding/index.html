@@ -57,6 +57,9 @@
   --display: "Anton", "Jost", sans-serif;
   --heading: "Jost", system-ui, sans-serif;
   --mono: "Space Mono", "Courier New", monospace;
+  /* WhatsApp n'utilise pas de police custom : ils s'appuient sur la police systeme
+     de chaque plateforme (San Francisco / Roboto / Segoe UI) pour rester natifs. */
+  --whatsapp-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -688,48 +691,70 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 }
 .comment-bubble {
   position: absolute;
-  background: var(--warm-ivory);
-  color: var(--espresso);
-  font-family: var(--sans);
-  font-size: clamp(0.75rem, 1vw, 0.95rem);
-  font-weight: 600;
-  padding: 0.8rem 1.4rem;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  background: #fff;
+  color: #111b21;
+  font-family: var(--whatsapp-font);
+  font-size: clamp(0.78rem, 1vw, 0.92rem);
+  font-weight: 400;
+  padding: 0.6rem 0.8rem;
+  border-radius: 7.5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.15), 0 12px 30px rgba(0,0,0,.25);
   z-index: 20;
   pointer-events: none;
-  max-width: 220px;
-  line-height: 1.3;
+  max-width: 240px;
+  line-height: 1.35;
   text-align: left;
 }
+.comment-bubble::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  width:0;height:0;
+  border:8px solid transparent;
+  border-bottom:0;
+}
+.bubble-1, .bubble-3, .bubble-5{
+  border-top-left-radius: 7.5px;
+}
+.bubble-1::after, .bubble-3::after, .bubble-5::after{
+  left:-7px;
+  border-right-color:#fff;
+  border-left:0;
+}
+.bubble-2, .bubble-4{
+  border-top-right-radius: 7.5px;
+}
+.bubble-2::after, .bubble-4::after{
+  right:-7px;
+  border-left-color:#fff;
+  border-right:0;
+}
 .bubble-1 {
-  border-radius: 20px 20px 20px 5px;
   top: 15%;
   left: -5%;
-  transform: rotate(-10deg);
+  transform: rotate(-4deg);
 }
 .bubble-2 {
-  border-radius: 20px 20px 5px 20px;
   bottom: -5%;
   right: 5%;
-  transform: rotate(8deg);
+  transform: rotate(3deg);
+  max-width: 260px;
 }
 .bubble-3 {
-  border-radius: 20px 20px 20px 5px;
   top: -2%;
   right: 5%;
-  transform: rotate(12deg);
+  transform: rotate(5deg);
 }
 .bubble-4 {
-  border-radius: 20px 20px 5px 20px;
   bottom: -5%;
   left: 5%;
-  transform: rotate(-8deg);
+  transform: rotate(-3deg);
+  max-width: 270px;
 }
 .bubble-5 {
-  border-radius: 20px 20px 20px 5px;
   bottom: -8%;
   left: 30%;
-  transform: rotate(-10deg);
+  transform: rotate(-4deg);
 }
 @media (max-width: 900px) {
   .comment-bubble { display: none; }
@@ -2129,7 +2154,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   display:block;
 }
 .tcard-name{
-  font-family:var(--sans);
+  font-family:var(--whatsapp-font);
   font-size:.82rem;
   line-height:1.3;
   color:var(--champagne-glow);
@@ -2169,7 +2194,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   margin-bottom:.3rem;
 }
 .tcard-title{
-  font-family:var(--sans);
+  font-family:var(--whatsapp-font);
   font-size:.95rem;
   font-weight:700;
   line-height:1.35;
@@ -2179,7 +2204,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   text-transform:none;
 }
 .tcard-quote{
-  font-family:var(--sans);
+  font-family:var(--whatsapp-font);
   font-size:.92rem;
   line-height:1.5;
   color:#111b21;
@@ -2193,7 +2218,7 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   margin-top:.3rem;
 }
 .tcard-time{
-  font-family:var(--sans);
+  font-family:var(--whatsapp-font);
   font-size:.68rem;
   color:#667781;
 }
@@ -2536,8 +2561,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
         <div class="comment-bubble bubble-1 reveal" style="transition-delay: 2.0s;">Gros coup de cœur pour ce document 🤍</div>
         <div class="comment-bubble bubble-2 reveal" style="transition-delay: 2.3s;">J'ai eu envie de crier sur tous les toits que je suis coiffeuse !</div>
         <div class="comment-bubble bubble-3 reveal" style="transition-delay: 2.6s;">Un vrai moment structurant.</div>
-        <div class="comment-bubble bubble-4 reveal" style="transition-delay: 2.9s;">Structurée, claire, cohérente.</div>
-        <div class="comment-bubble bubble-5 reveal" style="transition-delay: 3.2s;">Ça met le focus au bon endroit.</div>
+        <div class="comment-bubble bubble-4 reveal" style="transition-delay: 2.9s;">J'ai enfin attiré le type de cliente que je voulais ! T'as tellement eu raison de me dire de revoir mon positionnement. J'ai décroché un gros contrat, je t'expliquerai !</div>
+        <div class="comment-bubble bubble-5 reveal" style="transition-delay: 3.2s;">Merci d'avoir mis le focus au bon endroit.</div>
 
         <h2 class="specialize-big">
           <span class="word-line">
