@@ -1235,19 +1235,13 @@ section{padding-block:clamp(4rem,9vw,8rem)}
   color: #fff;
   padding: clamp(6rem, 12vw, 10rem) var(--gut);
 }
-.timeline-video-wrap {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  transform: translateZ(0);
-  z-index: 0;
-}
 .timeline-bg-video {
-  position: fixed;
+  position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 0;
 }
 .timeline-section::before {
   content: '';
@@ -2802,11 +2796,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 
 <!-- ============ S6.5 · COMMENT ON TRAVAILLE ENSEMBLE ============ -->
 <section class="timeline-section" id="timeline-process">
-  <div class="timeline-video-wrap">
-    <video class="timeline-bg-video" autoplay muted loop playsinline>
-      <source src="timeline-bg.mp4" type="video/mp4" />
-    </video>
-  </div>
+  <video class="timeline-bg-video" autoplay muted loop playsinline>
+    <source src="timeline-bg.mp4" type="video/mp4" />
+  </video>
   <div class="timeline-container">
     
     <div class="timeline-left">
