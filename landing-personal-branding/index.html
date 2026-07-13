@@ -1232,12 +1232,17 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 .timeline-section {
   position: relative;
   background-color: var(--espresso);
-  background-image: url('https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/f4003403-c8aa-4e05-a91c-0230ca83d87a/pexels-john-tekeridis-14164321.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
   color: #fff;
   padding: clamp(6rem, 12vw, 10rem) var(--gut);
+  overflow: hidden;
+}
+.timeline-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 .timeline-section::before {
   content: '';
@@ -2792,6 +2797,9 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 
 <!-- ============ S6.5 · COMMENT ON TRAVAILLE ENSEMBLE ============ -->
 <section class="timeline-section" id="timeline-process">
+  <video class="timeline-bg-video" autoplay muted loop playsinline>
+    <source src="timeline-bg.mp4" type="video/mp4" />
+  </video>
   <div class="timeline-container">
     
     <div class="timeline-left">
@@ -2980,8 +2988,8 @@ section{padding-block:clamp(4rem,9vw,8rem)}
 <!-- ============ S11 · CTA FINAL - "On repart du début ?" ============ -->
 <section class="cta-final-dark" id="book">
   <!-- Vidéo de fond -->
-  <video class="cta-final-video" autoplay muted loop playsinline poster="https://images.squarespace-cdn.com/content/v1/65e76e7202d412641baa4e6f/9f4d1405-2178-46f7-b408-b137582f7f95/tetiana-kobzeva-FjDywfSgClg-unsplash.jpg">
-    <source src="https://static.showit.co/file/y9LFf4jy5EJn9OGRLFLYoQ/118862/kleist_showit_bg_video.mp4" type="video/mp4" />
+  <video class="cta-final-video" autoplay muted loop playsinline>
+    <source src="cta-bg.mp4" type="video/mp4" />
   </video>
   <!-- Overlay sombre -->
   <div class="cta-final-overlay"></div>
